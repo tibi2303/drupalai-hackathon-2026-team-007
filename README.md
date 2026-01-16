@@ -8,6 +8,7 @@ This repository serves as the official starting point for hackathon participants
 ## Table of Contents
 
 - [Participation workflow](#participation-workflow)
+- [**Important**: How to Redeem Your Mistral API Gift Code](#important-how-to-redeem-your-mistral-api-gift-code)
 - [Getting started](#getting-started)
 - [AI provider and model requirements](#ai-provider-and-model-requirements)
 - [Mistral API key configuration](#mistral-api-key-configuration)
@@ -22,6 +23,22 @@ All development must happen in the forked repository.
 
 When ready for review, participants must open a **pull request back to this repository** so that judges can review and
 evaluate the submission.
+
+## Important: How to Redeem Your Mistral API Gift Code**
+
+To access the Mistral API without free tier limits during the hackathon, you must redeem your gift code
+**exclusively on Mistral AI Studio**. Do **NOT** redeem it on **Le Chat**, as this will burn your credits on the chat
+interface instead of the API.
+
+To correctly redeem your gift code:
+
+1. Log in with your Mistral account.
+2. Go to the [Mistral AI Studio subscriptions page](https://admin.mistral.ai/subscriptions?subscription-tab=ai-studio).
+3. Enter your gift code in the designated field under the **AI Studio** tab.
+4. Your API credits will be applied, allowing you to use the Mistral API for your hackathon projects.
+
+**Note:** If you accidentally redeem the code on **Le Chat**, your credits will be consumed for chat usage and **cannot**
+be transferred to the API. If you have any issues, reach out to the hackathon organizers for assistance.
 
 ## Getting started
 
