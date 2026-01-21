@@ -12,7 +12,7 @@ This repository serves as the official starting point for hackathon participants
 * [AI provider and model requirements](#ai-provider-and-model-requirements)
 * [amazee.io AI provider setup](#amazeeio-ai-provider-setup)
 * [Configuration export requirement](#configuration-export-requirement)
-* [Drupal Forge setup guide](#drupal-forge-setup-guide)
+* [DevPanel setup guide](#devpanel-setup-guide)
 
 ## Participation workflow
 
@@ -75,13 +75,13 @@ ddev drush cex
 The exported configuration must be committed and included in the pull request. Pull requests without exported configuration
 will not be considered complete.
 
-## Drupal Forge setup guide
+## DevPanel setup guide
 
-This section describes how to set up your [Drupal Forge](https://www.drupalforge.org/) project and development environment for the hackathon.
+This section describes how to set up your [DevPanel](https://console.devpanel.com/) project and development environment for the hackathon.
 
-### 1. Setting Up a Drupal Forge Account
+### 1. Setting Up an Account
 
-Each developer must create an individual **Drupal Forge** account using a valid email address.
+Each developer can create an individual **DevelPanel** account using the same email address used for the registration.
 
 After registration, each team member must send the following to the hackathon organization:
 
@@ -89,7 +89,7 @@ After registration, each team member must send the following to the hackathon or
 - Full name
 - Team name / team number
 
-**Note**: analysts do **not** need Drupal Forge access. They will only use the live site URL.
+**Note**: analysts do **not** need DevPanel access. They will only use the live site URL.
 
 ### 2. Forking the Source Repository on GitHub
 
@@ -106,12 +106,9 @@ are disposable — GitHub is not.
 
 Steps:
 
-1. Log in to **Drupal Forge**.
-2. Click **My App** next to the user menu.
-3. On the My App page, click the **DevPanel logo** in the top-right corner to open the DevPanel web app.
-4. Log in using the **same email** as your Drupal Forge account.
-5. You will be redirected to the **Workspaces** page, create one.
-6. Access the workspace you just created and click **+ Create project from scratch**.
+1. Log in to **DevPanel**.
+2. You will be redirected to the **Workspaces** page, create one.
+3. Access the workspace you just created and click **+ Create project from scratch**.
 
 Fill in the form as follows:
 
@@ -139,3 +136,5 @@ Steps:
 composer install
 drush -y si --existing-config --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
 ```
+
+Remember to set up the amazee.io AI provider on the site since its configuration is ignored, [see section above](#amazeeio-ai-provider-setup).
