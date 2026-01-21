@@ -23,6 +23,7 @@
         "drupal/ai_provider_mistral": "1.1.x-dev@dev",
         "drupal/byte": "^1@beta",
         "drupal/byte_theme": "@beta",
+        "drupal/config_ignore": "^3.3",
         "drupal/core": "^11.3",
         "drupal/core-composer-scaffold": "^11.3",
         "drupal/core-project-message": "^11.3",
