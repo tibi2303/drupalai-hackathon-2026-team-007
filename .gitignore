@@ -47,6 +47,9 @@ web/sites/example.settings.local.php
 web/sites/example.sites.php
 web/sites/sites.php
 
+# Ignore Recipes
+recipes
+
 # Ignore Drupal's file directory
 web/sites/default/files
 
