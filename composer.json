@@ -109,6 +109,9 @@
             },
             "drupal/ai": {
                 "#3567784: Tools Function Input should give back an empty json schema skeleton": "https://git.drupalcode.org/project/ai/-/merge_requests/1120.patch"
+            },
+            "drupal/canvas": {
+                "#3568950: Let the agent know that the tools were succesful": "https://git.drupalcode.org/project/canvas/-/merge_requests/493.patch"
             }
         }
     },

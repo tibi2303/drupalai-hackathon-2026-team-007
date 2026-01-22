@@ -1,4 +1,4 @@
-# Drupal AI Hackathon 2026
+# DrupalAI Hackathon 2026
 
 This project is based on **Drupal CMS**, a fast-moving open source product that enables site builders to create Drupal
 sites with smart defaults using only their browser.
