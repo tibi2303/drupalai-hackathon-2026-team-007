@@ -81,7 +81,7 @@ This section describes how to set up your [DevPanel](https://console.devpanel.co
 
 ### 1. Setting Up an Account
 
-Each developer can create an individual **DevelPanel** account using the same email address used for the registration.
+Each developer can create an individual **DevPanel** account using the same email address used for the registration.
 
 After registration, each team member must send the following to the hackathon organization:
 
