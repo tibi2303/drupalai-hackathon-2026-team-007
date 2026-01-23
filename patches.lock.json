@@ -13,18 +13,6 @@
                 }
             }
         ],
-        "drupal/ai": [
-            {
-                "package": "drupal/ai",
-                "description": "#3567784: Tools Function Input should give back an empty json schema skeleton",
-                "url": "https://git.drupalcode.org/project/ai/-/merge_requests/1120.patch",
-                "sha256": "2318e645dbb7e17c6fff6b51687d6f063ec7fa70355d44733be467f88e7020da",
-                "depth": 1,
-                "extra": {
-                    "provenance": "root"
-                }
-            }
-        ],
         "drupal/canvas": [
             {
                 "package": "drupal/canvas",
