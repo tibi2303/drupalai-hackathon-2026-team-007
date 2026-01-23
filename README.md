@@ -1,3 +1,5 @@
+![DrupalAI Hackathon 2026 Banner](assets/banner.jpg)
+
 # DrupalAI Hackathon 2026
 
 This project is based on **Drupal CMS**, a fast-moving open source product that enables site builders to create Drupal
