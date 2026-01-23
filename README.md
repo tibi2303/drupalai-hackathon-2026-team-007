@@ -128,6 +128,8 @@ You should now be able to deploy the `master` branch.
 
 ### 4. Configuring the Development Website
 
+The site should be automatically configured. If it is not, follow these steps.
+
 Steps:
 
 1. From the **Application Summary** page, click **Open Application** to access the Dev Environment (browser VS Code).
