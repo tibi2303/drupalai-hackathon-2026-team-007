@@ -15,6 +15,7 @@ This repository serves as the official starting point for hackathon participants
 * [amazee.io AI provider setup](#amazeeio-ai-provider-setup)
 * [Configuration export requirement](#configuration-export-requirement)
 * [DevPanel setup guide](#devpanel-setup-guide)
+* [Resources](#resources)
 
 ## Participation workflow
 
@@ -150,3 +151,18 @@ In the unlikely event that the site does **not** build automatically, you can ma
 composer install
 drush -y si --existing-config --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
 ```
+
+## Resources
+
+While not included in this distribution, the following modules may be useful resources to explore during the hackathon
+if they align with your project goals:
+
+- [FlowDrop UI Agents](https://www.drupal.org/project/flowdrop_ui_agents): A visual agent builder that greatly improves
+  the development experience for creating AI-powered agents.
+- [Tool API](https://www.drupal.org/project/tool_api): A module that allows you to define and manage tools that can be
+  used by AI agents to perform specific tasks. This represents a more integrated approach for agents to interact with tools.
+- [Agent Handler](https://www.drupal.org/project/ai_agent_agent): When combined with FlowDrop UI for agents, this provides
+  an AI agent that can create and edit agents and explain available tools. You can attach it to a chatbot to get assistance
+  with agents and tools.
+- [Pexels AI](https://www.drupal.org/project/pexels_ai): Integrates the Pexels API to provide AI-powered image search
+  and download capabilities.
