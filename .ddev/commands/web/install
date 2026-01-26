@@ -6,6 +6,6 @@
 
 echo "Installing Drupal..."
 composer install
-drush si --account-pass=admin --existing-config -y
+drush si --existing-config -y
 drush cr
 drush uli
