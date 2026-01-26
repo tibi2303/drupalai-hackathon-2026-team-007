@@ -129,19 +129,28 @@ You should now be able to deploy the `master` branch.
 
 ### 4. Configuring the Development Website
 
-Steps:
+The site **should be automatically configured** when the project is opened in DevPanel.
+This repository includes a [`.devpanel`](.devpanel) directory containing all the required configuration for DevPanel to
+correctly build and install the site.
 
-1. From the **Application Summary** page, click **Open Application** to access the Dev Environment (browser VS Code).
+Once the setup is complete, select your fork’s default branch (most likely `master`) and deploy it by following the on-screen instructions.
+
+After the deployment is complete, you can run any Drush commands on your site (for example, `drush uli`) by following the steps below:
+
+1. From the **Application Summary** page, click **Open Application** to access the development environment (browser VS Code).
 2. Copy the displayed password — you will need it to access the environment.
-3. In browser VS Code open a terminal window.
-4. Run the following commands to initialize the Drupal website:
+3. In browser VS Code open a terminal window and run the desired commands.
+
+**Important:** You must always set up the amazee.io AI provider manually on the DevPanel site. Its configuration is
+intentionally [ignored](config/sync/config_ignore.settings.yml) and will not be exported with `drush cex -y`.
+For more information, see the [Amazee.io AI Provider Setup](#amazeeio-ai-provider-setup) section above.
+
+In the unlikely event that the site does **not** build automatically, you can manually build and install it by following the steps below:
 
 ```shell
 composer install
 drush -y si --existing-config --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
 ```
-
-Remember to set up the amazee.io AI provider on the site since its configuration is ignored, [see section above](#amazeeio-ai-provider-setup).
 
 ## Resources
 
