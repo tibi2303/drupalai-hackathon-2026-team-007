@@ -141,3 +141,11 @@ drush -y si --existing-config --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}
 ```
 
 Remember to set up the amazee.io AI provider on the site since its configuration is ignored, [see section above](#amazeeio-ai-provider-setup).
+
+## Extra modules
+There are some extra modules included in this distribution that you might find useful during the hackathon, that you can just enable:
+
+- [FlowDrop UI Agents](https://www.drupal.org/project/flowdrop_ui_agents) - the visual agent builder featured in the last training session, that greatly improves the development experience for creating AI-powered agents.
+- [Tool API](https://www.drupal.org/project/tool_api) - a module that allows you to define and manage tools that can be used by AI agents to perform specific tasks. This is the future of more integrated way that agents will have tools.
+- [Agent Handler](https://www.drupal.org/project/ai_agent_agent) - With flowdrop UI for agents, an AI agent that can create and edit agents and explain the tools. An assistant will be added, just attach it to a Chatbot and start asking it to help you with agents and tools.
+- [Pexels AI](https://www.drupal.org/project/pexels_ai) - Integrates the Pexels API to provide AI-powered image search and download.
