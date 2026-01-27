@@ -1,0 +1,93 @@
+{% apply spaceless %}
+
+{#
+  Parameters:
+    - "label" (string) (default: '')
+    - "variant" (string) (default: 'primary'): can be 'primary', 'secondary', 'call', 'ghost'
+    - "type" (string) (default: 'submit'): can be the same type as HTML button - 'submit', 'reset', 'button'
+    - "icon" (associative array) (default: {}): predefined structure for Icon component
+    - "disabled" (bool) (default: false): defined if button should be active or not (HTML disabled attribute)
+    - "hide_label" (bool) (default: false): hide button label, for screen reader only
+    - "icon_position" (string) (default: after): define icon position, can be 'before' or 'after'
+    - "extra_classes" (string) (default: '')
+    - "extra_attributes" (array) (default: []): format: [
+        {
+          "name" (string) (default: ''),
+          "value" (optional) (string)
+        ...
+      ],
+  Blocks:
+    - "label"
+#}
+
+{# Internal properties #}
+
+{% set _css_class = 'ecl-button' %}
+{% set _extra_attributes = '' %}
+{% set _label = label|default('') %}
+{% set _variant = variant|default('primary') %}
+{% set _type = type|default('submit') %}
+{% set _icon = icon|default({}) %}
+{% set _icon_position = icon_position|default('after') %}
+{% set _disabled = disabled|default(false) %}
+{% set _hide_label = hide_label|default(false) %}
+
+{# Internal logic - Process properties #}
+
+{% set _css_class = _css_class ~ ' ecl-button--' ~ _variant %}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% if attr.value is defined %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') ~ '="' ~ attr.value|e('html_attr') ~ '"' %}
+    {% else %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set _label_css_class = _hide_label ? 'ecl-u-sr-only' : 'ecl-button__label' %}
+
+{# Add disabled option if defined #}
+
+{% if _disabled %}
+  {% set _extra_attributes = _extra_attributes ~ ' disabled' %}
+{% endif %}
+
+{# Print the result #}
+
+<button class="{{ _css_class }}" type="{{ _type }}" {{ _extra_attributes|raw }}>
+  {%- if _icon.name is not empty %}
+    <span class="ecl-button__container">
+      {% if _icon_position == 'before' %}
+        {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+          icon: _icon,
+          extra_classes: 'ecl-button__icon ecl-button__icon--before',
+          extra_attributes: [
+            { name: 'data-ecl-icon' }
+          ],
+        } only %}
+      {% endif %}
+      {% if _label %}
+        <span class="{{ _label_css_class }}" data-ecl-label="true">{% block label _label %}</span>
+      {% endif %}
+      {% if _icon_position == 'after' %}
+        {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+          icon: _icon,
+          extra_classes: 'ecl-button__icon ecl-button__icon--after',
+          extra_attributes: [
+            { name: 'data-ecl-icon' }
+          ],
+        } only %}
+      {% endif %}
+    </span>
+  {% else %}
+    {{- block('label') -}}
+  {% endif -%}
+</button>
+
+{% endapply %}

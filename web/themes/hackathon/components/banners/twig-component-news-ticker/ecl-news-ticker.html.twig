@@ -1,0 +1,196 @@
+{% apply spaceless %}
+
+{#
+  Parameters:
+    - "id" (string) (default: '')
+    - "items" (array) (default: []): format: [
+        {
+          "content" (string)
+          "link" (string)
+          "external" (boolean)
+        },
+        ...
+      ]
+    - "counter_label" (string) (default: 'of')
+    - "sr_previous" (string) (default: 'Previous news') screen reader label for previous button
+    - "sr_next" (string) (default: 'Next news') screen reader label for next button
+    - "sr_play" (string) (default: 'Play news ticker') screen reader label for play button
+    - "sr_pause" (string) (default: 'Pause news ticker') screen reader label for pause button
+    - "icon_path" (string) (default: '') Path to the icons file
+    - "extra_classes" (string) (default: '')
+    - "extra_attributes" (array) (default: []): format: [
+        {
+          "name" (string) (default: ''),
+          "value" (optional) (string)
+        },
+        ...
+      ],
+#}
+
+{# Backward compatibility #}
+
+{% set _sr_autoplay = sr_autoplay|default('Play news ticker') %}
+
+{# Internal properties #}
+
+{% set _id = id|default('') %}
+{% set _icon_path = icon_path|default('') %}
+{% set _counter_label = counter_label|default('of') %}
+{% set _items = items|default([]) %}
+{% set _aria_controls = _id ~ '-content' %}
+{% set _sr_previous = sr_previous|default('') %}
+{% set _sr_next = sr_next|default('') %}
+{% set _sr_play = sr_play|default(_sr_autoplay) %}
+{% set _sr_pause = sr_pause|default('') %}
+{% set _css_class = 'ecl-news-ticker' %}
+{% set _extra_attributes = [
+  'data-ecl-news-ticker="true"',
+  'data-ecl-auto-init="NewsTicker"']|join(' ')
+%}
+
+{# Internal logic - Process properties #}
+
+{% if extra_dropdown_classes is defined and extra_dropdown_classes is not empty %}
+  {% set _css_dropdown_class = _css_dropdown_class ~ ' ' ~ extra_dropdown_classes %}
+{% endif %}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% if attr.value is defined %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') ~ '="' ~ attr.value|e('html_attr') ~ '"' %}
+    {% else %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Print the result #}
+
+<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+  {% if _items is not empty and _items is iterable %}
+  <div class="ecl-news-ticker__container">
+    {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+      icon: {
+        path: _icon_path,
+        name: 'information',
+        size: 'm',
+      },
+      extra_classes: 'ecl-news-ticker__icon',
+    } only %}
+    <div class="ecl-news-ticker__content">
+      <ul class="ecl-news-ticker__slides" id="{{ _aria_controls }}">
+      {% for _item in _items %}
+        {% if _item.link is not empty %}
+          <li class="ecl-news-ticker__slide">
+          {% include '@ecl-twig/twig-component-link/link.html.twig' with {
+            link: {
+              label: _item.content,
+              path: _item.link,
+              icon_position: 'before',
+            },
+            icon: not _item.external ? {} : {
+              name: "external",
+              size: "xs",
+              path: icon_path
+            },
+            extra_classes: 'ecl-news-ticker__slide-text',
+          } only %}
+          </li>
+        {% else %}
+          <li class="ecl-news-ticker__slide">{{ _item.content }}</li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  <div class="ecl-news-ticker__controls">
+    {% set _button_attributes = 'data-ecl-news-ticker-prev' %}
+    {% if _sr_previous is not empty %}
+      {% set _button_attributes = _button_attributes ~ ' aria-label="' ~ _sr_previous ~ '"' %}
+    {% endif %}
+    <button class="ecl-news-ticker__prev" {{ _button_attributes|raw }}>
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'corner-arrow',
+          size: 'l',
+          color: 'inverted',
+          transform: 'rotate-270',
+        },
+        extra_classes: 'ecl-news-ticker__icon-default',
+      } only %}
+      <span class="ecl-u-sr-only">{{ _sr_prev }}</span>
+    </button>
+    {% set _button_attributes = 'data-ecl-news-ticker-next' %}
+    {% if _sr_next is not empty %}
+      {% set _button_attributes = _button_attributes ~ ' aria-label="' ~ _sr_next ~ '"' %}
+    {% endif %}
+    <button class="ecl-news-ticker__next" {{ _button_attributes|raw }}>
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'corner-arrow',
+          size: 'l',
+          color: 'inverted',
+          transform: 'rotate-90',
+        },
+        extra_classes: 'ecl-news-ticker__icon-default',
+      } only %}
+      <span class="ecl-u-sr-only">{{ _sr_prev }}</span>
+    </button>
+    <button class="ecl-news-ticker__play" data-ecl-news-ticker-play>
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'play',
+          size: 'l',
+          color: 'inverted',
+        },
+        extra_classes: 'ecl-news-ticker__icon-default',
+      } only %}
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'play-filled',
+          size: 'l',
+          color: 'inverted',
+        },
+        extra_classes: 'ecl-news-ticker__icon-active',
+      } only %}
+      <span class="ecl-u-sr-only">{{ _sr_play }}</span>
+    </button>
+    <button class="ecl-news-ticker__pause" data-ecl-news-ticker-pause>
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'pause',
+          size: 'l',
+          color: 'inverted',
+        },
+        extra_classes: 'ecl-news-ticker__icon-default',
+      } only %}
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          path: _icon_path,
+          name: 'pause-filled',
+          size: 'l',
+          color: 'inverted',
+        },
+        extra_classes: 'ecl-news-ticker__icon-active',
+      } only %}
+      <span class="ecl-u-sr-only">{{ _sr_pause }}</span>
+    </button>
+    <div class="ecl-news-ticker__counter">
+      <span class="ecl-news-ticker__counter--current">1</span>
+      {{- ' ' -}}{{- _counter_label }}{{- ' ' -}}
+      <span class="ecl-news-ticker__counter--max">{{_items|length}}</span>
+    </div>
+  </div>
+</div>
+
+{% endapply %}

@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Hackathon theme.
+hackathon.settings:
+  type: theme_settings
+  label: 'Hackathon settings'
+  mapping:
+    example:
+      type: string
+      label: Example

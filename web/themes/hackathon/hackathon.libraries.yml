@@ -1,0 +1,8 @@
+# Main theme library.
+global:
+  js:
+    "https://cdn1.fpfis.tech.ec.europa.eu/ecl/v4.11.1/ec/js/optional/ecl-ec-default.js": { type: external, minified: true }
+  css:
+    theme:
+      "https://cdn1.fpfis.tech.ec.europa.eu/ecl/v4.11.1/ec/styles/optional/ecl-ec-default.css": { type: external, minified: true }
+

@@ -1,0 +1,20 @@
+name: Hackathon
+type: theme
+base theme: mercury
+description: Base theme based on Mercury theme for integrate components for ECL
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - hackathon/global
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  featured: 'Featured'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'

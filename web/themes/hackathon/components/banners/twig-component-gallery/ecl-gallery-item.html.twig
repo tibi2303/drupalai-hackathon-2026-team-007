@@ -1,0 +1,172 @@
+{% apply spaceless %}
+
+{#
+  Parameters:
+  - "item" (object) (default: {})
+    - "meta" (string) (default: '')
+    - "icon" (object) (default: {}): object of type icon
+    - "picture" (optional) (object) (default: {}) object of type picture
+    - "video" (optional) (object) (default: {})
+    - "embedded_video" (optional) (object) (default: {})
+    - "share_path" (optional) (string) (default: '')
+  - "icon_path": (string) (default '')
+  - "extra_classes" (optional) (string) (default: '')
+  - "extra_attributes" (optional) (array) (default: [])
+    - "name" (string) Attribute name, eg. 'data-test'
+    - "value" (string) Attribute value, eg: 'data-test-1'
+
+  Deprecated:
+
+  - "item.image" (optional) (object) (default: {})
+  - "item.alt" (string) (default: '')
+  - "item.path" (string) (default: '')
+#}
+
+{# variables #}
+
+{% set _css_class = 'ecl-gallery__item' %}
+{% set _extra_attributes = '' %}
+{% set _use_arial = '' %}
+{% set _media_href = '' %}
+{% set _media_share_path = '' %}
+{% set _media_iframe_href = '' %}
+{% set _picture = picture|default({}) %}
+{% set _icon_path = icon_path|default('') %}
+{% set _item = item|default({}) %}
+
+{% set _has_icon = (_item.icon is defined and _item.icon is not empty) and
+  (_item.icon.name is defined and _item.icon.name is not empty) %}
+
+{# Internal logic - Process properties #}
+
+{# Backward compatibility #}
+
+{% if (_item.picture is not defined or _item.picture.img is empty) and
+      (_item.image is defined and _item.image.src is not empty) %}
+
+  {% set _item = _item|merge({
+    picture: {
+      img: {
+        src: _item.image.src,
+      },
+    }})
+  %}
+  {% if _item.image.alt is not empty %}
+    {% set _item = _item|merge({
+      picture: _item.picture|merge({
+        img: _item.picture.img|merge({
+          alt: _item.image.alt,
+        }),
+      }),
+    }) %}
+  {% endif %}
+{% elseif (_item.picture is not defined or _item.picture.img is empty) and _item.path is not empty %}
+  {% set _item = _item|merge({
+    picture: {
+      img: {
+        src: _item.path,
+      },
+    },
+  }) %}
+  {% if _item.alt is not empty %}
+    {% set _item = _item|merge({
+      picture: _item.picture|merge({
+        img: _item.picture.img|merge({
+          alt: _item.alt,
+        }),
+      }),
+    }) %}
+  {% endif %}
+{% endif %}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{# Setting up Video and image variables #}
+{% if _item and _item is not empty %}
+  {% set _media_share_path = _item.share_path %}
+
+  {% if _item.video is defined and _item.video is not empty %}
+    {% set _media_href = _item.video.sources[0].src %}
+  {% endif %}
+
+  {% if _item.embedded_video is defined and _item.embedded_video is not empty %}
+    {% set _media_href = _item.embedded_video.src %}
+  {% endif %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% if attr.value is defined %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') ~ '="' ~ attr.value|e('html_attr') ~ '"' %}
+    {% else %}
+      {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name|e('html_attr') %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Print the result #}
+
+<li class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+  <a
+    href="{{ _media_href ?: _item.picture.img.src }}"
+    data-ecl-gallery-item
+    class="ecl-gallery__item-link"
+  {%- if _item.alt is not empty or (_item.picture is defined and _item.picture.img is not empty and _item.picture.img.alt is not empty) -%}
+    aria-label="{{ _item.alt ?: _item.picture.img.alt }}"
+  {%- endif -%}
+  {%- if _media_share_path is not empty -%}
+    data-ecl-gallery-item-share="{{ _media_share_path }}"
+  {%- endif -%}
+  {%- if _media_href is not empty and _item.embedded_video is not empty -%}
+    data-ecl-gallery-item-embed-src="{{ _media_href }}"
+  {%- endif -%}
+  >
+  {% if _item is not empty %}
+    <figure class="ecl-gallery__image-container">
+    {% if (_item.video is not empty or _item.embedded_video is not empty) and _icon_path is not empty %}
+      <div class="ecl-gallery__item-icon-wrapper">
+      {%- include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+        icon: {
+          name: 'play-filled',
+          size: 'l',
+          path: _icon_path,
+          color: 'inverted',
+        },
+        extra_classes: 'ecl-gallery__item-icon',
+      } only %}
+      </div>
+    {% endif %}
+    {% if _item.video is defined and _item.video is not empty %}
+      {% include '@ecl-twig/twig-component-gallery/gallery-video.html.twig' %}
+    {% else %}
+      {% include '@ecl-twig/twig-component-picture/picture.html.twig' with {
+        picture: _item.picture,
+        extra_classes: "ecl-gallery__picture",
+        extra_image_classes: "ecl-gallery__image",
+      } only %}
+    {% endif %}
+      <figcaption
+        class="ecl-gallery__description"
+        data-ecl-gallery-description
+      >
+      {%- if _has_icon -%}
+        {%- include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+          icon: _item.icon,
+          extra_classes: 'ecl-gallery__description-icon',
+        } only %}
+      {%- endif -%}
+        {{- _item.description -}}
+      {%- if _item.meta is defined and _item.meta is not empty -%}
+        <span class="ecl-gallery__meta" data-ecl-gallery-meta>
+          {{- _item.meta -}}
+        </span>
+      {%- endif -%}
+      </figcaption>
+    </figure>
+  {% endif %}
+  </a>
+</li>
+
+{% endapply %}
