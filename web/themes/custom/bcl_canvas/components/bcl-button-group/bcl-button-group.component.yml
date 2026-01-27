@@ -1,0 +1,33 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Button Group"
+group: "BCL"
+props:
+  type: object
+  properties:
+    vertical:
+      type: boolean
+      title: "Vertical"
+      default: false
+    size:
+      type: string
+      title: "Size"
+      enum:
+        - 'sm'
+        - 'md'
+        - 'lg'
+      default: 'md'
+    aria_label:
+      type: string
+      title: "Aria Label"
+      default: ''
+    toolbar:
+      type: boolean
+      title: "Toolbar"
+      default: false
+    toolbar_aria_label:
+      type: string
+      title: "Toolbar Aria Label"
+      default: ''
+    items:
+      type: array
+      title: "Items"

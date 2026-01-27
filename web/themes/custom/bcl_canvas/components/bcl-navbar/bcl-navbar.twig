@@ -1,0 +1,16 @@
+{{
+  include(
+    '@oe-bcl/bcl-navbar/navbar.html.twig',
+    {
+      collapse_id: collapse_id|default(''),
+      background: background|default(''),
+      brand: brand|default({}),
+      navigation: navigation|default({}),
+      form: form|default({}),
+      expand: expand|default('lg'),
+      color_set: color_set|default('light'),
+      disable_collapse: disable_collapse|default(false),
+    },
+    with_context: false
+  )
+}}

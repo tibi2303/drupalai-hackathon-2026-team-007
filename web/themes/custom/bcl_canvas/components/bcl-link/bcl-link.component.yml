@@ -1,0 +1,51 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Link"
+description: "Text link with Bootstrap color variants and optional icon."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: "Label"
+      default: "Example link"
+      examples:
+        - "Learn more"
+    path:
+      type: string
+      title: "URL"
+      default: "#"
+      examples:
+        - "https://example.com"
+    id:
+      type: string
+      title: "Element id"
+      default: ""
+    disabled:
+      type: boolean
+      title: "Disabled"
+      default: false
+    standalone:
+      type: boolean
+      title: "Standalone style"
+      default: false
+    icon_name:
+      type: string
+      title: "Icon name"
+      default: ""
+      examples:
+        - "arrow-right"
+    icon_path:
+      type: string
+      title: "Icon sprite path"
+      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+    icon_position:
+      type: string
+      title: "Icon position"
+      enum: [after, before]
+      default: after
+    remove_icon_spacers:
+      type: boolean
+      title: "Remove icon spacing"
+      default: false

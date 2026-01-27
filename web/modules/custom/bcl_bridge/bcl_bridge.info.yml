@@ -1,0 +1,5 @@
+name: BCL Twig Bridge
+type: module
+description: "Adds the @oe-bcl Twig namespace for BCL templates."
+core_version_requirement: ^11.3
+package: Custom

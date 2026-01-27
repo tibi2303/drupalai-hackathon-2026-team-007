@@ -1,0 +1,19 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Search Form"
+group: "BCL"
+props:
+  type: object
+  properties:
+    pill:
+      type: boolean
+      title: "Pill"
+      default: false
+    icon:
+      type: object
+      title: "Icon"
+    submit:
+      type: object
+      title: "Submit"
+    input:
+      type: object
+      title: "Input"

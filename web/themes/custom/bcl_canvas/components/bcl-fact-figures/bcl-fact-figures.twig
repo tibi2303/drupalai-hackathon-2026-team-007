@@ -1,0 +1,22 @@
+{{
+  include(
+    '@oe-bcl/bcl-fact-figures/fact-figures.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      variant: variant|default('default'),
+      display_icons: display_icons|default(true),
+      items: items|default([]),
+      grid_columns: grid_columns|default(1),
+      responsiveness: responsiveness|default('md'),
+      responsive_columns: responsive_columns|default(3),
+      gutter: gutter|default(4),
+      equal_height: equal_height|default(false),
+      cols_extra_classes: cols_extra_classes|default(''),
+      icon_path: icon_path|default(''),
+      link_more: link_more|default({}),
+    },
+    with_context: false
+  )
+}}

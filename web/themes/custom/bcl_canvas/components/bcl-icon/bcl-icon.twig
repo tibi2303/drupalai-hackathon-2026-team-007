@@ -1,0 +1,12 @@
+{{
+  include(
+    '@oe-bcl/bcl-icon/icon.html.twig',
+    {
+      name: name|default(''),
+      path: path|default(''),
+      size: size|default('s'),
+      transformation: transformation|default(''),
+    },
+    with_context: false
+  )
+}}

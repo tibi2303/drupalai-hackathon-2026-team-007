@@ -1,0 +1,20 @@
+{{
+  include(
+    '@oe-bcl/bcl-pagination-v2/pagination.html.twig',
+    {
+      size: size|default(''),
+      alignment: alignment|default('center'),
+      enable_prev_next_icon: enable_prev_next_icon|default(true),
+      enable_first_last_icon: enable_first_last_icon|default(false),
+      ellipsis_before: ellipsis_before|default(false),
+      ellipsis_after: ellipsis_after|default(false),
+      first: first|default({}),
+      prev: prev|default({}),
+      next: next|default({}),
+      last: last|default({}),
+      items: items|default([]),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}

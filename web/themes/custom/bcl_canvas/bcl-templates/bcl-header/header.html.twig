@@ -1,0 +1,135 @@
+{# Parameters:
+  - variant (string) (default: 'neutral')
+    - options: ['ec', 'eu', 'neutral']
+  - navbar (Navbar object) (default: {})
+  - project_logo (object) (default: {})
+    format: {
+        path: '',
+        alt: '',
+        classes: ''
+      }
+  - site_name (string) (default: '')
+  - project_link (string) (default: '')
+  - head (Navbar object) (default: {})
+  - breadcrumbs (Breadcrumbs object) (default: {})
+  - language_modal (object) (default: {})
+  - light (boolean) (default: false)
+  - modals (modal[]) (default: [])
+  - toggler_attributes (drupal attrs)
+  - icon_path (string) (default: '')
+  - attributes (drupal attrs)
+#}
+
+{%- set _variant = variant|default('neutral') %}
+{% set _navbar = navbar|default({}) %}
+{% set _project_logo = project_logo|default({}) %}
+{% set _site_name = site_name|default('') %}
+{% set _project_link = project_link|default('') %}
+{% set _navbar_id = navbar_id|default('header-navbar-' ~ random(100)) %}
+{% set _head = head|default({}) %}
+{% set _breadcrumbs = breadcrumbs|default({}) %}
+{% set _language_modal = language_modal|default({}) %}
+{% set _light = light ?? false %}
+{% set _toggler_attributes = toggler_attributes ?: create_attribute() %}
+{% set _icon_path = icon_path|default('') %}
+{% set _modals = modals|default([]) %}
+
+{%- set _site_name_classes = 'bcl-header__site-name' %}
+
+{%- if attributes is empty %}
+  {%- set attributes = create_attribute() %}
+{% endif %}
+
+{%- set attributes = attributes.addClass(['bcl-header', 'bcl-header--' ~ _variant, 'shadow-sm']) %}
+
+{%- if site_name_classes is not empty %}
+  {%- set _site_name_classes = _site_name_classes ~ ' ' ~ site_name_classes %}
+{% endif %}
+
+{%- set _project_classes = 'bcl-header__project' %}
+{% if _light is not empty %}
+  {%- set _project_classes = _project_classes ~ ' light' %}
+{% endif %}
+
+{%- set toggler_attributes = _toggler_attributes.addClass(['bcl-navbar-toggler', 'd-lg-none'])
+  .setAttribute('type', 'button')
+  .setAttribute('data-bs-toggle', 'collapse')
+  .setAttribute('data-bs-target', '#' ~ navbar_id)
+  .setAttribute('aria-controls', navbar_id)
+  .setAttribute('aria-expanded', 'false')
+%}
+
+{%- set navbar_toggle_button -%}
+  <button
+    {{ toggler_attributes }}
+  >
+    {%- include '@oe-bcl/bcl-icon/icon.html.twig' with {
+      name: 'list',
+      size: 'fluid',
+      path: _icon_path,
+      attributes: create_attribute().addClass(['default-icon']),
+    } only %}
+    {%- include '@oe-bcl/bcl-icon/icon.html.twig' with {
+      name: 'x',
+      size: 'fluid',
+      path: _icon_path,
+      attributes: create_attribute().addClass(['active-icon']),
+    } only -%}
+  </button>
+{%- endset -%}
+
+<header
+  {{ attributes }}
+>{# -#}
+  <nav
+    {{ _head.attributes.addClass(['navbar', 'navbar-expand-lg', 'navbar-light']) }}>{# -#}
+    <div class='container'>
+    {%- if _head.brand is not empty -%}
+      <a class='navbar-brand' href='{{ _head.brand.link }}'>
+      {%- for logo in _head.brand.logos -%}
+        <img
+          src='{{ logo.src }}'
+          {% if logo.alt is not empty %}
+          alt='{{ logo.alt }}'
+          {% endif %}
+          {%- if logo.class is not empty %}
+          class='{{ logo.class }}'
+          {% endif %}
+        />
+      {%- endfor -%}
+      </a>
+    {%- endif %}
+      {{- navbar_toggle_button -}}
+    </div>{# -#}
+  </nav>{# -#}
+
+  <!-- site name -->{# -#}
+  <div class="bcl-header__site-name" id="site-name-heading">{# -#}
+    <div class="container">{# -#}
+      <span class="h5 py-3-5 border-top-subtle mb-0 d-block">{{ _site_name }}</span>{# -#}
+    </div>{# -#}
+  </div>{# -#}
+
+  <!-- navbar -->
+  {%- if _navbar is not empty %}
+    {%- include '@oe-bcl/bcl-navbar/navbar.html.twig' with _navbar|merge({
+      disable_collapse: true,
+      attributes: create_attribute().addClass('bcl-header__navbar collapse navbar-collapse').setAttribute('id', _navbar_id).setAttribute('aria-label', 'Main Navigation'),
+    }) only %}
+  {%- endif -%}
+</header>{# -#}
+
+<!-- breadcrumbs -->
+{%- if _breadcrumbs is not empty -%}
+  <div class="container">
+    {%- include '@oe-bcl/bcl-breadcrumb/breadcrumb.html.twig' with _breadcrumbs only -%}
+  </div>
+{%- endif %}
+
+{%- for modal in _modals %}
+  {%- include '@oe-bcl/bcl-modal/modal.html.twig' with modal only %}
+{% endfor %}
+
+{%- if _language_modal is not empty %}
+  {%- include '@oe-bcl/bcl-language-list/language-list.html.twig' with _language_modal only %}
+{% endif -%}

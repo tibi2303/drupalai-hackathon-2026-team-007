@@ -1,0 +1,19 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Description List Description List Details"
+group: "BCL"
+props:
+  type: object
+  properties:
+    button:
+      type: object
+      title: "Button"
+    link:
+      type: object
+      title: "Link"
+    icon:
+      type: object
+      title: "Icon"
+    label:
+      type: string
+      title: "Label"
+      default: ''

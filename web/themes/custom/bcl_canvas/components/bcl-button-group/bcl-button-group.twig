@@ -1,0 +1,14 @@
+{{
+  include(
+    '@oe-bcl/bcl-button-group/button-group.html.twig',
+    {
+      vertical: vertical|default(false),
+      size: size|default('md'),
+      aria_label: aria_label|default(''),
+      toolbar: toolbar|default(false),
+      toolbar_aria_label: toolbar_aria_label|default(''),
+      items: items|default([]),
+    },
+    with_context: false
+  )
+}}

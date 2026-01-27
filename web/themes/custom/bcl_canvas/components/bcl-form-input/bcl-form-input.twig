@@ -1,0 +1,31 @@
+{{
+  include(
+    '@oe-bcl/bcl-form-input/form-input.html.twig',
+    {
+      id: id|default(''),
+      input_type: input_type|default('text'),
+      label: label|default(''),
+      required: required|default(false),
+      checked: checked|default(false),
+      hidden_label: hidden_label|default(false),
+      disabled: disabled|default(false),
+      readonly: readonly|default(false),
+      invalid: invalid|default(false),
+      valid: valid|default(false),
+      invalid_feedback: invalid_feedback|default(''),
+      valid_feedback: valid_feedback|default(''),
+      floating: floating|default(false),
+      helper_text: helper_text|default(''),
+      helper_text_id: helper_text_id|default(''),
+      placeholder: placeholder|default(''),
+      horizontal: horizontal|default(false),
+      horizontal_class: horizontal_class|default(''),
+      horizontal_label_class: horizontal_label_class|default(''),
+      switch: switch|default(false),
+      toggle: toggle|default(false),
+      toggle_variant: toggle_variant|default('primary'),
+      remove_wrapper: remove_wrapper|default(false),
+    },
+    with_context: false
+  )
+}}

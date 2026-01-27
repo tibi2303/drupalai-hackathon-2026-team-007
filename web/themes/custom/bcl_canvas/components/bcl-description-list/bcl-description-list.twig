@@ -1,0 +1,15 @@
+{{
+  include(
+    '@oe-bcl/bcl-description-list/description-list.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      bordered: bordered|default(false),
+      col_classes: col_classes|default('col-3'),
+      items: items|default([]),
+      variant: variant|default(''),
+    },
+    with_context: false
+  )
+}}

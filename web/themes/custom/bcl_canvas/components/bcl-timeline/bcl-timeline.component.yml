@@ -1,0 +1,38 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Timeline"
+group: "BCL"
+props:
+  type: object
+  properties:
+    id:
+      type: number
+      title: "Id"
+    title:
+      type: string
+      title: "Title"
+      default: ''
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'h2'
+    title_link:
+      type: object
+      title: "Title Link"
+    toggle_collapsed:
+      type: string
+      title: "Toggle Collapsed"
+      default: ''
+    toggle_expanded:
+      type: string
+      title: "Toggle Expanded"
+      default: ''
+    items:
+      type: array
+      title: "Items"
+    hide:
+      type: object
+      title: "Hide"
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

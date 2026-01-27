@@ -1,0 +1,10 @@
+{{
+  include(
+    '@oe-bcl/bcl-breadcrumb/breadcrumb.html.twig',
+    {
+      links: links|default([]),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}

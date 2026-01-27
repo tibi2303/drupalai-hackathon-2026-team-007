@@ -1,0 +1,11 @@
+{{
+  include(
+    '@oe-bcl/bcl-heading/heading.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+    },
+    with_context: false
+  )
+}}

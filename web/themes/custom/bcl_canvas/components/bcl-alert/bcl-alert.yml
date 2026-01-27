@@ -1,0 +1,43 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Alert"
+group: "BCL"
+props:
+  type: object
+  properties:
+    message:
+      type: string
+      title: "Message"
+      default: 'Example alert message'
+    heading:
+      type: string
+      title: "Heading"
+      default: 'Example alert heading'
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - 'primary'
+        - 'secondary'
+        - 'success'
+        - 'danger'
+        - 'warning'
+        - 'info'
+        - 'light'
+        - 'dark'
+      default: 'primary'
+    dismissible:
+      type: boolean
+      title: "Dismissible"
+      default: true
+    animated_dismiss:
+      type: boolean
+      title: "Animated Dismiss"
+      default: true
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''
+    icon_name:
+      type: string
+      title: "Icon Name"
+      default: ''

@@ -1,0 +1,13 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Breadcrumb"
+group: "BCL"
+props:
+  type: object
+  properties:
+    links:
+      type: array
+      title: "Links"
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

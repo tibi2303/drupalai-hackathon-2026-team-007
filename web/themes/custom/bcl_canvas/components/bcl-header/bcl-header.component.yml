@@ -1,0 +1,48 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Header"
+group: "BCL"
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - 'ec'
+        - 'eu'
+        - 'neutral'
+      default: 'neutral'
+    navbar:
+      type: object
+      title: "Navbar"
+    project_logo:
+      type: object
+      title: "Project Logo"
+    site_name:
+      type: string
+      title: "Site Name"
+      default: ''
+    project_link:
+      type: string
+      title: "Project Link"
+      default: ''
+    head:
+      type: object
+      title: "Head"
+    breadcrumbs:
+      type: object
+      title: "Breadcrumbs"
+    language_modal:
+      type: object
+      title: "Language Modal"
+    light:
+      type: boolean
+      title: "Light"
+      default: false
+    modals:
+      type: array
+      title: "Modals"
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

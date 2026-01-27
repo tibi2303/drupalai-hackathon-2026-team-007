@@ -1,0 +1,5 @@
+services:
+  bcl_bridge.twig_loader:
+    class: Drupal\bcl_bridge\Twig\BclTwigLoader
+    decorates: twig.loader.filesystem
+    arguments: ['@bcl_bridge.twig_loader.inner', '%app.root%']

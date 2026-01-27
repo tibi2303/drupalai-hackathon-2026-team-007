@@ -1,0 +1,111 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Accordion"
+description: "Collapsible list with up to four items and optional global expand/collapse buttons."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Heading"
+      default: "Accordion"
+      examples:
+        - "Accordion"
+    title_tag:
+      type: string
+      title: "Heading level"
+      enum: [h2, h3, h4, h5, h6]
+      meta:enum:
+        h2: H2
+        h3: H3
+        h4: H4
+        h5: H5
+        h6: H6
+      default: h2
+    title_link:
+      type: string
+      title: "Heading link (URL)"
+      default: ""
+      examples:
+        - "https://example.com"
+    flush:
+      type: boolean
+      title: "Flush style"
+      default: false
+    open_item:
+      type: number
+      title: "Initially open item (0 = none)"
+      default: 0
+      examples:
+        - 1
+    expand_button_label:
+      type: string
+      title: "'Expand all' label"
+      default: "Expand all"
+    expand_button_variant:
+      type: string
+      title: "'Expand all' variant"
+      enum: [primary, secondary, success, danger, warning, info, light, dark]
+      default: secondary
+    collapse_button_label:
+      type: string
+      title: "'Collapse all' label"
+      default: "Collapse all"
+    collapse_button_variant:
+      type: string
+      title: "'Collapse all' variant"
+      enum: [primary, secondary, success, danger, warning, info, light, dark]
+      default: secondary
+    item1_title:
+      type: string
+      title: "Item 1 title"
+      default: "Accordion item #1"
+    item1_content:
+      type: string
+      title: "Item 1 content (HTML allowed)"
+      pattern: "(.|\\r?\\n)*"
+      default: "<p>Accordion item #1 body text.</p>"
+    item1_stay_open:
+      type: boolean
+      title: "Item 1 stay open"
+      default: false
+    item2_title:
+      type: string
+      title: "Item 2 title"
+      default: "Accordion item #2"
+    item2_content:
+      type: string
+      title: "Item 2 content (HTML allowed)"
+      pattern: "(.|\\r?\\n)*"
+      default: "<p>Accordion item #2 body text.</p>"
+    item2_stay_open:
+      type: boolean
+      title: "Item 2 stay open"
+      default: false
+    item3_title:
+      type: string
+      title: "Item 3 title"
+      default: "Accordion item #3"
+    item3_content:
+      type: string
+      title: "Item 3 content (HTML allowed)"
+      pattern: "(.|\\r?\\n)*"
+      default: "<p>Accordion item #3 body text.</p>"
+    item3_stay_open:
+      type: boolean
+      title: "Item 3 stay open"
+      default: false
+    item4_title:
+      type: string
+      title: "Item 4 title"
+      default: "Accordion item #4"
+    item4_content:
+      type: string
+      title: "Item 4 content (HTML allowed)"
+      pattern: "(.|\\r?\\n)*"
+      default: "<p>Accordion item #4 body text.</p>"
+    item4_stay_open:
+      type: boolean
+      title: "Item 4 stay open"
+      default: false

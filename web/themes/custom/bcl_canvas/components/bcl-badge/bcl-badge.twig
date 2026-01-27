@@ -1,0 +1,17 @@
+{{
+  include(
+    '@oe-bcl/bcl-badge/badge.html.twig',
+    {
+      label: label|default(''),
+      background: background|default('primary'),
+      url: url|default(''),
+      title: title|default(''),
+      dismissible: dismissible|default(false),
+      assistive_text: assistive_text|default(''),
+      rounded_pill: rounded_pill|default(false),
+      outline: outline|default(false),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}

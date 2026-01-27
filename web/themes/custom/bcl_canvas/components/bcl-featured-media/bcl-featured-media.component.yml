@@ -1,0 +1,82 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Featured Media"
+group: "BCL"
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      default: ''
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'h2'
+    title_link:
+      type: object
+      title: "Title Link"
+    with_text:
+      type: boolean
+      title: "With Text"
+      default: false
+    alignment:
+      type: string
+      title: "Alignment"
+      enum:
+        - 'left'
+        - 'right'
+      default: 'right'
+    image:
+      type: string
+      title: "Image"
+      default: ''
+    poster_image:
+      type: string
+      title: "Poster Image"
+      default: ''
+    content:
+      type: string
+      title: "Content"
+      default: ''
+    wrapper_classes:
+      type: string
+      title: "Wrapper Classes"
+      default: ''
+    force_wrapper:
+      type: boolean
+      title: "Force Wrapper"
+      default: false
+    content_classes:
+      type: string
+      title: "Content Classes"
+      default: ''
+    read_more:
+      type: object
+      title: "Read More"
+    description_title:
+      type: string
+      title: "Description Title"
+      default: ''
+    description_title_tag:
+      type: string
+      title: "Description Title Tag"
+      default: 'h3'
+    description:
+      type: string
+      title: "Description"
+      default: ''
+    ratio:
+      type: string
+      title: "Ratio"
+      enum:
+        - '1x1'
+        - '4x3'
+        - '16x9'
+        - '21x9'
+      default: '16x9'
+    sources:
+      type: array
+      title: "Sources"
+    tracks:
+      type: array
+      title: "Tracks"

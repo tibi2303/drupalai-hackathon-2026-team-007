@@ -1,0 +1,16 @@
+{{
+  include(
+    '@oe-bcl/bcl-listing/listing.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      items: items|default([]),
+      variant: variant|default('default-1-col'),
+      link: link|default({}),
+      alignment: alignment|default(''),
+      image_size: image_size|default(''),
+    },
+    with_context: false
+  )
+}}

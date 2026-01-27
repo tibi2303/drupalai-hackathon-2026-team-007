@@ -1,0 +1,15 @@
+{{
+  include(
+    '@oe-bcl/bcl-link/link.html.twig',
+    {
+      label: label|default('New link'),
+      path: path|default('#'),
+      id: id|default(''),
+      disabled: disabled|default(false),
+      standalone: standalone|default(false),
+      icon_position: icon_position|default('after'),
+      remove_icon_spacers: remove_icon_spacers|default(false),
+    },
+    with_context: false
+  )
+}}

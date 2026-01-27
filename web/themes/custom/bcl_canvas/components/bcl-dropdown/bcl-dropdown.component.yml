@@ -1,0 +1,39 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Dropdown"
+group: "BCL"
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: "Id"
+    trigger:
+      type: object
+      title: "Trigger"
+    link:
+      type: boolean
+      title: "Link"
+      default: false
+    direction:
+      type: string
+      title: "Direction"
+      enum:
+        - 'dropup'
+        - 'dropend'
+        - 'dropstart'
+      default: 'dropup'
+    alignment:
+      type: string
+      title: "Alignment"
+      default: ''
+    dark:
+      type: boolean
+      title: "Dark"
+      default: false
+    remove_wrapper:
+      type: boolean
+      title: "Remove Wrapper"
+      default: false
+    items:
+      type: array
+      title: "Items"

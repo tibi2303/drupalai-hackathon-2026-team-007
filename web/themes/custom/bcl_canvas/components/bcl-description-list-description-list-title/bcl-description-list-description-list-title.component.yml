@@ -1,0 +1,28 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Description List Description List Title"
+group: "BCL"
+props:
+  type: object
+  properties:
+    icon:
+      type: object
+      title: "Icon"
+    color:
+      type: string
+      title: "Color"
+      enum:
+        - 'bg-primary'
+        - 'bg-secondary'
+        - 'bg-success'
+        - 'bg-warning'
+        - 'bg-info'
+        - 'bg-light'
+        - 'bg-dark'
+        - 'bg-lighter'
+        - 'bg-gray-200'
+        - 'bg-gray-400'
+      default: 'bg-primary'
+    label:
+      type: string
+      title: "Label"
+      default: ''

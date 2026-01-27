@@ -1,0 +1,25 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Pagination V2 Pagination Item"
+group: "BCL"
+props:
+  type: object
+  properties:
+    path:
+      type: string
+      title: "Path"
+      default: ''
+    label:
+      type: string
+      title: "Label"
+      default: ''
+    disabled:
+      type: boolean
+      title: "Disabled"
+      default: false
+    active:
+      type: boolean
+      title: "Active"
+      default: false
+    icon:
+      type: object
+      title: "Icon"

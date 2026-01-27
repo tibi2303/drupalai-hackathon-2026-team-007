@@ -1,0 +1,17 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Footer"
+group: "BCL"
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - 'eu'
+        - 'ec'
+        - 'neutral'
+      default: 'neutral'
+    rows:
+      type: array
+      title: "Rows"

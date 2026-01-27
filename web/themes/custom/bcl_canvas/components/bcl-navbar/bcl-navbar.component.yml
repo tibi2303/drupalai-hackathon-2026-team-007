@@ -1,0 +1,42 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Navbar"
+group: "BCL"
+props:
+  type: object
+  properties:
+    collapse_id:
+      type: string
+      title: "Collapse Id"
+      default: ''
+    background:
+      type: string
+      title: "Background"
+      default: ''
+    brand:
+      type: object
+      title: "Brand"
+    navigation:
+      type: object
+      title: "Navigation"
+    form:
+      type: object
+      title: "Form"
+    expand:
+      type: string
+      title: "Expand"
+      enum:
+        - 'sm'
+        - 'md'
+        - 'lg'
+      default: 'lg'
+    color_set:
+      type: string
+      title: "Color Set"
+      enum:
+        - 'light'
+        - 'dark'
+      default: 'light'
+    disable_collapse:
+      type: boolean
+      title: "Disable Collapse"
+      default: false

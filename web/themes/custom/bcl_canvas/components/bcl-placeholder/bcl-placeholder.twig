@@ -1,0 +1,12 @@
+{{
+  include(
+    '@oe-bcl/bcl-placeholder/placeholder.html.twig',
+    {
+      width: width|default(100),
+      variant: variant|default(''),
+      size: size|default(''),
+      animation: animation|default('glow'),
+    },
+    with_context: false
+  )
+}}

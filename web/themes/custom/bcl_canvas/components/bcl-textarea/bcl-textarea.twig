@@ -1,0 +1,26 @@
+{{
+  include(
+    '@oe-bcl/bcl-textarea/textarea.html.twig',
+    {
+      id: id|default(''),
+      label: label|default(''),
+      required: required|default(false),
+      disabled: disabled|default(false),
+      readonly: readonly|default(false),
+      invalid: invalid|default(false),
+      valid: valid|default(false),
+      invalid_feedback: invalid_feedback|default(''),
+      valid_feedback: valid_feedback|default(''),
+      helper_text: helper_text|default(''),
+      helper_text_id: helper_text_id|default(''),
+      hidden_label: hidden_label|default(false),
+      text: text|default(''),
+      rows: rows|default(4),
+      floating: floating|default(false),
+      horizontal: horizontal|default(false),
+      horizontal_class: horizontal_class|default(''),
+      horizontal_label_class: horizontal_label_class|default(''),
+    },
+    with_context: false
+  )
+}}

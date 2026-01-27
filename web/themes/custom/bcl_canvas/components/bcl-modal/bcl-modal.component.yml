@@ -1,0 +1,48 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Modal"
+group: "BCL"
+props:
+  type: object
+  properties:
+    size:
+      type: string
+      title: "Size"
+    id:
+      type: boolean
+      title: "Id"
+    fullscreen_responsive:
+      type: string
+      title: "Fullscreen Responsive"
+      default: ''
+    static_backdrop:
+      type: boolean
+      title: "Static Backdrop"
+      default: false
+    vertically_centered:
+      type: boolean
+      title: "Vertically Centered"
+      default: false
+    verticaly_centered:
+      type: boolean
+      title: "Verticaly Centered"
+      default: false
+    scrollable:
+      type: boolean
+      title: "Scrollable"
+      default: false
+    header:
+      type: object
+      title: "Header"
+      default: ''
+    messages:
+      type: object
+      title: "Messages"
+      default: ''
+    body:
+      type: object
+      title: "Body"
+      default: ''
+    footer:
+      type: object
+      title: "Footer"
+      default: ''

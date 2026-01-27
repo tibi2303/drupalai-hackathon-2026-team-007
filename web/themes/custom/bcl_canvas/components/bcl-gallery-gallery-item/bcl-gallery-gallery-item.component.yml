@@ -1,0 +1,25 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Gallery Gallery Item"
+group: "BCL"
+props:
+  type: object
+  properties:
+    item:
+      type: object
+      title: "Item"
+    carousel_id:
+      type: string
+      title: "Carousel Id"
+      default: ''
+    modal_id:
+      type: string
+      title: "Modal Id"
+      default: ''
+    carousel_anchor:
+      type: string
+      title: "Carousel Anchor"
+      default: ''
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

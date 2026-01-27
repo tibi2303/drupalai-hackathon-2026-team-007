@@ -1,0 +1,12 @@
+{{
+  include(
+    '@oe-bcl/bcl-timeline/timeline-item.html.twig',
+    {
+      id: id|default(''),
+      label: label|default(''),
+      title: title|default(''),
+      content: content|default(''),
+    },
+    with_context: false
+  )
+}}

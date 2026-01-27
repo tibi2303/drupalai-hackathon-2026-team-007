@@ -1,0 +1,13 @@
+{{
+  include(
+    '@oe-bcl/bcl-list-group/list-group.html.twig',
+    {
+      flush: flush|default(false),
+      horizontal: horizontal|default(''),
+      id: id|default(''),
+      type: type|default('unordered'),
+      items: items|default([]),
+    },
+    with_context: false
+  )
+}}

@@ -1,0 +1,13 @@
+{{
+  include(
+    '@oe-bcl/bcl-pagination-v2/pagination-item.html.twig',
+    {
+      path: path|default(''),
+      label: label|default(''),
+      disabled: disabled|default(false),
+      active: active|default(false),
+      icon: icon|default({}),
+    },
+    with_context: false
+  )
+}}

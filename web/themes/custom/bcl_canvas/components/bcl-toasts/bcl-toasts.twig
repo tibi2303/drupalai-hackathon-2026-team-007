@@ -1,0 +1,14 @@
+{{
+  include(
+    '@oe-bcl/bcl-toasts/toasts.html.twig',
+    {
+      with_wrapper: with_wrapper|default(false),
+      wrapper_classes: wrapper_classes|default(''),
+      wrapper_aria_live: wrapper_aria_live|default(''),
+      with_container: with_container|default(false),
+      container_classes: container_classes|default(''),
+      toasts: toasts|default([]),
+    },
+    with_context: false
+  )
+}}

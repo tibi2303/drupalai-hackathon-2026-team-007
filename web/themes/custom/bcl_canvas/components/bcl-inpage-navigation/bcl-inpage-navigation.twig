@@ -1,0 +1,16 @@
+{{
+  include(
+    '@oe-bcl/bcl-inpage-navigation/inpage-navigation.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      links: links|default([]),
+      id: id|default(''),
+      dropdown_id: dropdown_id|default(''),
+      dynamic_active: dynamic_active|default(false),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}

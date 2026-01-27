@@ -1,0 +1,19 @@
+{{
+  include(
+    '@oe-bcl/bcl-header/header.html.twig',
+    {
+      variant: variant|default('neutral'),
+      navbar: navbar|default({}),
+      project_logo: project_logo|default({}),
+      site_name: site_name|default(''),
+      project_link: project_link|default(''),
+      head: head|default({}),
+      breadcrumbs: breadcrumbs|default({}),
+      language_modal: language_modal|default({}),
+      light: light|default(false),
+      modals: modals|default([]),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}
