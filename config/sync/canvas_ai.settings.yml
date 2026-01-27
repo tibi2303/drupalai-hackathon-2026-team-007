@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: rt3x_Dw9DklYxsu_5-w_4Ba8uBzc9yqkjFPFD_4S16s
+http_client_options:
+  timeout: 300
+file_upload_size: 2
