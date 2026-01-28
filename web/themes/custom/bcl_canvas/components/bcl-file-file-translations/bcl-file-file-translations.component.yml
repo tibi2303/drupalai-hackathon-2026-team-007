@@ -53,16 +53,16 @@ props:
     lang3_title:
       type: string
       title: "Language 3 title"
-      default: ""
+      default: "Deutsch"
     lang3_language:
       type: string
       title: "Language 3 label"
-      default: ""
+      default: "Deutsch"
     lang3_meta:
       type: string
       title: "Language 3 meta (size/type)"
-      default: ""
+      default: "PDF • 1.0 MB"
     lang3_url:
       type: string
       title: "Language 3 download URL"
-      default: "#"
+      default: "#download-de"

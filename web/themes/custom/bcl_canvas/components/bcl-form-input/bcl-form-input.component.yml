@@ -7,7 +7,7 @@ props:
     id:
       type: string
       title: "Id"
-      default: ''
+      default: 'input-1'
     input_type:
       type: string
       title: "Input Type"
@@ -15,7 +15,7 @@ props:
     label:
       type: string
       title: "Label"
-      default: ''
+      default: 'Sample input'
     required:
       type: boolean
       title: "Required"
@@ -47,11 +47,11 @@ props:
     invalid_feedback:
       type: string
       title: "Invalid Feedback"
-      default: ''
+      default: 'Please provide a value.'
     valid_feedback:
       type: string
       title: "Valid Feedback"
-      default: ''
+      default: 'Looks good!'
     floating:
       type: boolean
       title: "Floating"
@@ -59,15 +59,15 @@ props:
     helper_text:
       type: string
       title: "Helper Text"
-      default: ''
+      default: 'Short helper text'
     helper_text_id:
       type: string
       title: "Helper Text Id"
-      default: ''
+      default: 'input-1-help'
     placeholder:
       type: string
       title: "Placeholder"
-      default: ''
+      default: 'Enter text...'
     horizontal:
       type: boolean
       title: "Horizontal"
@@ -75,9 +75,11 @@ props:
     horizontal_class:
       type: string
       title: "Horizontal Class"
+      default: 'row'
     horizontal_label_class:
       type: string
       title: "Horizontal Label Class"
+      default: 'col-3'
     switch:
       type: boolean
       title: "Switch"

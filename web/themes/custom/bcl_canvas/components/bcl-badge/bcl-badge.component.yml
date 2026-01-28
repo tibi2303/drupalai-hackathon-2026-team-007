@@ -39,13 +39,13 @@ props:
     url:
       type: string
       title: "Link URL"
-      default: ""
+      default: "#"
       examples:
         - "https://example.com"
     title:
       type: string
       title: "Title attribute"
-      default: ""
+      default: "More info"
     dismissible:
       type: boolean
       title: "Dismissible"
@@ -53,7 +53,7 @@ props:
     assistive_text:
       type: string
       title: "Assistive text (for dismiss button)"
-      default: ""
+      default: "Close badge"
       examples:
         - "Close badge"
     rounded_pill:
@@ -67,6 +67,6 @@ props:
     icon_path:
       type: string
       title: "Icon sprite path"
-      default: ""
+      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
       examples:
         - "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"

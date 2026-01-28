@@ -10,9 +10,10 @@
       head: head|default({}),
       breadcrumbs: breadcrumbs|default({}),
       language_modal: language_modal|default({}),
-      light: light|default(false),
+      light: light is defined ? light : false,
       modals: modals|default([]),
       icon_path: icon_path|default(''),
+      attributes: attributes is defined ? attributes : null,
     },
     with_context: false
   )

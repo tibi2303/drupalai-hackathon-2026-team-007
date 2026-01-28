@@ -7,32 +7,32 @@ props:
     label:
       type: string
       title: "Label"
-      default: ''
+      default: 'Project Falcon'
     status:
       type: string
       title: "Status"
-      default: 'planned'
+      default: 'in-progress'
     badge:
       type: string
       title: "Badge"
-      default: ''
+      default: 'Digital'
     start_date:
       type: string
       title: "Start Date"
-      default: ''
+      default: '2024-01-01'
     start_label:
       type: string
       title: "Start Label"
-      default: ''
+      default: 'Start'
     end_date:
       type: string
       title: "End Date"
-      default: ''
+      default: '2024-12-31'
     end_label:
       type: string
       title: "End Label"
-      default: ''
+      default: 'Finish'
     progress:
       type: string
       title: "Progress"
-      default: ''
+      default: '65%'

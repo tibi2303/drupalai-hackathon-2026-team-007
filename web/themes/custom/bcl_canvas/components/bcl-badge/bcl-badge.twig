@@ -6,11 +6,12 @@
       background: background|default('primary'),
       url: url|default(''),
       title: title|default(''),
-      dismissible: dismissible|default(false),
+      dismissible: dismissible is defined ? dismissible : false,
       assistive_text: assistive_text|default(''),
-      rounded_pill: rounded_pill|default(false),
-      outline: outline|default(false),
+      rounded_pill: rounded_pill is defined ? rounded_pill : false,
+      outline: outline is defined ? outline : false,
       icon_path: icon_path|default(''),
+      attributes: attributes is defined ? attributes : null,
     },
     with_context: false
   )

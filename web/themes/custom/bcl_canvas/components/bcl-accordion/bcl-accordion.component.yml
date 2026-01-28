@@ -26,7 +26,7 @@ props:
     title_link:
       type: string
       title: "Heading link (URL)"
-      default: ""
+      default: "#accordion"
       examples:
         - "https://example.com"
     flush:

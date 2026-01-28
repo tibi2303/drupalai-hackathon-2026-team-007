@@ -7,11 +7,11 @@ props:
     name:
       type: string
       title: "Name"
-      default: ''
+      default: 'arrow-right'
     path:
       type: string
       title: "Path"
-      default: ''
+      default: '/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'
     size:
       type: string
       title: "Size"

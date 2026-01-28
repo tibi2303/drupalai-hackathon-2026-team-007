@@ -5,8 +5,8 @@
       title: title|default('Accordion'),
       title_tag: title_tag|default('h2'),
       title_link: title_link is not empty ? { path: title_link, label: title|default('Accordion') } : {},
-      id: id|default(random(10000)),
-      flush: flush|default(false),
+      id: id is defined ? id : random(10000),
+      flush: flush is defined ? flush : false,
       open_item_id: open_item|default(0),
       expand_button: expand_button_label is not empty ? {
         label: expand_button_label,
@@ -20,24 +20,25 @@
         item1_title is not empty ? {
           title: item1_title,
           content: item1_content|default(''),
-          stay_open: item1_stay_open|default(false)
+          stay_open: item1_stay_open is defined ? item1_stay_open : false
         } : null,
         item2_title is not empty ? {
           title: item2_title,
           content: item2_content|default(''),
-          stay_open: item2_stay_open|default(false)
+          stay_open: item2_stay_open is defined ? item2_stay_open : false
         } : null,
         item3_title is not empty ? {
           title: item3_title,
           content: item3_content|default(''),
-          stay_open: item3_stay_open|default(false)
+          stay_open: item3_stay_open is defined ? item3_stay_open : false
         } : null,
         item4_title is not empty ? {
           title: item4_title,
           content: item4_content|default(''),
-          stay_open: item4_stay_open|default(false)
+          stay_open: item4_stay_open is defined ? item4_stay_open : false
         } : null,
       ]|filter(v => v is not null),
+      attributes: attributes is defined ? attributes : null,
     },
     with_context: false
   )

@@ -2,7 +2,8 @@
   include(
     '@oe-bcl/bcl-content-banner/content-banner.html.twig',
     {
-      content: content|default(''),
+      content: content|default('<p>Content banner text goes here.</p>'),
+      attributes: attributes is defined ? attributes : null,
     },
     with_context: false
   )

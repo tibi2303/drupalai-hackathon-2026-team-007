@@ -7,7 +7,7 @@ props:
     label:
       type: string
       title: "Label"
-      default: ''
+      default: 'Click me'
     variant:
       type: string
       title: "Variant"
@@ -43,10 +43,23 @@ props:
     id:
       type: string
       title: "Id"
-      default: ''
+      default: 'btn-1'
     icon:
       type: object
       title: "Icon"
+      properties:
+        name:
+          type: string
+          title: "Icon name"
+          default: "arrow-right"
+        path:
+          type: string
+          title: "Icon sprite path"
+          default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+      additionalProperties: true
+      default:
+        name: "arrow-right"
+        path: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
     icon_position:
       type: string
       title: "Icon Position"
@@ -64,6 +77,20 @@ props:
     spinner:
       type: object
       title: "Spinner"
+      properties:
+        size:
+          type: string
+          title: "Spinner size"
+          enum: ["sm", "md", "lg"]
+          default: "sm"
+        variant:
+          type: string
+          title: "Spinner variant"
+          default: "primary"
+      additionalProperties: true
+      default:
+        size: "sm"
+        variant: "primary"
     show_spinner:
       type: boolean
       title: "Show Spinner"

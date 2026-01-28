@@ -8,8 +8,9 @@
       links: links|default([]),
       id: id|default(''),
       dropdown_id: dropdown_id|default(''),
-      dynamic_active: dynamic_active|default(false),
+      dynamic_active: dynamic_active is defined ? dynamic_active : false,
       icon_path: icon_path|default(''),
+      attributes: attributes is defined ? attributes : null,
     },
     with_context: false
   )
