@@ -36,10 +36,6 @@ props:
       default: ""
       examples:
         - "arrow-right"
-    icon_path:
-      type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
     icon_position:
       type: string
       title: "Icon position"

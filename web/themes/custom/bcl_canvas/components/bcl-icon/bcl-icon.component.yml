@@ -7,11 +7,33 @@ props:
     name:
       type: string
       title: "Name"
-      default: 'arrow-right'
-    path:
-      type: string
-      title: "Path"
-      default: '/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'
+      enum:
+        - "arrow-right"
+        - "arrow-left"
+        - "arrow-up"
+        - "arrow-down"
+        - "chevron-left"
+        - "chevron-right"
+        - "chevron-up"
+        - "chevron-down"
+        - "caret-up-fill"
+        - "caret-down-fill"
+        - "check"
+        - "x"
+        - "info"
+        - "question-circle"
+        - "exclamation-triangle-fill"
+        - "plus-lg"
+        - "dash-lg"
+        - "search"
+        - "link"
+        - "upload"
+        - "download"
+        - "calendar"
+        - "envelope"
+        - "cloud-arrow-up"
+        - "cloud-arrow-down"
+      default: "arrow-right"
     size:
       type: string
       title: "Size"

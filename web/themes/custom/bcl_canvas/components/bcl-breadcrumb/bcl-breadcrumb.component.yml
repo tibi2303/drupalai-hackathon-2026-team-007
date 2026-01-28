@@ -10,7 +10,3 @@ props:
       default:
         - { label: 'Home', path: '/' }
         - { label: 'Section', path: '/section' }
-    icon_path:
-      type: string
-      title: "Icon Path"
-      default: '/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'

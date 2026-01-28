@@ -36,7 +36,3 @@ props:
       type: boolean
       title: "Dynamic Active"
       default: false
-    icon_path:
-      type: string
-      title: "Icon Path"
-      default: '/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'

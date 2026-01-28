@@ -64,9 +64,5 @@ props:
       type: boolean
       title: "Outline style"
       default: false
-    icon_path:
-      type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
       examples:
         - "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"

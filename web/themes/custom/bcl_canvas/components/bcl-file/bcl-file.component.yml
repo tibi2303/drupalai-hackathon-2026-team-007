@@ -60,7 +60,3 @@ props:
     translation:
       type: object
       title: "Translation"
-    icon_path:
-      type: string
-      title: "Icon Path"
-      default: ''

@@ -14,10 +14,6 @@ props:
       type: string
       title: "Toggle label"
       default: "Other languages"
-    icon_path:
-      type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
     lang1_title:
       type: string
       title: "Language 1 title"
