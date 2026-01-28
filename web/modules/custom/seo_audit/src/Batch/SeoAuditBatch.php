@@ -227,6 +227,16 @@ class SeoAuditBatch {
     }
 
     \Drupal::messenger()->addStatus(t('SEO & Accessibility audit completed successfully.'));
+
+    // Force redirect to the report page.
+    $auditResultId = $results['audit_result_id'] ?? NULL;
+    if ($auditResultId) {
+      $url = \Drupal\Core\Url::fromRoute('seo_audit.report', [
+        'seo_audit_result' => $auditResultId,
+      ]);
+      $batch = &batch_get();
+      $batch['redirect'] = $url;
+    }
   }
 
 }
