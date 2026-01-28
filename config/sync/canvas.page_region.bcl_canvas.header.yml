@@ -1,0 +1,10 @@
+uuid: 06fe9c70-26ba-42da-999c-fed7bd8688c8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bcl_canvas
+id: bcl_canvas.header
+region: header
+theme: bcl_canvas
+component_tree: {  }
