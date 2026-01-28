@@ -3,5 +3,5 @@ _core:
 mode: simple
 ignored_config_entities:
   - ai_provider_amazeeio.settings
-  - key.key.***REMOVED***
-  - key.key.***REMOVED***_database
+  - key.key.amazeeio_ai
+  - key.key.amazeeio_ai_database

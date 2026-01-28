@@ -141,6 +141,14 @@ class SeoAuditWorker extends QueueWorkerBase implements ContainerFactoryPluginIn
         $auditResult->set('ai_analysis_raw', json_encode($aiResult));
         $auditResult->set('executive_summary', $executiveSummary);
         $auditResult->set('ai_tokens_used', $aiTokensUsed);
+
+        // Store provider information if available (from fallback service)
+        if (isset($aiResult['provider_used'])) {
+          $auditResult->set('ai_provider_used', $aiResult['provider_used']);
+        }
+        if (isset($aiResult['fallback_attempts'])) {
+          $auditResult->set('ai_fallback_attempts', $aiResult['fallback_attempts']);
+        }
       }
       catch (\Exception $e) {
         // AI failure is not fatal - continue with deterministic-only scores.

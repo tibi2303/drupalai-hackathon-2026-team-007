@@ -91,3 +91,7 @@ private
 drush-backups
 .console
 platformsh-template
+
+# Ignore config files with API keys and secrets
+config/sync/ai_provider_*.settings.yml
+config/sync/key.key.*.yml

@@ -144,7 +144,7 @@ class AuditOrchestrator {
     }
 
     try {
-      return $this->executeAiAnalysis(
+      $result = $this->executeAiAnalysis(
         $default['provider_id'],
         $default['model_id'],
         $contentText,
@@ -153,6 +153,12 @@ class AuditOrchestrator {
         $seoResults,
         $accessibilityResults
       );
+
+      // Add provider information for consistency with fallback mode
+      return array_merge($result, [
+        'provider_used' => "{$default['provider_id']}__{$default['model_id']}",
+        'fallback_attempts' => 1,
+      ]);
     }
     catch (\Exception $e) {
       $this->loggerFactory->get('seo_audit')->error('AI analysis failed: @message', [
@@ -329,6 +335,8 @@ MSG;
       'keyword_analysis' => '',
       'readability_score' => 0,
       'tokens_used' => 0,
+      'provider_used' => NULL,
+      'fallback_attempts' => 0,
     ];
   }
 
