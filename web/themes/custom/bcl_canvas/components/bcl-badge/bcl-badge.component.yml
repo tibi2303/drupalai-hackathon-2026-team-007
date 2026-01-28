@@ -1,6 +1,6 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: "BCL Badge"
-description: "Small count or label with optional link and dismiss control."
+description: "Simple badge with label and optional link."
 group: "BCL"
 status: stable
 props:
@@ -10,59 +10,7 @@ props:
       type: string
       title: "Label"
       default: "Badge"
-      examples:
-        - "Badge"
     background:
       type: string
       title: "Background"
-      enum:
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - light
-        - dark
-      meta:enum:
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-      default: primary
-      examples:
-        - primary
-    url:
-      type: string
-      title: "Link URL"
-      default: "#"
-      examples:
-        - "https://example.com"
-    title:
-      type: string
-      title: "Title attribute"
-      default: "More info"
-    dismissible:
-      type: boolean
-      title: "Dismissible"
-      default: false
-    assistive_text:
-      type: string
-      title: "Assistive text (for dismiss button)"
-      default: "Close badge"
-      examples:
-        - "Close badge"
-    rounded_pill:
-      type: boolean
-      title: "Pill shape"
-      default: false
-    outline:
-      type: boolean
-      title: "Outline style"
-      default: false
-      examples:
-        - "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+      default: "primary"
