@@ -219,6 +219,8 @@ class SeoAuditBatch {
    * Batch finished callback.
    */
   public static function finished(bool $success, array $results, array $operations, string $elapsed): void {
+    $auditResultId = $results['audit_result_id'] ?? NULL;
+
     if (!$success || !empty($results['error'])) {
       \Drupal::messenger()->addError(t('The audit encountered an error: @error', [
         '@error' => $results['error'] ?? t('Unknown error'),
@@ -226,16 +228,17 @@ class SeoAuditBatch {
       return;
     }
 
-    \Drupal::messenger()->addStatus(t('SEO & Accessibility audit completed successfully.'));
-
-    // Force redirect to the report page.
-    $auditResultId = $results['audit_result_id'] ?? NULL;
     if ($auditResultId) {
-      $url = \Drupal\Core\Url::fromRoute('seo_audit.report', [
+      $reportUrl = \Drupal\Core\Url::fromRoute('seo_audit.report', [
         'seo_audit_result' => $auditResultId,
-      ]);
-      $batch = &batch_get();
-      $batch['redirect'] = $url;
+      ])->toString();
+
+      \Drupal::messenger()->addStatus(t('SEO & Accessibility audit completed successfully. <a href="@url" target="_blank">View Report</a>', [
+        '@url' => $reportUrl,
+      ]));
+    }
+    else {
+      \Drupal::messenger()->addStatus(t('SEO & Accessibility audit completed successfully.'));
     }
   }
 

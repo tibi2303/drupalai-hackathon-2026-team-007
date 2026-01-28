@@ -152,6 +152,8 @@ class SeoAuditConfirmForm extends ConfirmFormBase {
     ];
     batch_set($batch);
 
+    // Redirect to the report page after batch completion.
+    // The report controller will show a progress page if not yet complete.
     $form_state->setRedirect('seo_audit.report', [
       'seo_audit_result' => $auditResult->id(),
     ]);
