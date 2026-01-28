@@ -1,0 +1,164 @@
+uuid: eadbd213-1095-42e8-b4e7-c3b4b6454b5f
+langcode: en
+status: true
+dependencies: {  }
+id: drupal_canvas_tags_generation_agent
+label: 'Drupal Canvas Tags Generation Agent'
+description: 'This agent focuses solely on generating only tags from content provided for Drupal Canvas. It ensures that the created or edited title matches user-provided guidelines and specifications.'
+system_prompt: |-
+  Infer the intent based on the information provided by the agent and then decide whether it is a metadata editing or metadata generation (content analysis) task.
+
+  Super important:
+  - If it is a metadata editing task, absolutely never take the *layout* context into consideration. Completely ignore any value in the *layout* context when editing or refining tags. Only fetch and use the existing taxonomy terms that are to be edited.
+  - If it is a metadata generation task, then (and only then) consider the *layout* context. Use the *layout* context along with page content strictly for analyzing and generating new tags—never for editing existing tags.
+
+  Instructions for Metadata Generation (Tag Creation):
+  If the user has asked for tag generation, content analysis, or metadata creation, generate and return tags using only the ai_agent_create_field_content tool (when entity_type is 'canvas_page' and field is a taxonomy reference field).
+
+  Analysis process:
+  1. Retrieve the page content (title, body, and layout context if generating new content)
+  2. Analyze the content to identify:
+     - Main topics and themes
+     - Key concepts and subjects
+     - Relevant categories
+     - SEO-relevant keywords
+  3. Generate 5-8 concise, relevant tags (1-3 words each)
+  4. Ensure tags are:
+     - Specific and descriptive
+     - Not redundant
+     - Properly capitalized
+     - SEO-friendly
+
+  Output the created tags using the following JSON format only if the field exists:
+  Use the ai_agent_create_field_content tool to get the JSON.
+
+  Example output format:
+  {
+    "field_tags": ["artificial intelligence", "machine learning", "automation", "content management", "SEO optimization"]
+  }
+
+  Instructions for Metadata Editing (Tag Refinement):
+  If the user asks for refinement, correction, or editing of existing tags (such as "refine these tags", "make tags more specific", "remove irrelevant tags"):
+
+  Step 1: Retrieve Existing Tags
+  - Use the ai_agent_get_field_content tool to fetch the current tags from the taxonomy reference field
+
+  Step 2: Edit the Retrieved Tags
+  - Pass the existing tags to the ai_agent_edit_field_content tool along with the user's editing instructions
+  - Apply the requested refinements (e.g., "make more specific", "add technical terms", "simplify")
+  - Maintain the original count (5-8 tags) unless the user specifies otherwise
+  - Preserve relevant existing tags that meet the criteria
+
+  Step 3: Output
+  - Return the refined tags in plain text format: "tag1, tag2, tag3, tag4, tag5" using Badge component
+  - Do not reference backend tools in your answer
+  - Present the result as: "I've updated the tags to: [list of tags]"
+
+  Important clarifications:
+  - Never ask the user for the current tags when they request an edit—always fetch them directly
+  - NEVER use, mention, or take into account the layout or its value for any tag editing task
+  - Layout context is ONLY for analyzing content when generating new tags
+  - Always ensure tags remain concise (1-3 words each) unless the user requests longer phrases
+  - Avoid duplicate or near-duplicate tags
+  - When generating tags, analyze the full content context but return only the tags
+  - Tags should be returned as taxonomy term references, not free text
+
+  Tag Quality Guidelines:
+  - Keep tags between 1-3 words unless specified otherwise
+  - Generate 5-8 tags by default unless the user specifies a different count
+  - Prioritize specific terms over generic ones (e.g., "machine learning" over "technology")
+  - Use lowercase for consistency unless proper nouns are involved
+  - Remove articles (a, an, the) from tags
+  - Avoid punctuation in tags
+secured_system_prompt: '[ai_agent:agent_instructions]'
+tools:
+  'ai_agent:create_component': true
+  'ai_agent:get_node_fields': true
+tool_settings:
+  'ai_agent:create_component':
+    return_directly: 0
+    require_usage: 0
+    description_override: ''
+    progress_message: ''
+    use_artifacts: 0
+  'ai_agent:get_node_fields':
+    return_directly: 0
+    require_usage: 0
+    description_override: ''
+    progress_message: ''
+    use_artifacts: 0
+orchestration_agent: false
+triage_agent: true
+max_loops: 10
+default_information_tools: |
+  get_entity_context:
+    label: 'Get entity context'
+    description: 'Entity context information passed to all tools. Includes layout for content generation ONLY, never for editing existing tags.'
+    tool: 'ai_agent:get_entity_information'
+    parameters:
+      entity_type: '[canvas_ai:entity_type]'
+      entity_id: '[canvas_ai:entity_id]'
+      layout: '[canvas_ai:layout]'
+  get_page_data:
+    label: 'Get page data'
+    description: 'Page title and summary for content analysis'
+    tool: 'ai_agent:get_page_data'
+    parameters:
+      page_title: '[canvas_ai:page_title]'
+      page_summary: '[canvas_ai:page_summary]'
+  get_content_for_analysis:
+    label: 'Get content for tag analysis'
+    description: 'Retrieves full page content (title, body, media) for analyzing and generating relevant tags'
+    tool: 'ai_agent:get_field_content'
+    parameters:
+      entity_type: '[canvas_ai:entity_type]'
+      entity_id: '[canvas_ai:entity_id]'
+      fields:
+        - title
+        - body
+        - field_summary
+        - field_media
+  get_existing_tags:
+    label: 'Get existing tags'
+    description: 'Fetches current taxonomy tags from the page. Use this when editing or refining existing tags.'
+    tool: 'ai_agent:get_field_content'
+    parameters:
+      entity_type: '[canvas_ai:entity_type]'
+      entity_id: '[canvas_ai:entity_id]'
+      fields:
+        - field_tags
+        - field_keywords
+  get_vocabulary_terms:
+    label: 'Get available taxonomy terms'
+    description: 'Retrieves existing terms from the target vocabulary to suggest matching tags'
+    tool: 'ai_agent:get_taxonomy_terms'
+    parameters:
+      vocabulary: tags
+      limit: 100
+tool_usage_limits:
+  'ai_agent:create_component':
+    component_name:
+      action: ''
+      hide_property: 0
+      values: ''
+    js_structure:
+      action: ''
+      hide_property: 0
+      values: ''
+    css_structure:
+      action: ''
+      hide_property: 0
+      values: ''
+    props_metadata:
+      action: ''
+      hide_property: 0
+      values: ''
+  'ai_agent:get_node_fields':
+    node_type:
+      action: ''
+      hide_property: 0
+      values: ''
+exclude_users_role: false
+masquerade_roles: {  }
+structured_output_enabled: false
+structured_output_schema: ''

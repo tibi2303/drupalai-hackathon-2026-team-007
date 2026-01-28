@@ -1,0 +1,38 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Project Status"
+group: "BCL"
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: "Label"
+      default: 'Project Falcon'
+    status:
+      type: string
+      title: "Status"
+      default: 'in-progress'
+    badge:
+      type: string
+      title: "Badge"
+      default: 'Digital'
+    start_date:
+      type: string
+      title: "Start Date"
+      default: '2024-01-01'
+    start_label:
+      type: string
+      title: "Start Label"
+      default: 'Start'
+    end_date:
+      type: string
+      title: "End Date"
+      default: '2024-12-31'
+    end_label:
+      type: string
+      title: "End Label"
+      default: 'Finish'
+    progress:
+      type: string
+      title: "Progress"
+      default: '65%'

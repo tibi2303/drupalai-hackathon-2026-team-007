@@ -1,0 +1,8 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Fixed Header"
+description: "Static EC-style header with mega menu; no configurable props."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties: {}

@@ -29,1186 +29,647 @@ component_context:
   sdc:
     enabled: 1
     data: |
-      sdc.mercury.accordion:
-        id: sdc.mercury.accordion
-        name: Accordion
-        description: 'A collapsible content item with a header and hidden content; useful for FAQs and progressive disclosure.'
-        group: Layout
+      sdc.bcl_canvas.bcl-accordion:
+        id: sdc.bcl_canvas.bcl-accordion
+        name: 'BCL Accordion'
+        description: 'A vertically stacked set of collapsible items with optional global expand/collapse controls. Use for grouping related content where only one or a few sections are visible at a time.'
+        group: BCL
         props:
           title:
             name: Heading
-            description: 'Text label used as the visible header for the accordion panel.'
+            description: 'Main heading text for the accordion; displayed above the list of items.'
             type: string
             default: ''
-          heading_level:
+          title_tag:
             name: 'Heading level'
-            description: 'HTML heading level (h2..h6) used for the accordion title to preserve semantic structure.'
+            description: 'HTML heading tag used for the title (for proper document structure and accessibility).'
+            type: string
+            default: ''
+            enum:
+              - h2
+              - h3
+              - h4
+              - h5
+              - h6
+          title_link:
+            name: 'Heading link (URL)'
+            description: 'Optional URL applied to the title so the heading acts as a link to another page or anchor.'
+            type: string
+            default: ''
+          flush:
+            name: 'Flush style'
+            description: 'If true, removes outer borders and rounded corners for a flush, list-like appearance.'
+            type: boolean
+            default: ''
+          open_item:
+            name: 'Initially open item (0 = none)'
+            description: 'Index of the item that should be opened on initial render; use 0 for none.'
             type: number
             default: ''
-            required: true
+          expand_button_label:
+            name: "'Expand all' label"
+            description: 'Text for the control that expands all accordion items when provided.'
+            type: string
+            default: ''
+          expand_button_variant:
+            name: "'Expand all' variant"
+            description: 'Visual variant applied to the expand control to match design system color schemes.'
+            type: string
+            default: ''
             enum:
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-          open_by_default:
-            name: 'Expanded by default'
-            description: 'When true the accordion content is visible on initial render; otherwise it is collapsed.'
+              - primary
+              - secondary
+              - success
+              - danger
+              - warning
+              - info
+              - light
+              - dark
+          collapse_button_label:
+            name: "'Collapse all' label"
+            description: 'Text for the control that collapses all accordion items when provided.'
+            type: string
+            default: ''
+          collapse_button_variant:
+            name: "'Collapse all' variant"
+            description: 'Visual variant applied to the collapse control to match design system color schemes.'
+            type: string
+            default: ''
+            enum:
+              - primary
+              - secondary
+              - success
+              - danger
+              - warning
+              - info
+              - light
+              - dark
+          item1_title:
+            name: 'Item 1 title'
+            description: 'Title text for the first accordion item.'
+            type: string
+            default: ''
+          item1_content:
+            name: 'Item 1 content (HTML allowed)'
+            description: 'HTML content rendered inside the first accordion panel; supports markup for rich content.'
+            type: string
+            default: ''
+          item1_stay_open:
+            name: 'Item 1 stay open'
+            description: 'If true, keeps item 1 open when other items are toggled (useful for independent panels).'
             type: boolean
             default: ''
-        slots:
-          accordion_content:
-            name: 'Accordion content'
-            description: 'Main content shown inside the accordion panel; can include text, images, or other components.'
-      sdc.mercury.accordion-container:
-        id: sdc.mercury.accordion-container
-        name: 'Accordion container'
-        description: 'Wraps multiple accordion items to enforce that only one item is open at a time (accordion behavior).'
-        group: Layout
-        props: 'Container does not accept props; it coordinates child accordions.'
-        slots:
-          accordion_content:
-            name: 'Accordion content'
-            description: 'Place accordion items here. Only one child accordion within this container should be expanded at once.'
-      sdc.mercury.anchor:
-        id: sdc.mercury.anchor
-        name: Anchor
-        description: 'An invisible in-page anchor used as a link target for URL fragments and in-page navigation.'
-        group: Base
+          item2_title:
+            name: 'Item 2 title'
+            description: 'Title text for the second accordion item.'
+            type: string
+            default: ''
+          item2_content:
+            name: 'Item 2 content (HTML allowed)'
+            description: 'HTML content rendered inside the second accordion panel; supports markup for rich content.'
+            type: string
+            default: ''
+          item2_stay_open:
+            name: 'Item 2 stay open'
+            description: 'If true, keeps item 2 open when other items are toggled.'
+            type: boolean
+            default: ''
+          item3_title:
+            name: 'Item 3 title'
+            description: 'Title text for the third accordion item.'
+            type: string
+            default: ''
+          item3_content:
+            name: 'Item 3 content (HTML allowed)'
+            description: 'HTML content rendered inside the third accordion panel; supports markup for rich content.'
+            type: string
+            default: ''
+          item3_stay_open:
+            name: 'Item 3 stay open'
+            description: 'If true, keeps item 3 open when other items are toggled.'
+            type: boolean
+            default: ''
+          item4_title:
+            name: 'Item 4 title'
+            description: 'Title text for the fourth accordion item.'
+            type: string
+            default: ''
+          item4_content:
+            name: 'Item 4 content (HTML allowed)'
+            description: 'HTML content rendered inside the fourth accordion panel; supports markup for rich content.'
+            type: string
+            default: ''
+          item4_stay_open:
+            name: 'Item 4 stay open'
+            description: 'If true, keeps item 4 open when other items are toggled.'
+            type: boolean
+            default: ''
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-date-block:
+        id: sdc.bcl_canvas.bcl-date-block
+        name: 'BCL Date Block'
+        description: 'Displays a date or short date-related summary in a stylized block, often used in event lists or cards.'
+        group: BCL
+        props:
+          content:
+            name: Content
+            description: 'Formatted date string or HTML that represents the date information to show in the block.'
+            type: string
+            default: ''
+        slots: 'No slots: date is supplied via the content prop.'
+      sdc.bcl_canvas.bcl-file-file-translations:
+        id: sdc.bcl_canvas.bcl-file-file-translations
+        name: 'BCL File Translations'
+        description: 'Provides download links and metadata for a file available in multiple languages. Each language entry shows title, language label, meta (size/type) and a download URL.'
+        group: BCL
         props:
           id:
-            name: 'ID for in-page link'
-            description: 'Unique identifier used in the URL fragment (e.g. `#intro`) to navigate to this anchor.'
+            name: 'Collapse id'
+            description: 'Unique identifier for any collapsible container used to show/hide the translations list.'
             type: string
             default: ''
-            required: true
-        slots: 'This component renders no visual content; no slots available.'
-      sdc.mercury.badge:
-        id: sdc.mercury.badge
-        name: Badge
-        description: 'Small label component often used to highlight status, categories, or compact CTAs.'
-        group: Base
-        props:
           label:
-            name: 'Link text'
-            description: 'Visible text displayed inside the badge.'
+            name: 'Toggle label'
+            description: 'Label text for the control that toggles visibility of the translations list.'
             type: string
             default: ''
-            required: true
-          url:
-            name: Link
-            description: 'Optional URL the badge links to when clicked; when empty the badge is non-clickable.'
+          lang1_title:
+            name: 'Language 1 title'
+            description: 'Human-readable title for the first language version (e.g., "English PDF").'
             type: string
             default: ''
-          style:
-            name: Style
-            description: 'Visual variant of the badge to convey emphasis (primary or secondary).'
+          lang1_language:
+            name: 'Language 1 label'
+            description: 'Short language label or code for the first translation (e.g., "EN").'
             type: string
             default: ''
-            required: true
-            enum:
-              - primary
-              - secondary
-          icon:
-            name: 'Icon name'
-            description: 'Optional icon identifier to render alongside the label (from Phosphor Icons).'
+          lang1_meta:
+            name: 'Language 1 meta (size/type)'
+            description: 'Supplementary metadata such as file size and type for the first translation.'
             type: string
             default: ''
-          icon_first:
-            name: 'Icon first'
-            description: 'When true the icon is placed before the label; otherwise it is placed after.'
-            type: boolean
+          lang1_url:
+            name: 'Language 1 download URL'
+            description: 'Direct URL for downloading the first language version of the file.'
+            type: string
             default: ''
-        slots: 'No named slots; badge content is entirely defined via props.'
-      sdc.mercury.blockquote:
-        id: sdc.mercury.blockquote
-        name: Blockquote
-        description: 'Displays a quoted passage with optional citation information in a visually distinct style.'
-        group: Base
+          lang2_title:
+            name: 'Language 2 title'
+            description: 'Human-readable title for the second language version.'
+            type: string
+            default: ''
+          lang2_language:
+            name: 'Language 2 label'
+            description: 'Short language label or code for the second translation.'
+            type: string
+            default: ''
+          lang2_meta:
+            name: 'Language 2 meta (size/type)'
+            description: 'Supplementary metadata such as file size and type for the second translation.'
+            type: string
+            default: ''
+          lang2_url:
+            name: 'Language 2 download URL'
+            description: 'Direct URL for downloading the second language version of the file.'
+            type: string
+            default: ''
+          lang3_title:
+            name: 'Language 3 title'
+            description: 'Human-readable title for the third language version.'
+            type: string
+            default: ''
+          lang3_language:
+            name: 'Language 3 label'
+            description: 'Short language label or code for the third translation.'
+            type: string
+            default: ''
+          lang3_meta:
+            name: 'Language 3 meta (size/type)'
+            description: 'Supplementary metadata such as file size and type for the third translation.'
+            type: string
+            default: ''
+          lang3_url:
+            name: 'Language 3 download URL'
+            description: 'Direct URL for downloading the third language version of the file.'
+            type: string
+            default: ''
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-content-banner:
+        id: sdc.bcl_canvas.bcl-fixed-content-banner
+        name: 'BCL Fixed Content Banner'
+        description: 'Static content banner that renders fixed HTML or markup supplied directly in the component template. Not configurable via props; use for persistent promotional, informational, or call-to-action content that must remain identical across placements.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-footer:
+        id: sdc.bcl_canvas.bcl-fixed-footer
+        name: 'BCL Fixed Footer'
+        description: 'Static EC-style footer component that renders site‑wide footer content (copyright, links, and utilities) following BCL styling. Not configurable via props; markup and links are provided in the component template.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-header:
+        id: sdc.bcl_canvas.bcl-fixed-header
+        name: 'BCL Fixed Header'
+        description: 'Static EC-style header with mega menu; non-configurable component providing the global site header including brand area, navigation toggle, and responsive mega-navigation regions. Layout and markup are defined in the component template; props are not supported.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-form-input:
+        id: sdc.bcl_canvas.bcl-form-input
+        name: 'BCL Form Input'
+        description: 'Accessible input control wrapper supporting different input types, validation states and layout options. Use for single-line inputs, checkboxes and radios when combined with proper input_type.'
+        group: BCL
         props:
-          text:
-            name: 'Quotation text'
-            description: 'The quoted content to display inside the blockquote.'
+          id:
+            name: Id
+            description: 'Unique element id for the input control to associate labels and helper text.'
             type: string
             default: ''
-          cite_name:
-            name: 'Citation name'
-            description: 'Name of the person or source being cited.'
+          input_type:
+            name: 'Input Type'
+            description: 'Type attribute of the underlying input (e.g., text, email, checkbox, radio).'
             type: string
             default: ''
-          cite_text:
-            name: 'Citation text'
-            description: 'Supplementary citation information such as title or position.'
-            type: string
-            default: ''
-          cite_url:
-            name: 'Citation link'
-            description: 'Optional URL to the original source of the quote.'
-            type: string
-            default: ''
-        slots: 'No slots; blockquote content is provided through props.'
-      sdc.mercury.button:
-        id: sdc.mercury.button
-        name: Button
-        description: 'Clickable button component supporting variants, sizes, icons and accessibility states.'
-        group: Base
-        props:
-          variant:
-            name: Style
-            description: 'Visual style variant for the button which affects color and emphasis.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - primary
-              - secondary
-              - primary-inverted
-              - secondary-inverted
           label:
             name: Label
-            description: 'Visible text shown on the button; required for accessible buttons.'
+            description: 'Visible label text for the input; required for accessible forms.'
             type: string
             default: ''
-          href:
-            name: Link
-            description: 'If provided the button behaves as a link and navigates to this URL when clicked.'
+          required:
+            name: Required
+            description: 'If true, renders the input as required and can add visual indicators for users.'
+            type: boolean
+            default: ''
+          checked:
+            name: Checked
+            description: 'For checkbox or radio inputs, indicates whether the control is initially checked.'
+            type: boolean
+            default: ''
+          hidden_label:
+            name: 'Hidden Label'
+            description: 'If true, visually hides the label while keeping it available to screen readers.'
+            type: boolean
+            default: ''
+          disabled:
+            name: Disabled
+            description: 'If true, disables the input making it non-interactive and styling it accordingly.'
+            type: boolean
+            default: ''
+          readonly:
+            name: Readonly
+            description: 'If true, makes the input read-only so value cannot be edited but can be copied.'
+            type: boolean
+            default: ''
+          invalid:
+            name: Invalid
+            description: 'If true, marks the control as invalid to show error styling and ARIA state changes.'
+            type: boolean
+            default: ''
+          valid:
+            name: Valid
+            description: 'If true, marks the control as valid to show success styling and ARIA state changes.'
+            type: boolean
+            default: ''
+          invalid_feedback:
+            name: 'Invalid Feedback'
+            description: 'Error message text shown when the input is in an invalid state.'
             type: string
             default: ''
-          size:
-            name: 'Button size'
-            description: 'Controls the button\'s padding and typography: small, medium or large.'
+          valid_feedback:
+            name: 'Valid Feedback'
+            description: 'Confirmation text shown when the input is in a valid state.'
             type: string
             default: ''
-            required: true
-            enum:
-              - small
-              - medium
-              - large
-          icon:
-            name: Icon
-            description: 'Optional decorative icon name shown alongside the label.'
+          floating:
+            name: Floating
+            description: 'If true, uses floating label styling where label overlays the input until focus or value is present.'
+            type: boolean
+            default: ''
+          helper_text:
+            name: 'Helper Text'
+            description: 'Short helper or hint text shown below the input for additional guidance.'
+            type: string
+            default: ''
+          helper_text_id:
+            name: 'Helper Text Id'
+            description: 'Id applied to helper text for aria-describedby relationships.'
+            type: string
+            default: ''
+          placeholder:
+            name: Placeholder
+            description: 'Placeholder text displayed when the input has no value; not a substitute for a label.'
+            type: string
+            default: ''
+          horizontal:
+            name: Horizontal
+            description: 'If true, renders the label and input in a horizontal (side-by-side) layout.'
+            type: boolean
+            default: ''
+          horizontal_class:
+            name: 'Horizontal Class'
+            description: 'Custom CSS class applied to the horizontal layout container for additional control.'
+            type: string
+            default: ''
+          horizontal_label_class:
+            name: 'Horizontal Label Class'
+            description: 'Custom CSS class applied to the label when using horizontal layout.'
+            type: string
+            default: ''
+          switch:
+            name: Switch
+            description: 'If true and input_type supports it, renders a switch-style control instead of a checkbox.'
+            type: boolean
+            default: ''
+          toggle:
+            name: Toggle
+            description: 'If true, renders the input as a toggle control with optional variants.'
+            type: boolean
+            default: ''
+          toggle_variant:
+            name: 'Toggle Variant'
+            description: 'Visual variant applied to toggle controls to match design system color schemes.'
+            type: string
+            default: ''
+          remove_wrapper:
+            name: 'Remove Wrapper'
+            description: 'If true, removes the default input wrapper when you need to render a raw input element.'
+            type: boolean
+            default: ''
+        slots: 'No slots: input content is configured via props; label and helper text are prop-driven.'
+      sdc.bcl_canvas.bcl-icon:
+        id: sdc.bcl_canvas.bcl-icon
+        name: 'BCL Icon'
+        description: 'Renders a single icon from a sprite or icon set with configurable size and transformations. Useful for decorative or informative icons that are accessible when accompanied by text or aria-labels.'
+        group: BCL
+        props:
+          name:
+            name: Name
+            description: 'Logical icon identifier used to select which glyph to render from the sprite or icon set.'
             type: string
             default: ''
             enum:
               - arrow-right
               - arrow-left
-              - caret-right
-              - caret-left
+              - arrow-up
+              - arrow-down
+              - chevron-left
+              - chevron-right
+              - chevron-up
+              - chevron-down
+              - caret-up-fill
+              - caret-down-fill
+              - check
+              - x
+              - info
+              - question-circle
+              - exclamation-triangle-fill
+              - plus-lg
+              - dash-lg
+              - search
+              - link
+              - upload
               - download
-              - user-plus
-          mobile_width:
-            name: 'Full width on mobile'
-            description: 'When true the button expands to full width on small screens for better tap targets.'
+              - calendar
+              - envelope
+              - cloud-arrow-up
+              - cloud-arrow-down
+          size:
+            name: Size
+            description: 'Size token for the icon controlling its rendered dimensions; supports responsive tokens.'
+            type: string
+            default: ''
+            enum:
+              - 2xs
+              - xs
+              - s
+              - m
+              - l
+              - xl
+              - 2xl
+              - fluid
+          transformation:
+            name: Transformation
+            description: 'Optional transformation applied to the icon such as rotation or flip for presentational use.'
+            type: string
+            default: ''
+            enum:
+              - rotate-90
+              - rotate-180
+              - rotate-270
+              - flip-horizontal
+              - flip-vertical
+        slots: 'No slots: icon is defined entirely by props and used inline with text or controls.'
+      sdc.bcl_canvas.bcl-link:
+        id: sdc.bcl_canvas.bcl-link
+        name: 'BCL Link'
+        description: 'A customizable text link component supporting Bootstrap color variants and optional leading or trailing icons. Use for inline navigation or actions where a styled anchor is needed.'
+        group: BCL
+        props:
+          label:
+            name: Label
+            description: 'Visible link text displayed to users; keep concise and descriptive.'
+            type: string
+            default: ''
+          path:
+            name: URL
+            description: 'Destination URL for the link; can be external or internal.'
+            type: string
+            default: ''
+          id:
+            name: 'Element id'
+            description: 'Optional id attribute for the anchor element for scripting or accessibility hooks.'
+            type: string
+            default: ''
+          disabled:
+            name: Disabled
+            description: 'If true, visually disables the link and prevents pointer interaction.'
             type: boolean
             default: ''
-          icon_first:
-            name: 'Display icon first'
-            description: 'When true the icon appears before the label; otherwise it appears after.'
+          standalone:
+            name: 'Standalone style'
+            description: 'If true, applies styling that separates the link from surrounding text (e.g., block link styles).'
+            type: boolean
+            default: ''
+          icon_name:
+            name: 'Icon name'
+            description: 'Optional icon identifier to render alongside the link label for visual context.'
+            type: string
+            default: ''
+          icon_position:
+            name: 'Icon position'
+            description: 'Position of the icon relative to the label; choose before or after.'
+            type: string
+            default: ''
+            enum:
+              - after
+              - before
+          remove_icon_spacers:
+            name: 'Remove icon spacing'
+            description: 'If true, removes default spacing around the icon for tighter layout control.'
+            type: boolean
+            default: ''
+        slots: 'No slots: label and icon are provided through props rather than named child slots.'
+      sdc.bcl_canvas.bcl-project-status:
+        id: sdc.bcl_canvas.bcl-project-status
+        name: 'BCL Project Status'
+        description: 'Displays a concise project status summary including status text, optional badge, and timeline dates with progress. Useful for dashboards and project lists.'
+        group: BCL
+        props:
+          label:
+            name: Label
+            description: 'Short descriptive label for the project or status item.'
+            type: string
+            default: ''
+          status:
+            name: Status
+            description: 'Primary status text (e.g., "In progress", "Completed") used to indicate current state.'
+            type: string
+            default: ''
+          badge:
+            name: Badge
+            description: 'Small visual badge or tag to emphasize status or priority (e.g., "Delayed", "On track").'
+            type: string
+            default: ''
+          start_date:
+            name: 'Start Date'
+            description: 'Formatted start date string for the project timeline.'
+            type: string
+            default: ''
+          start_label:
+            name: 'Start Label'
+            description: 'Label text associated with the start date (e.g., "Started").'
+            type: string
+            default: ''
+          end_date:
+            name: 'End Date'
+            description: 'Formatted end date string for the project timeline or expected completion.'
+            type: string
+            default: ''
+          end_label:
+            name: 'End Label'
+            description: 'Label text associated with the end date (e.g., "Due").'
+            type: string
+            default: ''
+          progress:
+            name: Progress
+            description: 'Numeric or textual progress indicator (percentage or descriptive text) showing completion level.'
+            type: string
+            default: ''
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-rich-text:
+        id: sdc.bcl_canvas.bcl-rich-text
+        name: 'BCL Rich Text'
+        description: 'Renders supplied rich HTML as‑is, preserving markup, inline styles and links. Intended for trusted content only; ensure input is sanitized before rendering to prevent cross‑site scripting (XSS).'
+        group: BCL
+        props:
+          content:
+            name: 'Content (HTML allowed)'
+            description: >-
+              HTML content to be rendered by the component. Supports basic structural and
+              inline markup (headings, paragraphs, lists, anchors, images, emphasis, and
+              strong). This field is treated as trusted content by the renderer and will not
+              be automatically sanitized; sanitize or validate any user-supplied input
+              upstream to prevent cross-site scripting (XSS). Intended for short-to-medium
+              promotional or informational content and calls-to-action. Avoid scripts,
+              inline event handlers, and untrusted markup.
+            type: string
+            default: ''
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-textarea:
+        id: sdc.bcl_canvas.bcl-textarea
+        name: 'BCL Textarea'
+        description: 'Multi-line text input with support for validation, helper text, and horizontal layouts. Use for longer user input like comments or descriptions.'
+        group: BCL
+        props:
+          id:
+            name: Id
+            description: 'Unique id for the textarea enabling label and helper associations.'
+            type: string
+            default: ''
+          label:
+            name: Label
+            description: 'Visible label text describing the purpose of the textarea.'
+            type: string
+            default: ''
+          required:
+            name: Required
+            description: 'If true, marks the textarea as required and may add visual indicators.'
             type: boolean
             default: ''
           disabled:
             name: Disabled
-            description: 'When true the button is visually disabled and non-interactive.'
+            description: 'If true, disables the textarea and prevents user input.'
             type: boolean
             default: ''
-        slots: 'No slots; content is provided via props.'
-      sdc.mercury.card:
-        id: sdc.mercury.card
-        name: 'Image card'
-        description: 'A card component for showcasing an image with heading and descriptive text; supports layout variants.'
-        group: Card
-        props:
-          background:
-            name: Background
-            description: 'Background tone applied to the card surface to create visual contrast.'
-            type: string
-            default: ''
-            enum:
-              - default
-              - accent
-              - primary
-              - inverted
-          style:
-            name: Style
-            description: 'Determines whether the card uses a framed or full-bleed image layout.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - framed
-              - full
-          orientation:
-            name: Orientation
-            description: 'Specifies whether media and text are stacked vertically or placed horizontally.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - vertical
-              - horizontal
-          heading_text:
-            name: Heading
-            description: 'Primary title text displayed on the card.'
-            type: string
-            default: ''
-            required: true
-          level:
-            name: 'Heading level'
-            description: 'Semantic heading level used for the card title to maintain document structure.'
-            type: number
-            default: ''
-            enum:
-              - 2
-              - 3
-              - 4
-          url:
-            name: Link
-            description: 'Optional destination URL for the card; card becomes clickable when set.'
-            type: string
-            default: ''
-          media:
-            name: Image
-            description: 'Media object providing the image to display on the card (src, alt, etc.).'
-            type: object
-            default: ''
-          text:
-            name: Description
-            description: 'Supporting descriptive text for the card, displayed below the heading.'
-            type: string
-            default: ''
-          is_text_centered:
-            name: 'Center text'
-            description: 'When true the heading and text are horizontally centered within the card.'
+          readonly:
+            name: Readonly
+            description: 'If true, renders the textarea as read-only so content cannot be edited.'
             type: boolean
             default: ''
-        slots: 'No slots; content is controlled via props.'
-      sdc.mercury.card-icon:
-        id: sdc.mercury.card-icon
-        name: 'Icon card'
-        description: 'A compact card emphasizing an icon with optional heading and description for features or services.'
-        group: Card
-        props:
-          tile_size:
-            name: 'Aspect ratio'
-            description: 'Aspect ratio of the icon tile, controlling its visual proportions.'
+          invalid:
+            name: Invalid
+            description: 'If true, applies error styling and ARIA invalid state for validation errors.'
+            type: boolean
+            default: ''
+          valid:
+            name: Valid
+            description: 'If true, applies success styling to indicate a valid state.'
+            type: boolean
+            default: ''
+          invalid_feedback:
+            name: 'Invalid Feedback'
+            description: 'Error message displayed when the textarea is invalid.'
             type: string
             default: ''
-            enum:
-              - square
-              - '4:3'
-              - '16:9'
-          background_color:
-            name: 'Background color'
-            description: 'Tile background color variant to visually distinguish cards.'
+          valid_feedback:
+            name: 'Valid Feedback'
+            description: 'Confirmation message displayed when the textarea is valid.'
             type: string
             default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-              - muted
-          border_radius:
-            name: 'Border radius'
-            description: 'Corner rounding applied to the tile for softer or sharper shapes.'
+          helper_text:
+            name: 'Helper Text'
+            description: 'Supplementary hint or instructions displayed beneath the textarea.'
             type: string
             default: ''
-            enum:
-              - small
-              - medium
-              - large
-          icon:
-            name: 'Icon name'
-            description: 'Identifier for the icon to display inside the tile (Phosphor Icons).'
+          helper_text_id:
+            name: 'Helper Text Id'
+            description: 'Id used to link helper text to the textarea via aria-describedby.'
             type: string
             default: ''
-          icon_size:
-            name: 'Icon size'
-            description: 'Controls the rendered icon size for emphasis and visual balance.'
-            type: string
+          hidden_label:
+            name: 'Hidden Label'
+            description: 'If true, visually hides the label while keeping it available to screen readers.'
+            type: boolean
             default: ''
-            enum:
-              - small
-              - medium
-              - large
-              - extra-large
-          icon_align:
-            name: 'Icon alignment'
-            description: 'Horizontal alignment of the icon within the tile.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - left
-              - right
-              - center
-          url:
-            name: Link
-            description: 'Optional URL the card links to when clicked.'
-            type: string
-            default: ''
-          text:
-            name: Heading
-            description: 'Title text for the card describing the feature or service.'
-            type: string
-            default: ''
-          description:
-            name: Description
-            description: 'Supplementary text offering more detail about the card content.'
-            type: string
-            default: ''
-          text_align:
-            name: 'Text alignment'
-            description: 'Horizontal alignment of heading and description text.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - left
-              - center
-              - right
-        slots: 'No slots; card body is defined by props.'
-      sdc.mercury.card-logo:
-        id: sdc.mercury.card-logo
-        name: 'Logo card'
-        description: 'Card designed to showcase a single logo or brand mark with optional link and background.'
-        group: Card
-        props:
-          media:
-            name: Logo
-            description: 'Image object containing the logo asset and alt text.'
-            type: object
-            default: ''
-          background_color:
-            name: 'Background color'
-            description: 'Background color applied behind the logo for contrast.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-              - muted
-          border_radius:
-            name: 'Border radius'
-            description: 'Corner rounding applied to the logo container.'
-            type: string
-            default: ''
-            enum:
-              - small
-              - medium
-              - large
-          url:
-            name: Link
-            description: 'Optional destination URL for the card, making the logo clickable.'
-            type: string
-            default: ''
-        slots: 'No slots; content supplied via props.'
-      sdc.mercury.card-pricing:
-        id: sdc.mercury.card-pricing
-        name: 'Pricing card'
-        description: 'Structured card to present pricing information, features, and a CTA to purchase or sign up.'
-        group: Card
-        props:
-          heading_text:
-            name: Heading
-            description: 'Title of the pricing tier or plan.'
-            type: string
-            default: ''
-          description:
-            name: Description
-            description: 'Short summary highlighting the plan benefits or target users.'
-            type: string
-            default: ''
-          price:
-            name: Price
-            description: 'Primary price value presented for the pricing plan.'
-            type: string
-            default: ''
-          currency_code:
-            name: 'Currency code'
-            description: 'ISO currency code used to interpret the price (e.g. USD, EUR).'
-            type: string
-            default: ''
-          currency_symbol:
-            name: 'Currency symbol'
-            description: 'Symbol displayed alongside the price (e.g. \$, €).'
-            type: string
-            default: ''
-          symbol_position:
-            name: 'Symbol position'
-            description: 'Whether the currency symbol appears before or after the numeric price.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - before
-              - after
           text:
             name: Text
-            description: 'Additional explanatory text or billing cadence (e.g. per month).'
+            description: 'Initial or current value for the textarea; may include line breaks.'
             type: string
             default: ''
-          button_url:
-            name: Link
-            description: 'CTA URL users follow to purchase or sign up for this plan.'
+          rows:
+            name: Rows
+            description: 'Number of visible text rows to render by default; affects the textarea height.'
             type: string
             default: ''
-          button_label:
-            name: 'Button label'
-            description: 'Text shown on the CTA button (e.g. "Get started").'
-            type: string
-            default: ''
-          promote:
-            name: 'Highlight card'
-            description: 'When true the card is visually emphasized as a recommended or popular option.'
+          floating:
+            name: Floating
+            description: 'If true, uses a floating label style for the textarea.'
             type: boolean
             default: ''
-        slots: 'No slots; pricing card content is configured by props.'
-      sdc.mercury.card-testimonial:
-        id: sdc.mercury.card-testimonial
-        name: 'Testimonial card'
-        description: 'Displays a customer quote with optional image and citation to build credibility.'
-        group: Card
-        props:
-          text:
-            name: 'Quote text'
-            description: 'Primary testimonial text provided by the customer or user.'
-            type: string
-            default: ''
-          cite_name:
-            name: 'Citation name'
-            description: 'Name of the person who provided the testimonial.'
-            type: string
-            default: ''
-          cite_text:
-            name: 'Citation text'
-            description: 'Optional title or affiliation of the person quoted.'
-            type: string
-            default: ''
-          cite_url:
-            name: 'Citation link'
-            description: 'Optional link to the original testimonial or author profile.'
-            type: string
-            default: ''
-          align:
-            name: Alignment
-            description: 'Controls horizontal alignment of the testimonial content.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - center
-              - left
-          style:
-            name: Style
-            description: 'Visual style variant for testimonials, such as default or inverted contrast.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - default
-              - inverted
-          media:
-            name: Image
-            description: 'Optional image object for author photo or supporting media.'
-            type: object
-            default: ''
-        slots: 'No named slots; testimonial data is supplied via props.'
-      sdc.mercury.cta:
-        id: sdc.mercury.cta
-        name: 'Hero CTA'
-        description: 'Large call-to-action area with heading, supporting text, and action slot for buttons.'
-        group: Hero
-        props:
-          heading_text:
-            name: Heading
-            description: 'Primary headline used to communicate the main message or offer.'
-            type: string
-            default: ''
-          level:
-            name: 'Heading level'
-            description: 'Semantic HTML heading level for the heading to preserve accessibility.'
-            type: number
-            default: ''
-            required: true
-            enum:
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-          text:
-            name: Text
-            description: 'Supporting paragraph text that clarifies the heading or CTA.'
-            type: string
-            default: ''
-          text_align:
-            name: 'Text alignment'
-            description: 'Horizontal alignment of heading and supporting text.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - center
-              - left
-              - right
-          background_color:
-            name: 'Background color'
-            description: 'Background tone for the hero area to set visual emphasis.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-              - muted
-              - inverted
-          media:
-            name: 'Background image'
-            description: 'Optional media object used as a background image for the hero area.'
-            type: object
-            default: ''
-        slots:
-          actions:
-            name: Buttons
-            description: 'Slot for one or more action buttons (primary and secondary CTAs).'
-      sdc.mercury.footer:
-        id: sdc.mercury.footer
-        name: Footer
-        description: 'Full-width footer component that organizes branding, social links, CTAs and utility links.'
-        group: Layout
-        props:
-          align:
-            name: 'Display links horizontally'
-            description: 'When true footer links are shown inline horizontally; otherwise they stack vertically.'
+          horizontal:
+            name: Horizontal
+            description: 'If true, renders label and textarea in a horizontal side-by-side layout.'
             type: boolean
             default: ''
-        slots:
-          footer_first:
-            name: 'Branding & Social'
-            description: 'Primary footer region for site branding and social media links.'
-          footer_last:
-            name: 'Call to action'
-            description: 'Secondary footer region typically used for a promotional CTA or newsletter signup.'
-          footer_utility_first:
-            name: 'Utility links'
-            description: 'Region for small utility links such as privacy, terms, or accessibility.'
-          footer_utility_last:
-            name: 'Copyright text'
-            description: 'Region reserved for legal text, copyright notices, and small print.'
-      sdc.mercury.group:
-        id: sdc.mercury.group
-        name: Group
-        description: 'Layout wrapper that arranges child items using flexbox options for spacing and alignment.'
-        group: Layout
-        props:
-          flex_direction:
-            name: 'Item direction'
-            description: 'Direction of child items, either stacked vertically (column) or horizontally (row).'
+          horizontal_class:
+            name: 'Horizontal Class'
+            description: 'Custom css class applied to the horizontal layout container for fine-grained styling.'
             type: string
             default: ''
-            required: true
-            enum:
-              - column
-              - row
-          flex_gap:
-            name: 'Space between items'
-            description: 'Gap size between child items to control spacing.'
+          horizontal_label_class:
+            name: 'Horizontal Label Class'
+            description: 'Custom css class applied to the label when using horizontal layout.'
             type: string
             default: ''
-            enum:
-              - sm
-              - md
-              - lg
-              - xl
-          items_align:
-            name: 'Alignment within group'
-            description: 'Controls how items are aligned along the cross axis inside the group.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - start
-              - center
-              - end
-          flex_align:
-            name: 'Alignment within parent'
-            description: 'Alignment of the whole group within its parent container.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - start
-              - center
-              - end
-          radius:
-            name: 'Rounded corners'
-            description: 'Applies rounded corners to the group container when a background is present.'
-            type: string
-            default: ''
-            enum:
-              - sm
-              - md
-              - lg
-              - xl
-          padding:
-            name: Padding
-            description: 'Internal spacing applied to the group container.'
-            type: string
-            default: ''
-            enum:
-              - sm
-              - md
-              - lg
-              - xl
-          background:
-            name: 'Background color'
-            description: 'Background color variant applied to the group container for emphasis.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-        slots:
-          group_slot:
-            name: 'Group items'
-            description: 'Slot where child components or markup are placed and arranged by the group.'
-      sdc.mercury.heading:
-        id: sdc.mercury.heading
-        name: Heading
-        description: 'Accessible heading component with configurable level, size and alignment.'
-        group: Base
-        props:
-          heading_text:
-            name: Heading
-            description: 'Visible heading text used as the section or component title.'
-            type: string
-            default: ''
-            required: true
-          level:
-            name: 'Heading level'
-            description: 'HTML heading level to maintain semantic structure and accessibility.'
-            type: number
-            default: ''
-            required: true
-            enum:
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-          text_size:
-            name: 'Text size'
-            description: 'Visual size variant of the heading to match design scale.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - default
-              - heading-responsive-8xl
-              - heading-responsive-7xl
-              - heading-responsive-6xl
-              - heading-responsive-5xl
-              - heading-responsive-4xl
-              - heading-responsive-3xl
-              - heading-responsive-2xl
-              - heading-responsive-xl
-          text_color:
-            name: 'Text color'
-            description: 'Color variant to apply contrast or emphasis (default, inverted or primary).'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - default
-              - inverted
-              - primary
-          align:
-            name: 'Text alignment'
-            description: 'Horizontal alignment of the heading within its container.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - left
-              - center
-              - right
-          url:
-            name: Link
-            description: 'Optional URL to wrap the heading in a link for navigational headings.'
-            type: string
-            default: ''
-        slots: 'No slots; heading content is provided by props.'
-      sdc.mercury.hero-billboard:
-        id: sdc.mercury.hero-billboard
-        name: 'Hero billboard'
-        description: 'Large visual hero area that pairs background media with content for high-impact pages.'
-        group: Hero
-        props:
-          height:
-            name: Height
-            description: 'Predefined vertical size of the billboard to control visual prominence.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - full
-              - large
-              - ribbon
-          flex_position:
-            name: 'Content position'
-            description: 'Placement of content inside the hero (top-left, center-left, bottom-left, or centered).'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - top-left
-              - center-left
-              - bottom-left
-              - hero-center
-          overlay_opacity:
-            name: 'Overlay opacity'
-            description: 'Opacity level of the overlay applied on top of background media to improve text contrast.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - 0%
-              - 20%
-              - 40%
-              - 60%
-              - 75%
-          object_position:
-            name: 'Background image position'
-            description: 'Vertical position of the background image when cropped or focused.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - top
-              - center
-              - bottom
-          media:
-            name: 'Background image'
-            description: 'Image object used as the background; supports focal points and alt text for accessibility.'
-            type: object
-            default: ''
-          overlap_navbar:
-            name: 'Overlap header'
-            description: 'When enabled places the hero behind the header to create a layered effect on the first page.'
-            type: boolean
-            default: ''
-        slots:
-          hero_slot:
-            name: 'Hero content'
-            description: 'Main content area inside the hero for headings, CTAs, and supporting copy.'
-      sdc.mercury.hero-blog:
-        id: sdc.mercury.hero-blog
-        name: 'Hero blog'
-        description: 'Hero layout optimized for blog posts with dedicated areas for media and content metadata.'
-        group: Hero
-        props:
-          heading_text:
-            name: Heading
-            description: 'Main title for the blog hero; often mirrors the post title.'
-            type: string
-            default: ''
-          level:
-            name: 'Heading level'
-            description: 'Semantic heading level for the title (keeps the document outline correct).'
-            type: integer
-            default: ''
-            enum:
-              - 1
-              - 2
-              - 3
-              - 4
-              - 5
-              - 6
-          date:
-            name: 'Published Date'
-            description: 'Unix timestamp or date integer indicating when the post was published.'
-            type: integer
-            default: ''
-          author:
-            name: Author
-            description: 'Display name of the article author.'
-            type: string
-            default: ''
-          author_url:
-            name: 'Author link'
-            description: 'Optional URL linking to the author profile or archive.'
-            type: string
-            default: ''
-          media:
-            name: Image
-            description: 'Featured image object for the blog hero, including src and alt attributes.'
-            type: object
-            default: ''
-        slots:
-          blog_media:
-            name: 'Place Image'
-            description: 'Slot for placing the hero image or media element beside the content area.'
-      sdc.mercury.hero-side-by-side:
-        id: sdc.mercury.hero-side-by-side
-        name: 'Hero side-by-side'
-        description: 'Two-column hero that places media and content side-by-side; good for product or feature intros.'
-        group: Hero
-        props:
-          hero_flex_gap:
-            name: 'Flex gap'
-            description: 'Spacing between the hero content and media columns.'
-            type: string
-            default: ''
-            enum:
-              - large
-              - extra-large
-          hero_flex_direction_mobile:
-            name: 'Mobile flex direction'
-            description: 'Stacking order of the columns on mobile (normal or reversed).'
-            type: string
-            default: ''
-            enum:
-              - vertical
-              - vertical-reverse
-          background:
-            name: 'Background color'
-            description: 'Background color applied to the hero panel to set tone.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-          padding_block_start:
-            name: 'Padding top'
-            description: 'Top padding in pixels to add vertical spacing in the hero area.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '16'
-              - '32'
-              - '64'
-          padding_block_end:
-            name: 'Padding bottom'
-            description: 'Bottom padding in pixels to add vertical spacing in the hero area.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '16'
-              - '32'
-              - '64'
-          image_size:
-            name: 'Aspect ratio'
-            description: 'Aspect ratio for the media column to control cropping and layout.'
-            type: string
-            default: ''
-            enum:
-              - '2:1'
-              - '16:9'
-              - '3:2'
-              - '4:3'
-              - '1:1'
-          image_position:
-            name: 'Image position'
-            description: 'Whether the image is displayed left or right of the content on wide viewports.'
-            type: string
-            default: ''
-            enum:
-              - left
-              - right
-          image_radius:
-            name: 'Image border radius'
-            description: 'Corner radius applied to the media to achieve rounded or square images.'
-            type: string
-            default: ''
-            enum:
-              - small
-              - large
-              - extra-large
-          media:
-            name: Image
-            description: 'Media object used for the hero media column.'
-            type: object
-            default: ''
-        slots:
-          hero_slot:
-            name: Content
-            description: 'Main content column slot for headings, text, and action buttons.'
-      sdc.mercury.icon:
-        id: sdc.mercury.icon
-        name: Icon
-        description: 'Renders a single icon glyph from the icon library with configurable size for decorative use.'
-        group: Base
-        props:
-          icon:
-            name: 'Icon name'
-            description: 'Identifier for the icon to render (from Phosphor Icons). This prop is required.'
-            type: string
-            default: ''
-            required: true
-          icon_size:
-            name: 'Icon size'
-            description: 'Rendered size variant for the icon to control visual weight.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - extra-small
-              - small
-              - medium
-              - large
-              - extra-large
-        slots: 'No slots; icon component is configured exclusively via props.'
-      sdc.mercury.image:
-        id: sdc.mercury.image
-        name: Image
-        description: 'Flexible image component supporting aspect ratios, captions and optional link wrapping.'
-        group: Base
-        props:
-          media:
-            name: Image
-            description: 'Image object containing source, alt text, and optional metadata.'
-            type: object
-            default: ''
-          size:
-            name: 'Aspect ratio'
-            description: 'Aspect ratio applied to the image container to maintain layout consistency.'
-            type: string
-            default: ''
-            enum:
-              - '2:1'
-              - '16:9'
-              - '3:2'
-              - '4:3'
-              - '1:1'
-          radius:
-            name: 'Corner radius'
-            description: 'Rounded corner preset applied to the image container.'
-            type: string
-            default: ''
-            enum:
-              - small
-              - large
-              - extra-large
-          caption:
-            name: Caption
-            description: 'Descriptive caption displayed beneath the image for context or attribution.'
-            type: string
-            default: ''
-          url:
-            name: Link
-            description: 'If set, wraps the image in a link pointing to this URL.'
-            type: string
-            default: ''
-        slots: 'No named slots; image component is configured via props.'
-      sdc.mercury.navbar:
-        id: sdc.mercury.navbar
-        name: Navbar
-        description: 'Top navigation bar that contains logo, navigation links and optional CTAs; responsive by default.'
-        group: Layout
-        props:
-          menu_align:
-            name: 'Menu alignment'
-            description: 'Horizontal alignment for the navigation items inside the navbar.'
-            type: string
-            default: ''
-            enum:
-              - left
-              - center
-              - right
-        slots:
-          logo:
-            name: 'Site logo'
-            description: 'Slot for placing the site logo or brand mark (usually an image or linked element).'
-          navigation:
-            name: 'Navigation menu'
-            description: 'Slot for the primary navigation menu structure (links or menu components).'
-          links:
-            name: CTAs
-            description: 'Slot reserved for call-to-action buttons or utility links in the navbar.'
-      sdc.mercury.section:
-        id: sdc.mercury.section
-        name: Section
-        description: 'Generic page section with configurable width, grid columns, spacing, background and header/footer regions.'
-        group: Layout
-        props:
-          width:
-            name: 'Section width'
-            description: 'Sets the content container width as a percentage of the page width.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - 100%
-              - 90%
-              - 80%
-              - 75%
-              - 50%
-          columns:
-            name: 'Grid layout'
-            description: 'Desktop grid configuration determining how content columns are arranged.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '100'
-              - 50-50
-              - 33-33-33
-              - 75-25
-              - 25-75
-              - 67-33
-              - 33-67
-              - 50-25-25
-              - 25-25-50
-              - 25-25-25-25
-          views_columns:
-            name: 'Views grid'
-            description: 'If using a view component, select the grid layout for item cards.'
-            type: string
-            default: ''
-            enum:
-              - 50-50
-              - 33-33-33
-              - 25-25-25-25
-          mobile_columns:
-            name: 'Columns on mobile'
-            description: 'Number of columns to display on narrow screens for responsive layout.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '1'
-              - '2'
-              - '3'
-          margin_block_start:
-            name: 'Margin top'
-            description: 'Top margin spacing to separate this section from the element above.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '8'
-              - '20'
-              - '32'
-              - '48'
-              - '64'
-              - '96'
-              - '128'
-          margin_block_end:
-            name: 'Margin bottom'
-            description: 'Bottom margin spacing to separate this section from the element below.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '8'
-              - '20'
-              - '32'
-              - '48'
-              - '64'
-              - '96'
-              - '128'
-          padding_block_start:
-            name: 'Padding top'
-            description: 'Internal top padding to create breathing room inside the section.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '16'
-              - '32'
-              - '64'
-          padding_block_end:
-            name: 'Padding bottom'
-            description: 'Internal bottom padding to create breathing room inside the section.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - '0'
-              - '16'
-              - '32'
-              - '64'
-          background_color:
-            name: 'Background color'
-            description: 'Background color variant for the section to separate it visually from others.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - accent
-              - muted
-          background_media:
-            name: 'Background image'
-            description: 'Optional background image object for decorative or contextual visuals behind the section.'
-            type: object
-            default: ''
-          section_header:
-            name: 'Show header region'
-            description: 'When true renders the header slot above the main section content.'
-            type: boolean
-            default: ''
-          section_footer:
-            name: 'Show footer region'
-            description: 'When true renders the footer slot below the main section content.'
-            type: boolean
-            default: ''
-        slots:
-          header_slot:
-            name: Header
-            description: 'Slot for top-level content such as a section heading or breadcrumbs.'
-          main_slot:
-            name: Grid
-            description: 'Primary content area where grid items or component blocks are placed.'
-          footer_slot:
-            name: Footer
-            description: 'Slot for secondary content such as links, metadata or small CTAs.'
-      sdc.mercury.text:
-        id: sdc.mercury.text
-        name: Text
-        description: 'Rich text component for body copy with configurable size and color variants.'
-        group: Base
-        props:
-          text:
-            name: 'Rich text'
-            description: 'HTML or rich text content rendered inside the component; supports basic markup.'
-            type: string
-            default: ''
-          text_size:
-            name: 'Text size'
-            description: 'Typography size variant to match design scale for paragraphs and headings.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - text-xs
-              - text-sm
-              - normal
-              - text-lg
-              - text-xl
-              - text-2xl
-              - text-3xl
-          text_color:
-            name: 'Text color'
-            description: 'Color variant applied to the text to ensure contrast and emphasis.'
-            type: string
-            default: ''
-            required: true
-            enum:
-              - default
-              - inverted
-              - primary
-        slots: 'No named slots; text is provided via the `text` prop.'
+        slots: 'No slots: content and labels are controlled entirely via props.'

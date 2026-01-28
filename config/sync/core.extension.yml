@@ -3,12 +3,14 @@ _core:
 module:
   ai: 0
   ai_agents: 0
+  ai_image_alt_text: 0
   ai_provider_amazeeio: 0
   ai_search: 0
   announcements_feed: 0
   automated_cron: 0
   automatic_updates: 0
   autosave_form: 0
+  bcl_bridge: 0
   big_pipe: 0
   block: 0
   bpmn_io: 0
@@ -111,3 +113,4 @@ theme:
   canvas_stark: 0
   easy_email_theme: 0
   mercury: 0
+  bcl_canvas: 0

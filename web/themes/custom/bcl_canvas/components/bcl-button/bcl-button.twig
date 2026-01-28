@@ -1,0 +1,24 @@
+{{
+  include(
+    '@oe-bcl/bcl-button/button.html.twig',
+    {
+      label: label|default(''),
+      variant: variant|default('primary'),
+      size: size|default('md'),
+      type: type|default('button'),
+      outline: outline is defined ? outline : false,
+      disabled: disabled is defined ? disabled : false,
+      text_nowrap: text_nowrap is defined ? text_nowrap : false,
+      assistive_text: assistive_text|default(''),
+      id: id|default(''),
+      icon: icon|default({}),
+      icon_position: icon_position|default(''),
+      icon_spacing: icon_spacing|default(''),
+      spinner: spinner|default({}),
+      show_spinner: show_spinner is defined ? show_spinner : false,
+      clean_class: clean_class is defined ? clean_class : false,
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}

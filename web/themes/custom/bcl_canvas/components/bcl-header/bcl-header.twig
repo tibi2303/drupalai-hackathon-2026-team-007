@@ -1,0 +1,20 @@
+{{
+  include(
+    '@oe-bcl/bcl-header/header.html.twig',
+    {
+      variant: variant|default('neutral'),
+      navbar: navbar|default({}),
+      project_logo: project_logo|default({}),
+      site_name: site_name|default(''),
+      project_link: project_link|default(''),
+      head: head|default({}),
+      breadcrumbs: breadcrumbs|default({}),
+      language_modal: language_modal|default({}),
+      light: light is defined ? light : false,
+      modals: modals|default([]),
+      icon_path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}

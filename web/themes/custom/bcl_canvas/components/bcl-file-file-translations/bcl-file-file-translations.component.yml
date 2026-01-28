@@ -1,0 +1,64 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL File Translations"
+description: "Download links for a file in multiple languages."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: "Collapse id"
+      default: "language-dropdown"
+    label:
+      type: string
+      title: "Toggle label"
+      default: "Other languages"
+    lang1_title:
+      type: string
+      title: "Language 1 title"
+      default: "English version"
+    lang1_language:
+      type: string
+      title: "Language 1 label"
+      default: "English"
+    lang1_meta:
+      type: string
+      title: "Language 1 meta (size/type)"
+      default: "PDF • 1.2 MB"
+    lang1_url:
+      type: string
+      title: "Language 1 download URL"
+      default: "#download-en"
+    lang2_title:
+      type: string
+      title: "Language 2 title"
+      default: "Français"
+    lang2_language:
+      type: string
+      title: "Language 2 label"
+      default: "Français"
+    lang2_meta:
+      type: string
+      title: "Language 2 meta (size/type)"
+      default: "PDF • 1.2 MB"
+    lang2_url:
+      type: string
+      title: "Language 2 download URL"
+      default: "#download-fr"
+    lang3_title:
+      type: string
+      title: "Language 3 title"
+      default: "Deutsch"
+    lang3_language:
+      type: string
+      title: "Language 3 label"
+      default: "Deutsch"
+    lang3_meta:
+      type: string
+      title: "Language 3 meta (size/type)"
+      default: "PDF • 1.0 MB"
+    lang3_url:
+      type: string
+      title: "Language 3 download URL"
+      default: "#download-de"

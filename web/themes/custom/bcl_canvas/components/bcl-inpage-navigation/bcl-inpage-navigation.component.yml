@@ -1,0 +1,38 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Inpage Navigation"
+group: "BCL"
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      default: 'On this page'
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'h2'
+    title_link:
+      type: object
+      title: "Title Link"
+      default:
+        path: '#top'
+        label: 'On this page'
+    links:
+      type: array
+      title: "Links"
+      default:
+        - { label: 'Section 1', path: '#section-1' }
+        - { label: 'Section 2', path: '#section-2' }
+    id:
+      type: string
+      title: "Id"
+      default: 'on-this-page'
+    dropdown_id:
+      type: string
+      title: "Dropdown Id"
+      default: 'on-this-page-dropdown'
+    dynamic_active:
+      type: boolean
+      title: "Dynamic Active"
+      default: false

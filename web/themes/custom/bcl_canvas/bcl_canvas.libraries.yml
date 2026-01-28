@@ -1,0 +1,9 @@
+global:
+  css:
+    theme:
+      assets/bcl/css/oe-bcl-default.min.css: {}
+      assets/bcl/css/color-scheme.min.css: {}
+  js:
+    assets/bcl/js/oe-bcl-default.bundle.min.js: {}
+  dependencies:
+    - core/drupal

@@ -1,0 +1,12 @@
+<div class="container">
+{{
+  include(
+    '@oe-bcl/bcl-badge/badge.html.twig',
+    {
+      label: label|default('Badge'),
+      background: background,
+    },
+    with_context: false
+  )
+}}
+</div>

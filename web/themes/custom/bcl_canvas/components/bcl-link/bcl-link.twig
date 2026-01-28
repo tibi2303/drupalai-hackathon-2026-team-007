@@ -1,0 +1,18 @@
+<div class="container">
+{{
+  include(
+    '@oe-bcl/bcl-link/link.html.twig',
+    {
+      label: label|default('New link'),
+      path: path|default('#'),
+      id: id|default(''),
+      disabled: disabled is defined ? disabled : false,
+      standalone: standalone is defined ? standalone : false,
+      icon_position: icon_position|default('after'),
+      remove_icon_spacers: remove_icon_spacers is defined ? remove_icon_spacers : false,
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}
+</div>

@@ -1,0 +1,17 @@
+{{
+  include(
+    '@oe-bcl/bcl-inpage-navigation/inpage-navigation.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      links: links|default([]),
+      id: id|default(''),
+      dropdown_id: dropdown_id|default(''),
+      dynamic_active: dynamic_active is defined ? dynamic_active : false,
+      icon_path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}
