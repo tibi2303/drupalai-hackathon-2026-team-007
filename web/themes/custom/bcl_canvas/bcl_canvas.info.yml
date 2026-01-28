@@ -1,0 +1,11 @@
+name: BCL Canvas
+type: theme
+description: "Bootstrap Component Library theme for Drupal Canvas."
+core_version_requirement: ^11.3
+base theme: false
+libraries:
+  - bcl_canvas/global
+components:
+  - components
+regions:
+  content: Content

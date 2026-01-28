@@ -1,0 +1,5 @@
+{# Local fallback template for rich text content. #}
+{% set attrs = (attributes is defined and attributes is not null) ? attributes : create_attribute() %}
+<div{{ attrs }}>
+  {{ content|raw }}
+</div>

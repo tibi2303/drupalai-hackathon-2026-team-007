@@ -1,0 +1,19 @@
+{{
+  include(
+    '@oe-bcl/bcl-progress/progress.html.twig',
+    {
+      progress: progress|default(50),
+      min: min|default(0),
+      max: max|default(100),
+      striped: striped is defined ? striped : true,
+      animated: animated is defined ? animated : false,
+      hidden_label: hidden_label is defined ? hidden_label : false,
+      label: label|default('Progress'),
+      bar_label: bar_label|default('50%'),
+      variant: variant|default('primary'),
+      message: message|default(''),
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}

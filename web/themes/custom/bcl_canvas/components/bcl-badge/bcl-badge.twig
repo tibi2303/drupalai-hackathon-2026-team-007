@@ -1,0 +1,20 @@
+<div class="container">
+{{
+  include(
+    '@oe-bcl/bcl-badge/badge.html.twig',
+    {
+      label: label|default(''),
+      background: background|default('primary'),
+      url: url|default(''),
+      title: title|default(''),
+      dismissible: dismissible is defined ? dismissible : false,
+      assistive_text: assistive_text|default(''),
+      rounded_pill: rounded_pill is defined ? rounded_pill : false,
+      outline: outline is defined ? outline : false,
+      icon_path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}
+</div>

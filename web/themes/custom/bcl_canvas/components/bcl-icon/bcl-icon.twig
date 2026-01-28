@@ -1,0 +1,12 @@
+{{
+  include(
+    '@oe-bcl/bcl-icon/icon.html.twig',
+    {
+      name: name|default(''),
+      path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+      size: size|default('s'),
+      transformation: transformation|default(''),
+    },
+    with_context: false
+  )
+}}

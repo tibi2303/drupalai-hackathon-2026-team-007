@@ -1,0 +1,101 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Button"
+group: "BCL"
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: "Label"
+      default: 'Click me'
+    variant:
+      type: string
+      title: "Variant"
+      default: 'primary'
+    size:
+      type: string
+      title: "Size"
+      enum:
+        - 'sm'
+        - 'md'
+        - 'lg'
+      default: 'md'
+    type:
+      type: string
+      title: "Type"
+      default: 'button'
+    outline:
+      type: boolean
+      title: "Outline"
+      default: false
+    disabled:
+      type: boolean
+      title: "Disabled"
+      default: false
+    text_nowrap:
+      type: boolean
+      title: "Text Nowrap"
+      default: false
+    assistive_text:
+      type: string
+      title: "Assistive Text"
+      default: ''
+    id:
+      type: string
+      title: "Id"
+      default: 'btn-1'
+    icon:
+      type: object
+      title: "Icon"
+      properties:
+        name:
+          type: string
+          title: "Icon name"
+          default: "arrow-right"
+        path:
+          type: string
+          title: "Icon sprite path"
+          default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+      additionalProperties: true
+      default:
+        name: "arrow-right"
+        path: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+    icon_position:
+      type: string
+      title: "Icon Position"
+      enum:
+        - 'after'
+        - 'before'
+    icon_spacing:
+      type: string
+      title: "Icon Spacing"
+      enum:
+        - 'sm'
+        - 'md'
+        - 'lg'
+      default: 'sm'
+    spinner:
+      type: object
+      title: "Spinner"
+      properties:
+        size:
+          type: string
+          title: "Spinner size"
+          enum: ["sm", "md", "lg"]
+          default: "sm"
+        variant:
+          type: string
+          title: "Spinner variant"
+          default: "primary"
+      additionalProperties: true
+      default:
+        size: "sm"
+        variant: "primary"
+    show_spinner:
+      type: boolean
+      title: "Show Spinner"
+      default: false
+    clean_class:
+      type: boolean
+      title: "Clean Class"
+      default: false

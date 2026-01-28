@@ -1,0 +1,98 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Form Input"
+group: "BCL"
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: "Id"
+      default: 'input-1'
+    input_type:
+      type: string
+      title: "Input Type"
+      default: 'text'
+    label:
+      type: string
+      title: "Label"
+      default: 'Sample input'
+    required:
+      type: boolean
+      title: "Required"
+      default: false
+    checked:
+      type: boolean
+      title: "Checked"
+      default: false
+    hidden_label:
+      type: boolean
+      title: "Hidden Label"
+      default: false
+    disabled:
+      type: boolean
+      title: "Disabled"
+      default: false
+    readonly:
+      type: boolean
+      title: "Readonly"
+      default: false
+    invalid:
+      type: boolean
+      title: "Invalid"
+      default: false
+    valid:
+      type: boolean
+      title: "Valid"
+      default: false
+    invalid_feedback:
+      type: string
+      title: "Invalid Feedback"
+      default: 'Please provide a value.'
+    valid_feedback:
+      type: string
+      title: "Valid Feedback"
+      default: 'Looks good!'
+    floating:
+      type: boolean
+      title: "Floating"
+      default: false
+    helper_text:
+      type: string
+      title: "Helper Text"
+      default: 'Short helper text'
+    helper_text_id:
+      type: string
+      title: "Helper Text Id"
+      default: 'input-1-help'
+    placeholder:
+      type: string
+      title: "Placeholder"
+      default: 'Enter text...'
+    horizontal:
+      type: boolean
+      title: "Horizontal"
+      default: false
+    horizontal_class:
+      type: string
+      title: "Horizontal Class"
+      default: 'row'
+    horizontal_label_class:
+      type: string
+      title: "Horizontal Label Class"
+      default: 'col-3'
+    switch:
+      type: boolean
+      title: "Switch"
+      default: false
+    toggle:
+      type: boolean
+      title: "Toggle"
+      default: false
+    toggle_variant:
+      type: string
+      title: "Toggle Variant"
+      default: 'primary'
+    remove_wrapper:
+      type: boolean
+      title: "Remove Wrapper"
+      default: false

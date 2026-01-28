@@ -1,0 +1,10 @@
+{{
+  include(
+    '@oe-bcl/bcl-date-block/date-block.html.twig',
+    {
+      content: content|default('12 Jan'),
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}

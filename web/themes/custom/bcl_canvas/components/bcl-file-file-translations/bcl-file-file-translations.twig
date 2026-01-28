@@ -1,0 +1,42 @@
+{{
+  include(
+    '@oe-bcl/bcl-file/file-translations.html.twig',
+    {
+      id: id|default('language-dropdown'),
+      label: {
+        label: label|default('Other languages'),
+      },
+      icon_path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+      items: [
+        {
+          title: lang1_title|default('English version'),
+          language: lang1_language|default('English'),
+          meta: lang1_meta|default('PDF • 1.2 MB'),
+          download: {
+            label: 'Download',
+            path: lang1_url|default('#download-en')
+          }
+        },
+        {
+          title: lang2_title|default('Français'),
+          language: lang2_language|default('Français'),
+          meta: lang2_meta|default('PDF • 1.2 MB'),
+          download: {
+            label: 'Télécharger',
+            path: lang2_url|default('#download-fr')
+          }
+        },
+        lang3_title is not empty ? {
+          title: lang3_title,
+          language: lang3_language|default(''),
+          meta: lang3_meta|default(''),
+          download: {
+            label: 'Download',
+            path: lang3_url|default('#')
+          }
+        } : null,
+      ]|filter(v => v is not null),
+    },
+    with_context: false
+  )
+}}

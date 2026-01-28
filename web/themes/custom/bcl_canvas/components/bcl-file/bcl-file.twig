@@ -1,0 +1,24 @@
+{{
+  include(
+    '@oe-bcl/bcl-file/file.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      item_title: item_title|default(''),
+      icon: icon|default({}),
+      icon_inline: icon_inline|default(false),
+      text: text|default(''),
+      content: content|default(''),
+      image: image|default({}),
+      badges: badges|default([]),
+      meta: meta|default(''),
+      language: language|default(''),
+      variant: variant|default('default'),
+      download: download|default({}),
+      translation: translation|default({}),
+      icon_path: '/themes/custom/bcl_canvas/assets/bcl/icons/bcl-default-icons.svg',
+    },
+    with_context: false
+  )
+}}

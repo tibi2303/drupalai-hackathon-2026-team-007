@@ -1,0 +1,71 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Header"
+group: "BCL"
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - 'ec'
+        - 'eu'
+        - 'neutral'
+      default: 'neutral'
+    navbar:
+      type: object
+      title: "Navbar"
+      default:
+        navigation:
+          items:
+            - { label: "Home", path: "/", active: true }
+            - { label: "Services", path: "/services", active: false }
+    project_logo:
+      type: object
+      title: "Project Logo"
+      default:
+        path: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+        alt: "Site logo"
+    site_name:
+      type: string
+      title: "Site Name"
+      default: 'Example Site'
+    project_link:
+      type: string
+      title: "Project Link"
+      default: '/'
+    head:
+      type: object
+      title: "Head"
+      default:
+        tagline: "A Bootstrap-inspired header"
+    breadcrumbs:
+      type: object
+      title: "Breadcrumbs"
+      default:
+        links:
+          - { label: "Home", path: "/" }
+          - { label: "Section", path: "/section" }
+    language_modal:
+      type: object
+      title: "Language Modal"
+      default:
+        trigger:
+          label: "English"
+          path: "#lang"
+          icon:
+            name: "translate"
+            path: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+    light:
+      type: boolean
+      title: "Light"
+      default: false
+    modals:
+      type: array
+      title: "Modals"
+      default:
+        - { id: "modal-1", title: "Sample modal" }
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

@@ -1,0 +1,17 @@
+{{
+  include(
+    '@oe-bcl/bcl-project-status/project-status.html.twig',
+    {
+      label: label|default(''),
+      status: status|default('planned'),
+      badge: badge|default(''),
+      start_date: start_date|default(''),
+      start_label: start_label|default(''),
+      end_date: end_date|default(''),
+      end_label: end_label|default(''),
+      progress: progress|default(''),
+      attributes: attributes is defined ? attributes : null,
+    },
+    with_context: false
+  )
+}}
