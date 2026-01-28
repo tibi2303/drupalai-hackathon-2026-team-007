@@ -1,4 +1,3 @@
-# yaml
 component_context:
   block:
     enabled: 1
@@ -166,18 +165,6 @@ component_context:
             type: boolean
             default: ''
         slots: 'No slots'
-      sdc.bcl_canvas.bcl-content-banner:
-        id: sdc.bcl_canvas.bcl-content-banner
-        name: 'BCL Content Banner'
-        description: 'A full-width banner area for promoting content or messaging with a single block of HTML content.'
-        group: BCL
-        props:
-          content:
-            name: Content
-            description: 'HTML content displayed inside the banner; suitable for short promotional text or links.'
-            type: string
-            default: ''
-        slots: 'No slots: content is provided via the content prop (HTML allowed).'
       sdc.bcl_canvas.bcl-date-block:
         id: sdc.bcl_canvas.bcl-date-block
         name: 'BCL Date Block'
@@ -266,7 +253,28 @@ component_context:
             description: 'Direct URL for downloading the third language version of the file.'
             type: string
             default: ''
-        slots: 'No slots: translations are defined through langN props rather than child nodes.'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-content-banner:
+        id: sdc.bcl_canvas.bcl-fixed-content-banner
+        name: 'BCL Fixed Content Banner'
+        description: 'Static content banner that renders fixed HTML or markup supplied directly in the component template. Not configurable via props; use for persistent promotional, informational, or call-to-action content that must remain identical across placements.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-footer:
+        id: sdc.bcl_canvas.bcl-fixed-footer
+        name: 'BCL Fixed Footer'
+        description: 'Static EC-style footer component that renders site‑wide footer content (copyright, links, and utilities) following BCL styling. Not configurable via props; markup and links are provided in the component template.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-fixed-header:
+        id: sdc.bcl_canvas.bcl-fixed-header
+        name: 'BCL Fixed Header'
+        description: 'Static EC-style header with mega menu; non-configurable component providing the global site header including brand area, navigation toggle, and responsive mega-navigation regions. Layout and markup are defined in the component template; props are not supported.'
+        group: BCL
+        props: 'No props'
+        slots: 'No slots'
       sdc.bcl_canvas.bcl-form-input:
         id: sdc.bcl_canvas.bcl-form-input
         name: 'BCL Form Input'
