@@ -3,6 +3,7 @@ _core:
 module:
   ai: 0
   ai_agents: 0
+  ai_image_alt_text: 0
   ai_provider_amazeeio: 0
   ai_search: 0
   announcements_feed: 0
