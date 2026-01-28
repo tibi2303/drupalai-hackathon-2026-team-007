@@ -1,0 +1,62 @@
+seo_audit.confirm_audit:
+  path: '/node/{node}/seo-audit'
+  defaults:
+    _form: '\Drupal\seo_audit\Form\SeoAuditConfirmForm'
+    _title: 'Confirm SEO Audit'
+  requirements:
+    _permission: 'run seo audit'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+seo_audit.report:
+  path: '/admin/seo-audit/report/{seo_audit_result}'
+  defaults:
+    _controller: '\Drupal\seo_audit\Controller\SeoAuditReportController::report'
+    _title: 'SEO Audit Report'
+  requirements:
+    _permission: 'view seo audit reports'
+  options:
+    parameters:
+      seo_audit_result:
+        type: entity:seo_audit_result
+
+seo_audit.status:
+  path: '/admin/seo-audit/status/{seo_audit_result}'
+  defaults:
+    _controller: '\Drupal\seo_audit\Controller\SeoAuditStatusController::status'
+  requirements:
+    _permission: 'view seo audit reports'
+  options:
+    parameters:
+      seo_audit_result:
+        type: entity:seo_audit_result
+
+seo_audit.dashboard:
+  path: '/admin/seo-audit/dashboard'
+  defaults:
+    _controller: '\Drupal\seo_audit\Controller\SeoAuditDashboardController::dashboard'
+    _title: 'SEO Audit Dashboard'
+  requirements:
+    _permission: 'view seo audit reports'
+
+seo_audit.settings:
+  path: '/admin/config/seo-audit/settings'
+  defaults:
+    _form: '\Drupal\seo_audit\Form\SeoAuditSettingsForm'
+    _title: 'SEO Audit Settings'
+  requirements:
+    _permission: 'administer seo audit'
+
+seo_audit.node_reports:
+  path: '/node/{node}/seo-audit/reports'
+  defaults:
+    _controller: '\Drupal\seo_audit\Controller\SeoAuditReportController::nodeReports'
+    _title: 'SEO Audit History'
+  requirements:
+    _permission: 'view seo audit reports'
+  options:
+    parameters:
+      node:
+        type: entity:node

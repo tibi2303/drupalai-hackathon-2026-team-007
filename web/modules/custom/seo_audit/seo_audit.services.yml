@@ -1,0 +1,14 @@
+services:
+  seo_audit.seo_checker:
+    class: Drupal\seo_audit\Service\SeoCheckerService
+  seo_audit.accessibility_checker:
+    class: Drupal\seo_audit\Service\AccessibilityCheckerService
+  seo_audit.scoring:
+    class: Drupal\seo_audit\Service\ScoringService
+    arguments: ['@config.factory']
+  seo_audit.node_html_renderer:
+    class: Drupal\seo_audit\Service\NodeHtmlRenderer
+    arguments: ['@entity_type.manager', '@renderer']
+  seo_audit.audit_orchestrator:
+    class: Drupal\seo_audit\Service\AuditOrchestrator
+    arguments: ['@ai.provider', '@config.factory', '@logger.factory']

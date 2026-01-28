@@ -1,0 +1,9 @@
+name: 'SEO & Accessibility Audit'
+type: module
+description: 'Provides SEO and accessibility auditing for content with AI-powered analysis.'
+core_version_requirement: ^10.3 || ^11
+package: 'SEO'
+dependencies:
+  - drupal:node
+  - ai:ai
+  - ai_agents:ai_agents

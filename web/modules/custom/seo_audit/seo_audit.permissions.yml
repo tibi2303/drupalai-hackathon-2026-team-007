@@ -1,0 +1,12 @@
+run seo audit:
+  title: 'Run SEO & Accessibility audits'
+  description: 'Allows users to queue SEO and accessibility audits for content.'
+
+view seo audit reports:
+  title: 'View SEO audit reports'
+  description: 'Allows users to view SEO and accessibility audit reports.'
+
+administer seo audit:
+  title: 'Administer SEO audit settings'
+  description: 'Allows users to configure SEO audit module settings, scoring weights, and token budgets.'
+  restrict access: true
