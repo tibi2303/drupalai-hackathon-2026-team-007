@@ -1,0 +1,14 @@
+progress:
+  js:
+    js/seo-audit-progress.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - core/jquery
+    - core/drupal.progress
+
+report:
+  css:
+    theme:
+      css/seo-audit-report.css: {}
