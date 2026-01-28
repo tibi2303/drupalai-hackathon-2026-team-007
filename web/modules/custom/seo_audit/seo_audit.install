@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the SEO Audit module.
+ */
+
+use Drupal\seo_audit\Entity\SeoAuditResult;
+
+/**
+ * Add provider fallback configuration.
+ */
+function seo_audit_update_10001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('seo_audit.settings');
+
+  // Only add if not already present
+  if ($config->get('provider_fallback_enabled') === NULL) {
+    $config
+      ->set('provider_fallback_enabled', FALSE)
+      ->set('provider_fallback_chain', [])
+      ->set('retry_on_rate_limit', TRUE)
+      ->set('rate_limit_retry_delay', 5)
+      ->set('rate_limit_max_retries', 2)
+      ->set('skip_on_quota_exceeded', TRUE)
+      ->set('log_provider_fallback', TRUE)
+      ->save(TRUE);
+  }
+
+  return t('Provider fallback configuration added.');
+}
+
+/**
+ * Update entity definition to add provider tracking fields.
+ */
+function seo_audit_update_10002() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+
+  $fields_to_add = [
+    'ai_provider_used',
+    'ai_fallback_attempts',
+  ];
+
+  foreach ($fields_to_add as $field_name) {
+    $field_storage_definition = $entity_definition_update_manager
+      ->getFieldStorageDefinition($field_name, 'seo_audit_result');
+
+    if (!$field_storage_definition) {
+      $entity_type = $entity_type_manager->getDefinition('seo_audit_result');
+      $field_storage_definitions = SeoAuditResult::baseFieldDefinitions($entity_type);
+
+      if (isset($field_storage_definitions[$field_name])) {
+        $entity_definition_update_manager->installFieldStorageDefinition(
+          $field_name,
+          'seo_audit_result',
+          'seo_audit',
+          $field_storage_definitions[$field_name]
+        );
+      }
+    }
+  }
+
+  return t('Added provider tracking fields to SEO audit results.');
+}

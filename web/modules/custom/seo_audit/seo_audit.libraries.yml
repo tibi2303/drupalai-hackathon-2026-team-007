@@ -7,3 +7,8 @@ progress:
     - core/once
     - core/jquery
     - core/drupal.progress
+
+report:
+  css:
+    theme:
+      css/seo-audit-report.css: {}

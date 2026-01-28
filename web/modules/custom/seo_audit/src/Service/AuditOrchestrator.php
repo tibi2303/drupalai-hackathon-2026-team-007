@@ -19,6 +19,7 @@ class AuditOrchestrator {
     protected AiProviderPluginManager $aiProviderPluginManager,
     protected ConfigFactoryInterface $configFactory,
     protected LoggerChannelFactoryInterface $loggerFactory,
+    protected AiProviderFallbackService $fallbackService,
   ) {}
 
   /**
@@ -54,22 +55,142 @@ class AuditOrchestrator {
       return $this->getEmptyResult();
     }
 
+    // Check if fallback is enabled
+    $fallbackEnabled = $config->get('provider_fallback_enabled');
+
+    if ($fallbackEnabled) {
+      return $this->runWithFallback(
+        $contentText,
+        $metaTitle,
+        $metaDescription,
+        $seoResults,
+        $accessibilityResults
+      );
+    }
+
+    // Original single-provider logic (backward compatibility)
+    return $this->runSingleProvider(
+      $contentText,
+      $metaTitle,
+      $metaDescription,
+      $seoResults,
+      $accessibilityResults
+    );
+  }
+
+  /**
+   * Run AI analysis with provider fallback.
+   */
+  protected function runWithFallback(
+    string $contentText,
+    string $metaTitle,
+    string $metaDescription,
+    array $seoResults,
+    array $accessibilityResults
+  ): array {
+    $result = $this->fallbackService->executeWithFallback(
+      function($providerId, $modelId) use (
+        $contentText,
+        $metaTitle,
+        $metaDescription,
+        $seoResults,
+        $accessibilityResults
+      ) {
+        return $this->executeAiAnalysis(
+          $providerId,
+          $modelId,
+          $contentText,
+          $metaTitle,
+          $metaDescription,
+          $seoResults,
+          $accessibilityResults
+        );
+      }
+    );
+
+    if ($result['success']) {
+      return array_merge($result['data'], [
+        'provider_used' => $result['provider_used'],
+        'fallback_attempts' => $result['attempts'],
+      ]);
+    }
+
+    // All providers failed
+    $this->loggerFactory->get('seo_audit')->error(
+      'All AI providers failed after {attempts} attempts. Last error: {error}',
+      [
+        'attempts' => $result['attempts'],
+        'error' => $result['last_error'],
+      ]
+    );
+
+    return $this->getEmptyResult();
+  }
+
+  /**
+   * Run AI analysis with single provider (original logic).
+   */
+  protected function runSingleProvider(
+    string $contentText,
+    string $metaTitle,
+    string $metaDescription,
+    array $seoResults,
+    array $accessibilityResults
+  ): array {
     $default = $this->aiProviderPluginManager->getDefaultProviderForOperationType('chat_with_complex_json');
     if (empty($default['provider_id']) || empty($default['model_id'])) {
       $this->loggerFactory->get('seo_audit')->warning('No AI provider configured for chat_with_complex_json. Running deterministic-only audit.');
       return $this->getEmptyResult();
     }
 
+    try {
+      return $this->executeAiAnalysis(
+        $default['provider_id'],
+        $default['model_id'],
+        $contentText,
+        $metaTitle,
+        $metaDescription,
+        $seoResults,
+        $accessibilityResults
+      );
+    }
+    catch (\Exception $e) {
+      $this->loggerFactory->get('seo_audit')->error('AI analysis failed: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+      throw $e;
+    }
+  }
+
+  /**
+   * Execute AI analysis with specific provider and model.
+   */
+  protected function executeAiAnalysis(
+    string $providerId,
+    string $modelId,
+    string $contentText,
+    string $metaTitle,
+    string $metaDescription,
+    array $seoResults,
+    array $accessibilityResults
+  ): array {
+    $config = $this->configFactory->get('seo_audit.settings');
     $maxContentLength = (int) $config->get('max_content_length_for_ai') ?: 50000;
+
     if (mb_strlen($contentText) > $maxContentLength) {
       $contentText = mb_substr($contentText, 0, $maxContentLength);
     }
 
-    $provider = $this->aiProviderPluginManager->createInstance($default['provider_id']);
-    $modelName = $default['model_id'];
+    $provider = $this->aiProviderPluginManager->createInstance($providerId);
 
     $systemPrompt = $this->buildSystemPrompt();
-    $userMessage = $this->buildUserMessage($contentText, $metaTitle, $metaDescription, $seoResults, $accessibilityResults);
+    $userMessage = $this->buildUserMessage(
+      $contentText,
+      $metaTitle,
+      $metaDescription,
+      $seoResults,
+      $accessibilityResults
+    );
 
     $chatMessage = new ChatMessage('user', $userMessage);
     $input = new ChatInput([$chatMessage]);
@@ -81,33 +202,22 @@ class AuditOrchestrator {
     $jsonSchema = $this->getOutputSchema();
     $input->setChatStructuredJsonSchema($jsonSchema);
 
-    try {
-      $response = $provider->chat($input, $modelName, ['seo_audit']);
-      $responseText = $response->getNormalized()->getText();
-      $decoded = json_decode($responseText, TRUE);
+    $response = $provider->chat($input, $modelId, ['seo_audit']);
+    $responseText = $response->getNormalized()->getText();
+    $decoded = json_decode($responseText, TRUE);
 
-      if (json_last_error() !== JSON_ERROR_NONE) {
-        $this->loggerFactory->get('seo_audit')->warning('AI response was not valid JSON: @error', [
-          '@error' => json_last_error_msg(),
-        ]);
-        return $this->getEmptyResult();
-      }
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      throw new \RuntimeException('AI response was not valid JSON: ' . json_last_error_msg());
+    }
 
-      return [
-        'content_quality_score' => (int) ($decoded['content_quality_score'] ?? 0),
-        'issues' => $decoded['issues'] ?? [],
-        'executive_summary' => $decoded['executive_summary'] ?? '',
-        'keyword_analysis' => $decoded['keyword_analysis'] ?? '',
-        'readability_score' => (int) ($decoded['readability_score'] ?? 0),
-        'tokens_used' => mb_strlen($userMessage) + mb_strlen($responseText),
-      ];
-    }
-    catch (\Exception $e) {
-      $this->loggerFactory->get('seo_audit')->error('AI analysis failed: @message', [
-        '@message' => $e->getMessage(),
-      ]);
-      throw $e;
-    }
+    return [
+      'content_quality_score' => (int) ($decoded['content_quality_score'] ?? 0),
+      'issues' => $decoded['issues'] ?? [],
+      'executive_summary' => $decoded['executive_summary'] ?? '',
+      'keyword_analysis' => $decoded['keyword_analysis'] ?? '',
+      'readability_score' => (int) ($decoded['readability_score'] ?? 0),
+      'tokens_used' => mb_strlen($userMessage) + mb_strlen($responseText),
+    ];
   }
 
   /**

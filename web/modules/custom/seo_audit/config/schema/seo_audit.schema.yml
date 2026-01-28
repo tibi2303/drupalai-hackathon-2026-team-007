@@ -35,3 +35,39 @@ seo_audit.settings:
     seo_disclaimer:
       type: string
       label: 'SEO disclaimer text'
+    provider_fallback_enabled:
+      type: boolean
+      label: 'Enable provider fallback'
+    provider_fallback_chain:
+      type: sequence
+      label: 'Provider fallback chain'
+      sequence:
+        type: mapping
+        mapping:
+          provider_id:
+            type: string
+            label: 'Provider ID'
+          model_id:
+            type: string
+            label: 'Model ID'
+          weight:
+            type: integer
+            label: 'Weight (lower = higher priority)'
+          enabled:
+            type: boolean
+            label: 'Enabled'
+    retry_on_rate_limit:
+      type: boolean
+      label: 'Retry on rate limit'
+    rate_limit_retry_delay:
+      type: integer
+      label: 'Rate limit retry delay (seconds)'
+    rate_limit_max_retries:
+      type: integer
+      label: 'Maximum rate limit retries per provider'
+    skip_on_quota_exceeded:
+      type: boolean
+      label: 'Skip provider immediately on quota exceeded'
+    log_provider_fallback:
+      type: boolean
+      label: 'Log provider fallback events'

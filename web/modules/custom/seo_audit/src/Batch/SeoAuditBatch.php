@@ -127,6 +127,15 @@ class SeoAuditBatch {
       $auditResult->set('ai_analysis_raw', json_encode($aiResult));
       $auditResult->set('executive_summary', $aiResult['executive_summary']);
       $auditResult->set('ai_tokens_used', $aiResult['tokens_used']);
+
+      // Store provider metadata if fallback was used
+      if (!empty($aiResult['provider_used'])) {
+        $auditResult->set('ai_provider_used', $aiResult['provider_used']);
+      }
+      if (!empty($aiResult['fallback_attempts'])) {
+        $auditResult->set('ai_fallback_attempts', $aiResult['fallback_attempts']);
+      }
+
       $auditResult->save();
     }
     catch (\Exception $e) {

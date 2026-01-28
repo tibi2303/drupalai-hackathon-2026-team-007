@@ -122,6 +122,9 @@ class SeoAuditReportController extends ControllerBase {
     $build = [
       '#type' => 'container',
       '#attributes' => ['class' => ['seo-audit-report']],
+      '#attached' => [
+        'library' => ['seo_audit/report'],
+      ],
     ];
 
     // Score cards.
@@ -208,6 +211,8 @@ class SeoAuditReportController extends ControllerBase {
           [$this->t('Audit ID'), $result->id()],
           [$this->t('Created'), date('Y-m-d H:i:s', (int) $result->get('created')->value)],
           [$this->t('Language'), $result->get('audited_langcode')->value],
+          [$this->t('AI Provider Used'), $result->get('ai_provider_used')->value ?: $this->t('N/A')],
+          [$this->t('Fallback Attempts'), $result->get('ai_fallback_attempts')->value ?: 1],
           [$this->t('AI Tokens Used'), $result->get('ai_tokens_used')->value ?: $this->t('N/A')],
           [$this->t('Critical Issues'), $result->get('critical_count')->value],
           [$this->t('Major Issues'), $result->get('major_count')->value],
@@ -233,16 +238,30 @@ class SeoAuditReportController extends ControllerBase {
    * Build a score card render array.
    */
   protected function buildScoreCard($label, int $score, array $grade): array {
+    // Calculate the stroke-dashoffset for the circular progress ring.
+    // Circle circumference = 2πr. For r=54, circumference = ~339.
+    $circumference = 339;
+    $offset = $circumference - (($score / 100) * $circumference);
+
+    // SVG circular progress ring.
+    $svg = '<svg class="seo-audit-score-ring" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="seo-audit-score-ring__track" cx="60" cy="60" r="54" />
+      <circle class="seo-audit-score-ring__progress" cx="60" cy="60" r="54"
+        style="stroke-dashoffset: ' . $offset . '" />
+      <text class="seo-audit-score-ring__text" x="60" y="60" text-anchor="middle"
+        dominant-baseline="central">' . $score . '</text>
+    </svg>';
+
     return [
       '#type' => 'container',
       '#attributes' => [
         'class' => ['seo-audit-score-card', 'seo-audit-score-card--' . strtolower($grade['color'])],
       ],
+      'ring' => [
+        '#markup' => $svg,
+      ],
       'label' => [
         '#markup' => '<div class="seo-audit-score-label">' . $label . '</div>',
-      ],
-      'score' => [
-        '#markup' => '<div class="seo-audit-score-value">' . $score . '</div>',
       ],
       'grade' => [
         '#markup' => '<div class="seo-audit-score-grade">' . $grade['grade'] . ' — ' . $grade['label'] . '</div>',
