@@ -1,3 +1,4 @@
+# yaml
 component_context:
   block:
     enabled: 1
@@ -32,17 +33,17 @@ component_context:
       sdc.bcl_canvas.bcl-accordion:
         id: sdc.bcl_canvas.bcl-accordion
         name: 'BCL Accordion'
-        description: 'Collapsible list with up to four items and optional global expand/collapse buttons.'
+        description: 'A vertically stacked set of collapsible items with optional global expand/collapse controls. Use for grouping related content where only one or a few sections are visible at a time.'
         group: BCL
         props:
           title:
             name: Heading
-            description: 'No description available'
+            description: 'Main heading text for the accordion; displayed above the list of items.'
             type: string
             default: ''
           title_tag:
             name: 'Heading level'
-            description: 'No description available'
+            description: 'HTML heading tag used for the title (for proper document structure and accessibility).'
             type: string
             default: ''
             enum:
@@ -53,27 +54,27 @@ component_context:
               - h6
           title_link:
             name: 'Heading link (URL)'
-            description: 'No description available'
+            description: 'Optional URL applied to the title so the heading acts as a link to another page or anchor.'
             type: string
             default: ''
           flush:
             name: 'Flush style'
-            description: 'No description available'
+            description: 'If true, removes outer borders and rounded corners for a flush, list-like appearance.'
             type: boolean
             default: ''
           open_item:
             name: 'Initially open item (0 = none)'
-            description: 'No description available'
+            description: 'Index of the item that should be opened on initial render; use 0 for none.'
             type: number
             default: ''
           expand_button_label:
             name: "'Expand all' label"
-            description: 'No description available'
+            description: 'Text for the control that expands all accordion items when provided.'
             type: string
             default: ''
           expand_button_variant:
             name: "'Expand all' variant"
-            description: 'No description available'
+            description: 'Visual variant applied to the expand control to match design system color schemes.'
             type: string
             default: ''
             enum:
@@ -87,12 +88,12 @@ component_context:
               - dark
           collapse_button_label:
             name: "'Collapse all' label"
-            description: 'No description available'
+            description: 'Text for the control that collapses all accordion items when provided.'
             type: string
             default: ''
           collapse_button_variant:
             name: "'Collapse all' variant"
-            description: 'No description available'
+            description: 'Visual variant applied to the collapse control to match design system color schemes.'
             type: string
             default: ''
             enum:
@@ -106,79 +107,79 @@ component_context:
               - dark
           item1_title:
             name: 'Item 1 title'
-            description: 'No description available'
+            description: 'Title text for the first accordion item.'
             type: string
             default: ''
           item1_content:
             name: 'Item 1 content (HTML allowed)'
-            description: 'No description available'
+            description: 'HTML content rendered inside the first accordion panel; supports markup for rich content.'
             type: string
             default: ''
           item1_stay_open:
             name: 'Item 1 stay open'
-            description: 'No description available'
+            description: 'If true, keeps item 1 open when other items are toggled (useful for independent panels).'
             type: boolean
             default: ''
           item2_title:
             name: 'Item 2 title'
-            description: 'No description available'
+            description: 'Title text for the second accordion item.'
             type: string
             default: ''
           item2_content:
             name: 'Item 2 content (HTML allowed)'
-            description: 'No description available'
+            description: 'HTML content rendered inside the second accordion panel; supports markup for rich content.'
             type: string
             default: ''
           item2_stay_open:
             name: 'Item 2 stay open'
-            description: 'No description available'
+            description: 'If true, keeps item 2 open when other items are toggled.'
             type: boolean
             default: ''
           item3_title:
             name: 'Item 3 title'
-            description: 'No description available'
+            description: 'Title text for the third accordion item.'
             type: string
             default: ''
           item3_content:
             name: 'Item 3 content (HTML allowed)'
-            description: 'No description available'
+            description: 'HTML content rendered inside the third accordion panel; supports markup for rich content.'
             type: string
             default: ''
           item3_stay_open:
             name: 'Item 3 stay open'
-            description: 'No description available'
+            description: 'If true, keeps item 3 open when other items are toggled.'
             type: boolean
             default: ''
           item4_title:
             name: 'Item 4 title'
-            description: 'No description available'
+            description: 'Title text for the fourth accordion item.'
             type: string
             default: ''
           item4_content:
             name: 'Item 4 content (HTML allowed)'
-            description: 'No description available'
+            description: 'HTML content rendered inside the fourth accordion panel; supports markup for rich content.'
             type: string
             default: ''
           item4_stay_open:
             name: 'Item 4 stay open'
-            description: 'No description available'
+            description: 'If true, keeps item 4 open when other items are toggled.'
             type: boolean
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: content is provided via the itemN props rather than named child slots.'
       sdc.bcl_canvas.bcl-badge:
         id: sdc.bcl_canvas.bcl-badge
         name: 'BCL Badge'
-        description: 'Small count or label with optional link and dismiss control.'
+        description: 'Compact visual label used to show counts, status, or small bits of metadata; can be linked or dismissible.'
         group: BCL
         props:
           label:
             name: Label
-            description: 'No description available'
+            description: 'Visible text inside the badge; short strings or numbers are recommended.'
             type: string
             default: ''
           background:
             name: Background
-            description: 'No description available'
+            description: 'Color variant applied to the badge background to communicate meaning or priority.'
             type: string
             default: ''
             enum:
@@ -192,287 +193,287 @@ component_context:
               - dark
           url:
             name: 'Link URL'
-            description: 'No description available'
+            description: 'Optional destination URL to make the badge act as a hyperlink.'
             type: string
             default: ''
           title:
             name: 'Title attribute'
-            description: 'No description available'
+            description: 'Additional tooltip text shown on hover for extra context or accessibility.'
             type: string
             default: ''
           dismissible:
             name: Dismissible
-            description: 'No description available'
+            description: 'If true, displays a control to remove or hide the badge from the UI.'
             type: boolean
             default: ''
           assistive_text:
             name: 'Assistive text (for dismiss button)'
-            description: 'No description available'
+            description: 'Screen-reader text for the dismiss control to describe its action.'
             type: string
             default: ''
           rounded_pill:
             name: 'Pill shape'
-            description: 'No description available'
+            description: 'If true, renders the badge with fully rounded ends for a pill appearance.'
             type: boolean
             default: ''
           outline:
             name: 'Outline style'
-            description: 'No description available'
+            description: 'If true, renders the badge as an outlined element instead of a filled background.'
             type: boolean
             default: ''
           icon_path:
             name: 'Icon sprite path'
-            description: 'No description available'
+            description: 'Path to an icon sprite to optionally render an icon inside the badge.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: badge content is defined via props.'
       sdc.bcl_canvas.bcl-content-banner:
         id: sdc.bcl_canvas.bcl-content-banner
         name: 'BCL Content Banner'
-        description: 'BCL Content Banner'
+        description: 'A full-width banner area for promoting content or messaging with a single block of HTML content.'
         group: BCL
         props:
           content:
             name: Content
-            description: 'No description available'
+            description: 'HTML content displayed inside the banner; suitable for short promotional text or links.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: content is provided via the content prop (HTML allowed).'
       sdc.bcl_canvas.bcl-date-block:
         id: sdc.bcl_canvas.bcl-date-block
         name: 'BCL Date Block'
-        description: 'BCL Date Block'
+        description: 'Displays a date or short date-related summary in a stylized block, often used in event lists or cards.'
         group: BCL
         props:
           content:
             name: Content
-            description: 'No description available'
+            description: 'Formatted date string or HTML that represents the date information to show in the block.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: date is supplied via the content prop.'
       sdc.bcl_canvas.bcl-file-file-translations:
         id: sdc.bcl_canvas.bcl-file-file-translations
         name: 'BCL File Translations'
-        description: 'Download links for a file in multiple languages.'
+        description: 'Provides download links and metadata for a file available in multiple languages. Each language entry shows title, language label, meta (size/type) and a download URL.'
         group: BCL
         props:
           id:
             name: 'Collapse id'
-            description: 'No description available'
+            description: 'Unique identifier for any collapsible container used to show/hide the translations list.'
             type: string
             default: ''
           label:
             name: 'Toggle label'
-            description: 'No description available'
+            description: 'Label text for the control that toggles visibility of the translations list.'
             type: string
             default: ''
           icon_path:
             name: 'Icon sprite path'
-            description: 'No description available'
+            description: 'Path to an icon sprite used for the toggle control or file icons.'
             type: string
             default: ''
           lang1_title:
             name: 'Language 1 title'
-            description: 'No description available'
+            description: 'Human-readable title for the first language version (e.g., "English PDF").'
             type: string
             default: ''
           lang1_language:
             name: 'Language 1 label'
-            description: 'No description available'
+            description: 'Short language label or code for the first translation (e.g., "EN").'
             type: string
             default: ''
           lang1_meta:
             name: 'Language 1 meta (size/type)'
-            description: 'No description available'
+            description: 'Supplementary metadata such as file size and type for the first translation.'
             type: string
             default: ''
           lang1_url:
             name: 'Language 1 download URL'
-            description: 'No description available'
+            description: 'Direct URL for downloading the first language version of the file.'
             type: string
             default: ''
           lang2_title:
             name: 'Language 2 title'
-            description: 'No description available'
+            description: 'Human-readable title for the second language version.'
             type: string
             default: ''
           lang2_language:
             name: 'Language 2 label'
-            description: 'No description available'
+            description: 'Short language label or code for the second translation.'
             type: string
             default: ''
           lang2_meta:
             name: 'Language 2 meta (size/type)'
-            description: 'No description available'
+            description: 'Supplementary metadata such as file size and type for the second translation.'
             type: string
             default: ''
           lang2_url:
             name: 'Language 2 download URL'
-            description: 'No description available'
+            description: 'Direct URL for downloading the second language version of the file.'
             type: string
             default: ''
           lang3_title:
             name: 'Language 3 title'
-            description: 'No description available'
+            description: 'Human-readable title for the third language version.'
             type: string
             default: ''
           lang3_language:
             name: 'Language 3 label'
-            description: 'No description available'
+            description: 'Short language label or code for the third translation.'
             type: string
             default: ''
           lang3_meta:
             name: 'Language 3 meta (size/type)'
-            description: 'No description available'
+            description: 'Supplementary metadata such as file size and type for the third translation.'
             type: string
             default: ''
           lang3_url:
             name: 'Language 3 download URL'
-            description: 'No description available'
+            description: 'Direct URL for downloading the third language version of the file.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: translations are defined through langN props rather than child nodes.'
       sdc.bcl_canvas.bcl-form-input:
         id: sdc.bcl_canvas.bcl-form-input
         name: 'BCL Form Input'
-        description: 'BCL Form Input'
+        description: 'Accessible input control wrapper supporting different input types, validation states and layout options. Use for single-line inputs, checkboxes and radios when combined with proper input_type.'
         group: BCL
         props:
           id:
             name: Id
-            description: 'No description available'
+            description: 'Unique element id for the input control to associate labels and helper text.'
             type: string
             default: ''
           input_type:
             name: 'Input Type'
-            description: 'No description available'
+            description: 'Type attribute of the underlying input (e.g., text, email, checkbox, radio).'
             type: string
             default: ''
           label:
             name: Label
-            description: 'No description available'
+            description: 'Visible label text for the input; required for accessible forms.'
             type: string
             default: ''
           required:
             name: Required
-            description: 'No description available'
+            description: 'If true, renders the input as required and can add visual indicators for users.'
             type: boolean
             default: ''
           checked:
             name: Checked
-            description: 'No description available'
+            description: 'For checkbox or radio inputs, indicates whether the control is initially checked.'
             type: boolean
             default: ''
           hidden_label:
             name: 'Hidden Label'
-            description: 'No description available'
+            description: 'If true, visually hides the label while keeping it available to screen readers.'
             type: boolean
             default: ''
           disabled:
             name: Disabled
-            description: 'No description available'
+            description: 'If true, disables the input making it non-interactive and styling it accordingly.'
             type: boolean
             default: ''
           readonly:
             name: Readonly
-            description: 'No description available'
+            description: 'If true, makes the input read-only so value cannot be edited but can be copied.'
             type: boolean
             default: ''
           invalid:
             name: Invalid
-            description: 'No description available'
+            description: 'If true, marks the control as invalid to show error styling and ARIA state changes.'
             type: boolean
             default: ''
           valid:
             name: Valid
-            description: 'No description available'
+            description: 'If true, marks the control as valid to show success styling and ARIA state changes.'
             type: boolean
             default: ''
           invalid_feedback:
             name: 'Invalid Feedback'
-            description: 'No description available'
+            description: 'Error message text shown when the input is in an invalid state.'
             type: string
             default: ''
           valid_feedback:
             name: 'Valid Feedback'
-            description: 'No description available'
+            description: 'Confirmation text shown when the input is in a valid state.'
             type: string
             default: ''
           floating:
             name: Floating
-            description: 'No description available'
+            description: 'If true, uses floating label styling where label overlays the input until focus or value is present.'
             type: boolean
             default: ''
           helper_text:
             name: 'Helper Text'
-            description: 'No description available'
+            description: 'Short helper or hint text shown below the input for additional guidance.'
             type: string
             default: ''
           helper_text_id:
             name: 'Helper Text Id'
-            description: 'No description available'
+            description: 'Id applied to helper text for aria-describedby relationships.'
             type: string
             default: ''
           placeholder:
             name: Placeholder
-            description: 'No description available'
+            description: 'Placeholder text displayed when the input has no value; not a substitute for a label.'
             type: string
             default: ''
           horizontal:
             name: Horizontal
-            description: 'No description available'
+            description: 'If true, renders the label and input in a horizontal (side-by-side) layout.'
             type: boolean
             default: ''
           horizontal_class:
             name: 'Horizontal Class'
-            description: 'No description available'
+            description: 'Custom CSS class applied to the horizontal layout container for additional control.'
             type: string
             default: ''
           horizontal_label_class:
             name: 'Horizontal Label Class'
-            description: 'No description available'
+            description: 'Custom CSS class applied to the label when using horizontal layout.'
             type: string
             default: ''
           switch:
             name: Switch
-            description: 'No description available'
+            description: 'If true and input_type supports it, renders a switch-style control instead of a checkbox.'
             type: boolean
             default: ''
           toggle:
             name: Toggle
-            description: 'No description available'
+            description: 'If true, renders the input as a toggle control with optional variants.'
             type: boolean
             default: ''
           toggle_variant:
             name: 'Toggle Variant'
-            description: 'No description available'
+            description: 'Visual variant applied to toggle controls to match design system color schemes.'
             type: string
             default: ''
           remove_wrapper:
             name: 'Remove Wrapper'
-            description: 'No description available'
+            description: 'If true, removes the default input wrapper when you need to render a raw input element.'
             type: boolean
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: input content is configured via props; label and helper text are prop-driven.'
       sdc.bcl_canvas.bcl-icon:
         id: sdc.bcl_canvas.bcl-icon
         name: 'BCL Icon'
-        description: 'BCL Icon'
+        description: 'Renders a single icon from a sprite or icon set with configurable size and transformations. Useful for decorative or informative icons that are accessible when accompanied by text or aria-labels.'
         group: BCL
         props:
           name:
             name: Name
-            description: 'No description available'
+            description: 'Logical icon identifier used to select which glyph to render from the sprite or icon set.'
             type: string
             default: ''
           path:
             name: Path
-            description: 'No description available'
+            description: 'Path to the icon sprite file or asset bundle where the icon glyphs are located.'
             type: string
             default: ''
           size:
             name: Size
-            description: 'No description available'
+            description: 'Size token for the icon controlling its rendered dimensions; supports responsive tokens.'
             type: string
             default: ''
             enum:
@@ -486,7 +487,7 @@ component_context:
               - fluid
           transformation:
             name: Transformation
-            description: 'No description available'
+            description: 'Optional transformation applied to the icon such as rotation or flip for presentational use.'
             type: string
             default: ''
             enum:
@@ -495,51 +496,51 @@ component_context:
               - rotate-270
               - flip-horizontal
               - flip-vertical
-        slots: 'No slots'
+        slots: 'No slots: icon is defined entirely by props and used inline with text or controls.'
       sdc.bcl_canvas.bcl-link:
         id: sdc.bcl_canvas.bcl-link
         name: 'BCL Link'
-        description: 'Text link with Bootstrap color variants and optional icon.'
+        description: 'A customizable text link component supporting Bootstrap color variants and optional leading or trailing icons. Use for inline navigation or actions where a styled anchor is needed.'
         group: BCL
         props:
           label:
             name: Label
-            description: 'No description available'
+            description: 'Visible link text displayed to users; keep concise and descriptive.'
             type: string
             default: ''
           path:
             name: URL
-            description: 'No description available'
+            description: 'Destination URL for the link; can be external or internal.'
             type: string
             default: ''
           id:
             name: 'Element id'
-            description: 'No description available'
+            description: 'Optional id attribute for the anchor element for scripting or accessibility hooks.'
             type: string
             default: ''
           disabled:
             name: Disabled
-            description: 'No description available'
+            description: 'If true, visually disables the link and prevents pointer interaction.'
             type: boolean
             default: ''
           standalone:
             name: 'Standalone style'
-            description: 'No description available'
+            description: 'If true, applies styling that separates the link from surrounding text (e.g., block link styles).'
             type: boolean
             default: ''
           icon_name:
             name: 'Icon name'
-            description: 'No description available'
+            description: 'Optional icon identifier to render alongside the link label for visual context.'
             type: string
             default: ''
           icon_path:
             name: 'Icon sprite path'
-            description: 'No description available'
+            description: 'Path to the icon sprite file to source the icon specified by icon_name.'
             type: string
             default: ''
           icon_position:
             name: 'Icon position'
-            description: 'No description available'
+            description: 'Position of the icon relative to the label; choose before or after.'
             type: string
             default: ''
             enum:
@@ -547,151 +548,151 @@ component_context:
               - before
           remove_icon_spacers:
             name: 'Remove icon spacing'
-            description: 'No description available'
+            description: 'If true, removes default spacing around the icon for tighter layout control.'
             type: boolean
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: label and icon are provided through props rather than named child slots.'
       sdc.bcl_canvas.bcl-project-status:
         id: sdc.bcl_canvas.bcl-project-status
         name: 'BCL Project Status'
-        description: 'BCL Project Status'
+        description: 'Displays a concise project status summary including status text, optional badge, and timeline dates with progress. Useful for dashboards and project lists.'
         group: BCL
         props:
           label:
             name: Label
-            description: 'No description available'
+            description: 'Short descriptive label for the project or status item.'
             type: string
             default: ''
           status:
             name: Status
-            description: 'No description available'
+            description: 'Primary status text (e.g., "In progress", "Completed") used to indicate current state.'
             type: string
             default: ''
           badge:
             name: Badge
-            description: 'No description available'
+            description: 'Small visual badge or tag to emphasize status or priority (e.g., "Delayed", "On track").'
             type: string
             default: ''
           start_date:
             name: 'Start Date'
-            description: 'No description available'
+            description: 'Formatted start date string for the project timeline.'
             type: string
             default: ''
           start_label:
             name: 'Start Label'
-            description: 'No description available'
+            description: 'Label text associated with the start date (e.g., "Started").'
             type: string
             default: ''
           end_date:
             name: 'End Date'
-            description: 'No description available'
+            description: 'Formatted end date string for the project timeline or expected completion.'
             type: string
             default: ''
           end_label:
             name: 'End Label'
-            description: 'No description available'
+            description: 'Label text associated with the end date (e.g., "Due").'
             type: string
             default: ''
           progress:
             name: Progress
-            description: 'No description available'
+            description: 'Numeric or textual progress indicator (percentage or descriptive text) showing completion level.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: all display values are provided via props.'
       sdc.bcl_canvas.bcl-textarea:
         id: sdc.bcl_canvas.bcl-textarea
         name: 'BCL Textarea'
-        description: 'BCL Textarea'
+        description: 'Multi-line text input with support for validation, helper text, and horizontal layouts. Use for longer user input like comments or descriptions.'
         group: BCL
         props:
           id:
             name: Id
-            description: 'No description available'
+            description: 'Unique id for the textarea enabling label and helper associations.'
             type: string
             default: ''
           label:
             name: Label
-            description: 'No description available'
+            description: 'Visible label text describing the purpose of the textarea.'
             type: string
             default: ''
           required:
             name: Required
-            description: 'No description available'
+            description: 'If true, marks the textarea as required and may add visual indicators.'
             type: boolean
             default: ''
           disabled:
             name: Disabled
-            description: 'No description available'
+            description: 'If true, disables the textarea and prevents user input.'
             type: boolean
             default: ''
           readonly:
             name: Readonly
-            description: 'No description available'
+            description: 'If true, renders the textarea as read-only so content cannot be edited.'
             type: boolean
             default: ''
           invalid:
             name: Invalid
-            description: 'No description available'
+            description: 'If true, applies error styling and ARIA invalid state for validation errors.'
             type: boolean
             default: ''
           valid:
             name: Valid
-            description: 'No description available'
+            description: 'If true, applies success styling to indicate a valid state.'
             type: boolean
             default: ''
           invalid_feedback:
             name: 'Invalid Feedback'
-            description: 'No description available'
+            description: 'Error message displayed when the textarea is invalid.'
             type: string
             default: ''
           valid_feedback:
             name: 'Valid Feedback'
-            description: 'No description available'
+            description: 'Confirmation message displayed when the textarea is valid.'
             type: string
             default: ''
           helper_text:
             name: 'Helper Text'
-            description: 'No description available'
+            description: 'Supplementary hint or instructions displayed beneath the textarea.'
             type: string
             default: ''
           helper_text_id:
             name: 'Helper Text Id'
-            description: 'No description available'
+            description: 'Id used to link helper text to the textarea via aria-describedby.'
             type: string
             default: ''
           hidden_label:
             name: 'Hidden Label'
-            description: 'No description available'
+            description: 'If true, visually hides the label while keeping it available to screen readers.'
             type: boolean
             default: ''
           text:
             name: Text
-            description: 'No description available'
+            description: 'Initial or current value for the textarea; may include line breaks.'
             type: string
             default: ''
           rows:
             name: Rows
-            description: 'No description available'
+            description: 'Number of visible text rows to render by default; affects the textarea height.'
             type: string
             default: ''
           floating:
             name: Floating
-            description: 'No description available'
+            description: 'If true, uses a floating label style for the textarea.'
             type: boolean
             default: ''
           horizontal:
             name: Horizontal
-            description: 'No description available'
+            description: 'If true, renders label and textarea in a horizontal side-by-side layout.'
             type: boolean
             default: ''
           horizontal_class:
             name: 'Horizontal Class'
-            description: 'No description available'
+            description: 'Custom css class applied to the horizontal layout container for fine-grained styling.'
             type: string
             default: ''
           horizontal_label_class:
             name: 'Horizontal Label Class'
-            description: 'No description available'
+            description: 'Custom css class applied to the label when using horizontal layout.'
             type: string
             default: ''
-        slots: 'No slots'
+        slots: 'No slots: content and labels are controlled entirely via props.'
