@@ -1,0 +1,7 @@
+name: Hackaton AI
+type: module
+description: Custom AI function call plugins for hackaton.
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - ai:ai

@@ -1,0 +1,222 @@
+uuid: 3655e575-dd3a-4a3e-b137-a55100341f38
+langcode: en
+status: true
+dependencies: {  }
+id: drupal_canvas_document_layout_planner_agent
+label: 'Drupal Canvas Document Layout Planner Agent'
+description: 'This agent analyzes a linked or uploaded document and produces a structured layout plan that maps the document’s content to appropriate Drupal Canvas components, ready for placement on a page.'
+system_prompt: |-
+  # Drupal Canvas Document Import Agent
+
+  ## 1. Persona and Core Mission
+
+  You are an AI agent responsible for **importing a public document into Drupal Canvas and applying a layout based strictly on the document’s content**.
+
+  Your mission is to:
+
+  1. Fetch a public document from a URL (e.g. Google Docs)
+  2. Extract and normalize its content
+  3. Map that content to appropriate Drupal Canvas components
+  4. Apply the resulting layout to the page
+
+  You must rely on the output of fetch_google_doc_html. If it returns empty or non-document HTML, stop and report an access error.
+
+
+  You **must not** continue if you could not fetch and process the document from the URL given in the prompt. Fail with message: "Could not fetch document."
+
+
+  You **must not** invent content, placeholders, or generic marketing copy.
+
+  Layout execution is performed by the **Drupal Canvas Page Builder Agent**.
+
+  ---
+
+  ## 2. Required Tools (Must Be Used)
+
+  You must use **all** of the following tools during execution:
+
+  1. **`ai_agent:fetch_google_doc_html`**
+     Fetches the public Google Doc using the export endpoint.
+
+  2. **`ai_agent:html_to_markdown`**
+     Converts fetched HTML into Markdown for easier structural parsing.
+
+  3. **`canvas_ai:get_component_context`**
+     Provides the available Drupal Canvas components (source of truth).
+
+  4. **`canvas_ai:get_current_layout`**
+     Provides the current page layout for placement decisions.
+
+  5. **Drupal Canvas Page Builder Agent**
+     Executes the final layout using Canvas YAML operations.
+
+  ---
+
+  ## 3. Hard Failure Rules (Non-Negotiable)
+
+  You **MUST STOP** and return an error message if **any** of the following occur:
+
+  * The document cannot be fetched
+  * The fetched content is empty
+  * The fetched content is a Google login / permission page
+  * No meaningful content (headings, paragraphs, lists, tables) can be extracted
+
+  **In these cases, you must NOT apply any layout.**
+
+  Example error response:
+
+  > “I couldn’t access the document content. Please ensure the Google Doc is public (‘Anyone with the link can view’).”
+
+  ---
+
+  ## 4. Mandatory Execution Workflow
+
+  You must follow these steps **in order**.
+
+  ### Step 1: Fetch the Document
+
+  * Call `ai_agent:fetch_google_doc_html` with the provided URL
+  * Validate that the returned HTML contains real document content
+
+  ### Step 2: Convert to Markdown
+
+  * Call `ai_agent:html_to_markdown`
+  * Use the Markdown as the canonical representation of the document
+
+  ### Step 3: Extract Structure
+
+  From the Markdown, identify:
+
+  * Headings (with hierarchy)
+  * Paragraphs
+  * Lists
+  * Tables
+  * Quotes
+  * Links
+
+  Do **not** summarize or rewrite content.
+
+  ---
+
+  ## 5. Layout Rules (Very Important)
+
+  * Create **only** sections that are supported by the document
+    (e.g. About, Event Details, Agenda, Registration, Practical Info)
+  * Do **not** add sections that do not exist in the document
+    (e.g. Pricing, Testimonials, Features)
+  * Use document text verbatim when populating components
+  * If a component has slots, they **must be filled** with document-derived content
+  * Prefer semantic correctness over visual flair
+
+  ---
+
+  ## 6. Component Selection Rules
+
+  * Use **only** components from the Available Components Catalog
+  * Never invent component IDs
+  * If no perfect match exists, use the closest generic text or section component
+  * Tables in the document should be rendered using table-capable components where available
+
+  ---
+
+  ## 7. Layout Execution
+
+  Once a document-based layout plan is ready:
+
+  * Invoke the **Drupal Canvas Page Builder Agent**
+  * Provide it with:
+
+    * the extracted document structure
+    * the chosen components
+    * placement instructions (default: append to `content` region)
+
+  The Page Builder Agent is responsible for:
+
+  * generating Canvas YAML
+  * executing `set_component_structure`
+  * handling retries and validation
+
+  ---
+
+  ## 8. Final User Response
+
+  After successful execution:
+
+  * Do **not** include YAML or technical details
+  * Provide a short confirmation, for example:
+
+  > “I’ve imported the document and applied a layout based on its structure and content.”
+secured_system_prompt: '[ai_agent:agent_instructions]'
+tools:
+  'ai_agents::ai_agent::canvas_page_builder_agent': true
+  'ai_agent:fetch_google_doc_html': true
+  'ai_agent:html_to_markdown': true
+tool_settings:
+  'ai_agents::ai_agent::canvas_page_builder_agent':
+    return_directly: 0
+    require_usage: 0
+    description_override: ''
+    progress_message: ''
+    use_artifacts: 0
+  'ai_agent:fetch_google_doc_html':
+    return_directly: 0
+    require_usage: 0
+    description_override: ''
+    progress_message: ''
+    use_artifacts: 0
+  'ai_agent:html_to_markdown':
+    return_directly: 0
+    require_usage: 0
+    description_override: ''
+    progress_message: ''
+    use_artifacts: 0
+orchestration_agent: false
+triage_agent: false
+max_loops: 10
+default_information_tools: |
+  fetch_google_doc_html:
+    label: 'Fetch Google Doc HTML'
+    description: 'Fetches a public Google Doc using the export endpoint and returns the document HTML.'
+    tool: 'ai_agent:fetch_google_doc_html'
+    parameters:
+      url: '{{user_input}}'
+  html_to_markdown:
+    label: 'HTML to Markdown'
+    description: 'Converts fetched document HTML into Markdown.'
+    tool: 'ai_agent:html_to_markdown'
+    parameters:
+      content: '{{artifact:ai_agent:fetch_google_doc_html:1}}'
+  available_components:
+    label: 'Available components'
+    description: 'These are the Drupal Canvas components available for layout creation.'
+    tool: 'canvas_ai:get_component_context'
+    parameters: {  }
+  current_layout:
+    label: 'Current layout'
+    description: 'The current layout of the page.'
+    tool: 'canvas_ai:get_current_layout'
+    parameters: {  }
+tool_usage_limits:
+  'ai_agents::ai_agent::canvas_page_builder_agent':
+    prompt:
+      action: ''
+      hide_property: 0
+      values: ''
+    files:
+      action: ''
+      hide_property: 0
+      values: ''
+  'ai_agent:fetch_google_doc_html':
+    url:
+      action: ''
+      hide_property: 0
+      values: ''
+  'ai_agent:html_to_markdown':
+    content:
+      action: ''
+      hide_property: 0
+      values: ''
+exclude_users_role: false
+masquerade_roles: {  }
+structured_output_enabled: false
+structured_output_schema: "{\r\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\r\n  \"$id\": \"https://example.com/schemas/layout_plan_spec.schema.json\",\r\n  \"title\": \"Drupal Canvas Document Layout Plan Spec\",\r\n  \"type\": \"object\",\r\n  \"required\": [\"spec_name\", \"schema_version\", \"document\", \"intent\", \"page_archetype\", \"plan\", \"constraints\"],\r\n  \"additionalProperties\": false,\r\n  \"properties\": {\r\n    \"spec_name\": { \"const\": \"layout_plan_spec\" },\r\n    \"schema_version\": {\r\n      \"type\": \"string\",\r\n      \"description\": \"Version for backwards-compatible evolution of the plan format.\",\r\n      \"pattern\": \"^[0-9]+\\\\.[0-9]+\\\\.[0-9]+$\",\r\n      \"examples\": [\"1.0.0\"]\r\n    },\r\n\r\n    \"document\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"source\", \"extraction_summary\", \"blocks\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"source\": {\r\n          \"type\": \"object\",\r\n          \"required\": [\"type\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"type\": { \"type\": \"string\", \"enum\": [\"url\", \"attachment\"] },\r\n            \"url\": { \"type\": \"string\", \"format\": \"uri\" },\r\n            \"attachment_id\": { \"type\": \"string\" },\r\n            \"document_type_hint\": {\r\n              \"type\": \"string\",\r\n              \"enum\": [\"google_doc\", \"html\", \"pdf\", \"markdown\", \"docx\", \"unknown\"]\r\n            }\r\n          },\r\n          \"allOf\": [\r\n            {\r\n              \"if\": { \"properties\": { \"type\": { \"const\": \"url\" } } },\r\n              \"then\": { \"required\": [\"url\"] }\r\n            },\r\n            {\r\n              \"if\": { \"properties\": { \"type\": { \"const\": \"attachment\" } } },\r\n              \"then\": { \"required\": [\"attachment_id\"] }\r\n            }\r\n          ]\r\n        },\r\n\r\n        \"extraction_summary\": {\r\n          \"type\": \"object\",\r\n          \"required\": [\"block_count\", \"has_tables\", \"has_images\", \"has_links\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"block_count\": { \"type\": \"integer\", \"minimum\": 0 },\r\n            \"has_tables\": { \"type\": \"boolean\" },\r\n            \"has_images\": { \"type\": \"boolean\" },\r\n            \"has_links\": { \"type\": \"boolean\" },\r\n            \"notes\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\r\n          }\r\n        },\r\n\r\n        \"blocks\": {\r\n          \"type\": \"array\",\r\n          \"description\": \"Normalized document blocks. The planner references these IDs when mapping content into components.\",\r\n          \"items\": {\r\n            \"type\": \"object\",\r\n            \"required\": [\"id\", \"type\", \"order\"],\r\n            \"additionalProperties\": false,\r\n            \"properties\": {\r\n              \"id\": {\r\n                \"type\": \"string\",\r\n                \"pattern\": \"^blk_[a-zA-Z0-9_-]+$\"\r\n              },\r\n              \"type\": {\r\n                \"type\": \"string\",\r\n                \"enum\": [\r\n                  \"heading\",\r\n                  \"paragraph\",\r\n                  \"list\",\r\n                  \"quote\",\r\n                  \"callout\",\r\n                  \"table\",\r\n                  \"image\",\r\n                  \"divider\",\r\n                  \"code\",\r\n                  \"embed\"\r\n                ]\r\n              },\r\n              \"order\": { \"type\": \"integer\", \"minimum\": 0 },\r\n\r\n              \"heading_level\": { \"type\": \"integer\", \"minimum\": 1, \"maximum\": 6 },\r\n              \"text\": { \"type\": \"string\" },\r\n\r\n              \"list\": {\r\n                \"type\": \"object\",\r\n                \"additionalProperties\": false,\r\n                \"required\": [\"style\", \"items\"],\r\n                \"properties\": {\r\n                  \"style\": { \"type\": \"string\", \"enum\": [\"ordered\", \"unordered\"] },\r\n                  \"items\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\r\n                }\r\n              },\r\n\r\n              \"quote\": {\r\n                \"type\": \"object\",\r\n                \"additionalProperties\": false,\r\n                \"required\": [\"text\"],\r\n                \"properties\": {\r\n                  \"text\": { \"type\": \"string\" },\r\n                  \"attribution\": { \"type\": \"string\" }\r\n                }\r\n              },\r\n\r\n              \"table\": {\r\n                \"type\": \"object\",\r\n                \"additionalProperties\": false,\r\n                \"required\": [\"rows\"],\r\n                \"properties\": {\r\n                  \"has_header\": { \"type\": \"boolean\" },\r\n                  \"rows\": {\r\n                    \"type\": \"array\",\r\n                    \"items\": {\r\n                      \"type\": \"array\",\r\n                      \"items\": { \"type\": \"string\" }\r\n                    }\r\n                  }\r\n                }\r\n              },\r\n\r\n              \"image\": {\r\n                \"type\": \"object\",\r\n                \"additionalProperties\": false,\r\n                \"required\": [\"src\"],\r\n                \"properties\": {\r\n                  \"src\": { \"type\": \"string\" },\r\n                  \"alt\": { \"type\": \"string\" },\r\n                  \"caption\": { \"type\": \"string\" }\r\n                }\r\n              },\r\n\r\n              \"links\": {\r\n                \"type\": \"array\",\r\n                \"items\": {\r\n                  \"type\": \"object\",\r\n                  \"additionalProperties\": false,\r\n                  \"required\": [\"href\", \"text\"],\r\n                  \"properties\": {\r\n                    \"href\": { \"type\": \"string\", \"format\": \"uri\" },\r\n                    \"text\": { \"type\": \"string\" }\r\n                  }\r\n                }\r\n              },\r\n\r\n              \"section_id\": {\r\n                \"type\": \"string\",\r\n                \"description\": \"Optional pointer to a derived section grouping.\"\r\n              }\r\n            },\r\n\r\n            \"allOf\": [\r\n              {\r\n                \"if\": { \"properties\": { \"type\": { \"const\": \"heading\" } } },\r\n                \"then\": { \"required\": [\"heading_level\", \"text\"] }\r\n              },\r\n              {\r\n                \"if\": { \"properties\": { \"type\": { \"const\": \"paragraph\" } } },\r\n                \"then\": { \"required\": [\"text\"] }\r\n              },\r\n              {\r\n                \"if\": { \"properties\": { \"type\": { \"const\": \"list\" } } },\r\n                \"then\": { \"required\": [\"list\"] }\r\n              },\r\n              {\r\n                \"if\": { \"properties\": { \"type\": { \"const\": \"table\" } } },\r\n                \"then\": { \"required\": [\"table\"] }\r\n              },\r\n              {\r\n                \"if\": { \"properties\": { \"type\": { \"const\": \"image\" } } },\r\n                \"then\": { \"required\": [\"image\"] }\r\n              }\r\n            ]\r\n          }\r\n        }\r\n      }\r\n    },\r\n\r\n    \"intent\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"user_request\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"user_request\": { \"type\": \"string\" },\r\n        \"audience\": { \"type\": \"string\" },\r\n        \"tone\": { \"type\": \"string\" },\r\n        \"cta\": {\r\n          \"type\": \"object\",\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"primary_text\": { \"type\": \"string\" },\r\n            \"primary_href\": { \"type\": \"string\", \"format\": \"uri\" }\r\n          }\r\n        }\r\n      }\r\n    },\r\n\r\n    \"page_archetype\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"primary\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"primary\": {\r\n          \"type\": \"string\",\r\n          \"enum\": [\r\n            \"landing_marketing\",\r\n            \"editorial\",\r\n            \"documentation\",\r\n            \"report\",\r\n            \"event_agenda\",\r\n            \"faq_support\",\r\n            \"case_study\",\r\n            \"policy_legal\",\r\n            \"mixed_custom\"\r\n          ]\r\n        },\r\n        \"secondary\": {\r\n          \"type\": \"array\",\r\n          \"items\": {\r\n            \"type\": \"string\",\r\n            \"enum\": [\r\n              \"landing_marketing\",\r\n              \"editorial\",\r\n              \"documentation\",\r\n              \"report\",\r\n              \"event_agenda\",\r\n              \"faq_support\",\r\n              \"case_study\",\r\n              \"policy_legal\",\r\n              \"mixed_custom\"\r\n            ]\r\n          }\r\n        }\r\n      }\r\n    },\r\n\r\n    \"constraints\": {\r\n      \"type\": \"object\",\r\n      \"description\": \"Constraints the planner must honor and the executor must not violate.\",\r\n      \"required\": [\"region\", \"max_component_count\", \"slot_policy\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"region\": { \"type\": \"string\", \"default\": \"content\" },\r\n        \"max_component_count\": { \"type\": \"integer\", \"minimum\": 1, \"default\": 60 },\r\n        \"slot_policy\": {\r\n          \"type\": \"string\",\r\n          \"enum\": [\"no_empty_slots\"],\r\n          \"default\": \"no_empty_slots\"\r\n        },\r\n        \"image_policy\": {\r\n          \"type\": \"string\",\r\n          \"enum\": [\"use_catalog_defaults_only\"],\r\n          \"default\": \"use_catalog_defaults_only\"\r\n        },\r\n        \"link_policy\": {\r\n          \"type\": \"string\",\r\n          \"enum\": [\"example_dot_com_if_missing\"],\r\n          \"default\": \"example_dot_com_if_missing\"\r\n        }\r\n      }\r\n    },\r\n\r\n    \"plan\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"sections\", \"operations_hint\", \"estimates\", \"checks\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"sections\": {\r\n          \"type\": \"array\",\r\n          \"minItems\": 1,\r\n          \"items\": {\r\n            \"type\": \"object\",\r\n            \"required\": [\"id\", \"title\", \"block_ids\", \"component_blueprints\"],\r\n            \"additionalProperties\": false,\r\n            \"properties\": {\r\n              \"id\": { \"type\": \"string\", \"pattern\": \"^sec_[a-zA-Z0-9_-]+$\" },\r\n              \"title\": { \"type\": \"string\" },\r\n              \"block_ids\": {\r\n                \"type\": \"array\",\r\n                \"items\": { \"type\": \"string\", \"pattern\": \"^blk_[a-zA-Z0-9_-]+$\" }\r\n              },\r\n\r\n              \"component_blueprints\": {\r\n                \"type\": \"array\",\r\n                \"description\": \"Planned components in order. These are blueprints to be converted into real components and props by the Drupal Canvas Page Builder Agent.\",\r\n                \"minItems\": 1,\r\n                \"items\": { \"$ref\": \"#/$defs/component_blueprint\" }\r\n              }\r\n            }\r\n          }\r\n        },\r\n\r\n        \"operations_hint\": {\r\n          \"type\": \"object\",\r\n          \"description\": \"Placement hints that make conversion into YAML operations deterministic.\",\r\n          \"required\": [\"strategy\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"strategy\": {\r\n              \"type\": \"string\",\r\n              \"enum\": [\r\n                \"append_to_region\",\r\n                \"insert_relative_to_selected_component\",\r\n                \"insert_relative_to_reference_component\"\r\n              ]\r\n            },\r\n            \"target_region\": { \"type\": \"string\", \"default\": \"content\" },\r\n\r\n            \"selected_component_uuid\": { \"type\": \"string\" },\r\n\r\n            \"reference\": {\r\n              \"type\": \"object\",\r\n              \"additionalProperties\": false,\r\n              \"properties\": {\r\n                \"reference_uuid\": { \"type\": \"string\" },\r\n                \"placement\": { \"type\": \"string\", \"enum\": [\"above\", \"below\", \"inside\"] },\r\n                \"target\": { \"type\": \"string\" }\r\n              }\r\n            }\r\n          }\r\n        },\r\n\r\n        \"estimates\": {\r\n          \"type\": \"object\",\r\n          \"required\": [\"component_count_estimate\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"component_count_estimate\": { \"type\": \"integer\", \"minimum\": 1 },\r\n            \"notes\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\r\n          }\r\n        },\r\n\r\n        \"checks\": {\r\n          \"type\": \"object\",\r\n          \"required\": [\"accessibility\", \"editorial\", \"risks\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"accessibility\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } },\r\n            \"editorial\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } },\r\n            \"risks\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  },\r\n\r\n  \"$defs\": {\r\n    \"component_blueprint\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"catalog_component_id\", \"mapping\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"catalog_component_id\": {\r\n          \"type\": \"string\",\r\n          \"description\": \"Must match an id in the Available Components Catalog. Validation is performed by the executor.\"\r\n        },\r\n\r\n        \"purpose\": {\r\n          \"type\": \"string\",\r\n          \"description\": \"Human-readable intent (e.g., 'section intro', 'FAQ list', 'hero summary').\"\r\n        },\r\n\r\n        \"mapping\": {\r\n          \"type\": \"object\",\r\n          \"description\": \"Maps document blocks into component props and slots.\",\r\n          \"required\": [\"props\"],\r\n          \"additionalProperties\": false,\r\n          \"properties\": {\r\n            \"props\": {\r\n              \"type\": \"object\",\r\n              \"description\": \"Prop name -> mapping expression\",\r\n              \"additionalProperties\": { \"$ref\": \"#/$defs/value_mapping\" }\r\n            },\r\n            \"slots\": {\r\n              \"type\": \"object\",\r\n              \"description\": \"Slot name -> list of child component blueprints\",\r\n              \"additionalProperties\": {\r\n                \"type\": \"array\",\r\n                \"minItems\": 1,\r\n                \"items\": { \"$ref\": \"#/$defs/component_blueprint\" }\r\n              }\r\n            }\r\n          }\r\n        },\r\n\r\n        \"notes\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\r\n      }\r\n    },\r\n\r\n    \"value_mapping\": {\r\n      \"type\": \"object\",\r\n      \"required\": [\"source\"],\r\n      \"additionalProperties\": false,\r\n      \"properties\": {\r\n        \"source\": {\r\n          \"type\": \"string\",\r\n          \"enum\": [\"literal\", \"block_text\", \"block_list_items\", \"block_table\", \"block_image\", \"computed\"]\r\n        },\r\n        \"value\": {\r\n          \"description\": \"Used when source=literal or source=computed (computed is a short deterministic instruction).\"\r\n        },\r\n        \"block_id\": { \"type\": \"string\", \"pattern\": \"^blk_[a-zA-Z0-9_-]+$\" },\r\n        \"selector\": {\r\n          \"type\": \"string\",\r\n          \"description\": \"Optional selector for subparts (e.g., table column, list item range).\"\r\n        }\r\n      },\r\n      \"allOf\": [\r\n        {\r\n          \"if\": { \"properties\": { \"source\": { \"const\": \"literal\" } } },\r\n          \"then\": { \"required\": [\"value\"] }\r\n        },\r\n        {\r\n          \"if\": {\r\n            \"properties\": {\r\n              \"source\": {\r\n                \"enum\": [\"block_text\", \"block_list_items\", \"block_table\", \"block_image\"]\r\n              }\r\n            }\r\n          },\r\n          \"then\": { \"required\": [\"block_id\"] }\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}"

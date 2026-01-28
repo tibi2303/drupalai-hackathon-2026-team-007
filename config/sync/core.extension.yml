@@ -52,6 +52,7 @@ module:
   friendlycaptcha: 0
   gin_login: 0
   gin_toolbar: 0
+  hackaton_ai: 0
   honeypot: 0
   image: 0
   inline_form_errors: 0
