@@ -9,3 +9,5 @@ components:
   - components
 regions:
   content: Content
+  header: Header
+  footer: Footer
