@@ -2,17 +2,37 @@
   include(
     '@oe-bcl/bcl-header/header.html.twig',
     {
-      variant: variant|default('neutral'),
-      navbar: navbar|default({}),
-      project_logo: project_logo|default({}),
-      site_name: site_name|default(''),
-      project_link: project_link|default(''),
-      head: head|default({}),
-      breadcrumbs: breadcrumbs|default({}),
-      language_modal: language_modal|default({}),
+      variant: variant|default('neutral') ?: 'neutral',
+      site_name: site_name|default('Example site'),
+      project_link: project_link|default('/'),
       light: light|default(false),
-      modals: modals|default([]),
-      icon_path: icon_path|default(''),
+      icon_path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'),
+      navbar: {
+        navigation: {
+          items: [
+            nav_link1_label is not empty ? { label: nav_link1_label, path: nav_link1_path|default('/'), active: nav_link1_active|default(true) } : null,
+            nav_link2_label is not empty ? { label: nav_link2_label, path: nav_link2_path|default('#services'), active: nav_link2_active|default(false) } : null,
+            nav_link3_label is not empty ? { label: nav_link3_label, path: nav_link3_path|default('#about'), active: nav_link3_active|default(false) } : null,
+          ]|filter(v => v is not null)
+        }
+      },
+      breadcrumbs: {
+        links: [
+          { label: crumb1_label|default('Home'), path: crumb1_path|default('/') },
+          crumb2_label is not empty ? { label: crumb2_label, path: crumb2_path|default('#') } : null,
+        ]|filter(v => v is not null),
+        icon_path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg')
+      },
+      language_modal: {
+        trigger: {
+          label: language_label|default('English'),
+          path: language_path|default('#lang'),
+          icon: {
+            name: 'translate',
+            path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg')
+          }
+        }
+      },
     },
     with_context: false
   )

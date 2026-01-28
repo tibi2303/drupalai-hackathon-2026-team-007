@@ -2,8 +2,13 @@
   include(
     '@oe-bcl/bcl-breadcrumb/breadcrumb.html.twig',
     {
-      links: links|default([]),
-      icon_path: icon_path|default(''),
+      icon_path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'),
+      links: [
+        link1_label is not empty ? { label: link1_label, path: link1_path|default('/') } : null,
+        link2_label is not empty ? { label: link2_label, path: link2_path|default('#') } : null,
+        link3_label is not empty ? { label: link3_label, path: link3_path|default('#') } : null,
+        link4_label is not empty ? { label: link4_label, path: link4_path|default('#') } : null,
+      ]|filter(v => v is not null),
     },
     with_context: false
   )

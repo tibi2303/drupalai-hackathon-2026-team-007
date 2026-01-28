@@ -1,34 +1,69 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: "BCL Inpage Navigation"
+description: "On-page anchor navigation with optional dropdown."
 group: "BCL"
+status: stable
 props:
   type: object
   properties:
     title:
       type: string
       title: "Title"
-      default: ''
+      default: "On this page"
     title_tag:
       type: string
-      title: "Title Tag"
-      default: 'h2'
+      title: "Title tag"
+      enum: [h2, h3, h4, h5, h6]
+      default: h2
     title_link:
-      type: object
-      title: "Title Link"
-    links:
-      type: array
-      title: "Links"
+      type: string
+      title: "Title link URL"
+      default: ""
     id:
       type: string
-      title: "Id"
+      title: "Wrapper id"
+      default: "on-this-page"
     dropdown_id:
       type: string
-      title: "Dropdown Id"
+      title: "Dropdown id"
+      default: "on-this-page-dropdown"
     dynamic_active:
       type: boolean
-      title: "Dynamic Active"
+      title: "Dynamic active state"
       default: false
     icon_path:
       type: string
-      title: "Icon Path"
-      default: ''
+      title: "Icon sprite path"
+      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+    link1_label:
+      type: string
+      title: "Link 1 label"
+      default: "Section 1"
+    link1_path:
+      type: string
+      title: "Link 1 anchor"
+      default: "#section-1"
+    link2_label:
+      type: string
+      title: "Link 2 label"
+      default: "Section 2"
+    link2_path:
+      type: string
+      title: "Link 2 anchor"
+      default: "#section-2"
+    link3_label:
+      type: string
+      title: "Link 3 label"
+      default: ""
+    link3_path:
+      type: string
+      title: "Link 3 anchor"
+      default: "#section-3"
+    link4_label:
+      type: string
+      title: "Link 4 label"
+      default: ""
+    link4_path:
+      type: string
+      title: "Link 4 anchor"
+      default: "#section-4"

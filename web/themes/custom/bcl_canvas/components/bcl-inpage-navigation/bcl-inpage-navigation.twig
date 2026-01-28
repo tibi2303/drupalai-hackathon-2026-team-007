@@ -2,14 +2,19 @@
   include(
     '@oe-bcl/bcl-inpage-navigation/inpage-navigation.html.twig',
     {
-      title: title|default(''),
+      title: title|default('On this page'),
       title_tag: title_tag|default('h2'),
-      title_link: title_link|default({}),
-      links: links|default([]),
-      id: id|default(''),
-      dropdown_id: dropdown_id|default(''),
+      title_link: title_link is not empty ? { path: title_link, label: title|default('On this page') } : {},
+      links: [
+        link1_label is not empty ? { label: link1_label, path: link1_path|default('#section-1') } : null,
+        link2_label is not empty ? { label: link2_label, path: link2_path|default('#section-2') } : null,
+        link3_label is not empty ? { label: link3_label, path: link3_path|default('#section-3') } : null,
+        link4_label is not empty ? { label: link4_label, path: link4_path|default('#section-4') } : null,
+      ]|filter(v => v is not null),
+      id: id|default('on-this-page'),
+      dropdown_id: dropdown_id|default('on-this-page-dropdown'),
       dynamic_active: dynamic_active|default(false),
-      icon_path: icon_path|default(''),
+      icon_path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'),
     },
     with_context: false
   )
