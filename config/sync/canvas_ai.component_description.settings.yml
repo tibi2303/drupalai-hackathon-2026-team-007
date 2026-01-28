@@ -165,68 +165,7 @@ component_context:
             description: 'If true, keeps item 4 open when other items are toggled.'
             type: boolean
             default: ''
-        slots: 'No slots: content is provided via the itemN props rather than named child slots.'
-      sdc.bcl_canvas.bcl-badge:
-        id: sdc.bcl_canvas.bcl-badge
-        name: 'BCL Badge'
-        description: 'Compact visual label used to show counts, status, or small bits of metadata; can be linked or dismissible.'
-        group: BCL
-        props:
-          label:
-            name: Label
-            description: 'Visible text inside the badge; short strings or numbers are recommended.'
-            type: string
-            default: ''
-          background:
-            name: Background
-            description: 'Color variant applied to the badge background to communicate meaning or priority.'
-            type: string
-            default: ''
-            enum:
-              - primary
-              - secondary
-              - success
-              - danger
-              - warning
-              - info
-              - light
-              - dark
-          url:
-            name: 'Link URL'
-            description: 'Optional destination URL to make the badge act as a hyperlink.'
-            type: string
-            default: ''
-          title:
-            name: 'Title attribute'
-            description: 'Additional tooltip text shown on hover for extra context or accessibility.'
-            type: string
-            default: ''
-          dismissible:
-            name: Dismissible
-            description: 'If true, displays a control to remove or hide the badge from the UI.'
-            type: boolean
-            default: ''
-          assistive_text:
-            name: 'Assistive text (for dismiss button)'
-            description: 'Screen-reader text for the dismiss control to describe its action.'
-            type: string
-            default: ''
-          rounded_pill:
-            name: 'Pill shape'
-            description: 'If true, renders the badge with fully rounded ends for a pill appearance.'
-            type: boolean
-            default: ''
-          outline:
-            name: 'Outline style'
-            description: 'If true, renders the badge as an outlined element instead of a filled background.'
-            type: boolean
-            default: ''
-          icon_path:
-            name: 'Icon sprite path'
-            description: 'Path to an icon sprite to optionally render an icon inside the badge.'
-            type: string
-            default: ''
-        slots: 'No slots: badge content is defined via props.'
+        slots: 'No slots'
       sdc.bcl_canvas.bcl-content-banner:
         id: sdc.bcl_canvas.bcl-content-banner
         name: 'BCL Content Banner'
@@ -265,11 +204,6 @@ component_context:
           label:
             name: 'Toggle label'
             description: 'Label text for the control that toggles visibility of the translations list.'
-            type: string
-            default: ''
-          icon_path:
-            name: 'Icon sprite path'
-            description: 'Path to an icon sprite used for the toggle control or file icons.'
             type: string
             default: ''
           lang1_title:
@@ -466,11 +400,32 @@ component_context:
             description: 'Logical icon identifier used to select which glyph to render from the sprite or icon set.'
             type: string
             default: ''
-          path:
-            name: Path
-            description: 'Path to the icon sprite file or asset bundle where the icon glyphs are located.'
-            type: string
-            default: ''
+            enum:
+              - arrow-right
+              - arrow-left
+              - arrow-up
+              - arrow-down
+              - chevron-left
+              - chevron-right
+              - chevron-up
+              - chevron-down
+              - caret-up-fill
+              - caret-down-fill
+              - check
+              - x
+              - info
+              - question-circle
+              - exclamation-triangle-fill
+              - plus-lg
+              - dash-lg
+              - search
+              - link
+              - upload
+              - download
+              - calendar
+              - envelope
+              - cloud-arrow-up
+              - cloud-arrow-down
           size:
             name: Size
             description: 'Size token for the icon controlling its rendered dimensions; supports responsive tokens.'
@@ -533,11 +488,6 @@ component_context:
             description: 'Optional icon identifier to render alongside the link label for visual context.'
             type: string
             default: ''
-          icon_path:
-            name: 'Icon sprite path'
-            description: 'Path to the icon sprite file to source the icon specified by icon_name.'
-            type: string
-            default: ''
           icon_position:
             name: 'Icon position'
             description: 'Position of the icon relative to the label; choose before or after.'
@@ -598,7 +548,26 @@ component_context:
             description: 'Numeric or textual progress indicator (percentage or descriptive text) showing completion level.'
             type: string
             default: ''
-        slots: 'No slots: all display values are provided via props.'
+        slots: 'No slots'
+      sdc.bcl_canvas.bcl-rich-text:
+        id: sdc.bcl_canvas.bcl-rich-text
+        name: 'BCL Rich Text'
+        description: 'Renders supplied rich HTML as‑is, preserving markup, inline styles and links. Intended for trusted content only; ensure input is sanitized before rendering to prevent cross‑site scripting (XSS).'
+        group: BCL
+        props:
+          content:
+            name: 'Content (HTML allowed)'
+            description: >-
+              HTML content to be rendered by the component. Supports basic structural and
+              inline markup (headings, paragraphs, lists, anchors, images, emphasis, and
+              strong). This field is treated as trusted content by the renderer and will not
+              be automatically sanitized; sanitize or validate any user-supplied input
+              upstream to prevent cross-site scripting (XSS). Intended for short-to-medium
+              promotional or informational content and calls-to-action. Avoid scripts,
+              inline event handlers, and untrusted markup.
+            type: string
+            default: ''
+        slots: 'No slots'
       sdc.bcl_canvas.bcl-textarea:
         id: sdc.bcl_canvas.bcl-textarea
         name: 'BCL Textarea'
