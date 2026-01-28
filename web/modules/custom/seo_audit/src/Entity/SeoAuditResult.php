@@ -31,9 +31,6 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "uuid" = "uuid",
  *     "label" = "label",
  *   },
- *   links = {
- *     "canonical" = "/admin/seo-audit/report/{seo_audit_result}",
- *   },
  * )
  */
 final class SeoAuditResult extends ContentEntityBase {
@@ -146,6 +143,18 @@ final class SeoAuditResult extends ContentEntityBase {
       ->setLabel(t('AI Tokens Used'))
       ->setDescription(t('Number of AI tokens consumed.'))
       ->setDefaultValue(0);
+
+    $fields['ai_provider_used'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('AI Provider Used'))
+      ->setDescription(t('The AI provider and model that generated the analysis.'))
+      ->setSettings([
+        'max_length' => 255,
+      ]);
+
+    $fields['ai_fallback_attempts'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('AI Fallback Attempts'))
+      ->setDescription(t('Number of providers attempted before successful analysis.'))
+      ->setDefaultValue(1);
 
     $fields['initiated_by'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Initiated By'))

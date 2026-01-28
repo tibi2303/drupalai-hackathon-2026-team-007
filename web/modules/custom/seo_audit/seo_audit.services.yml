@@ -9,6 +9,9 @@ services:
   seo_audit.node_html_renderer:
     class: Drupal\seo_audit\Service\NodeHtmlRenderer
     arguments: ['@entity_type.manager', '@renderer']
+  seo_audit.provider_fallback:
+    class: Drupal\seo_audit\Service\AiProviderFallbackService
+    arguments: ['@ai.provider', '@config.factory', '@logger.factory']
   seo_audit.audit_orchestrator:
     class: Drupal\seo_audit\Service\AuditOrchestrator
-    arguments: ['@ai.provider', '@config.factory', '@logger.factory']
+    arguments: ['@ai.provider', '@config.factory', '@logger.factory', '@seo_audit.provider_fallback']
