@@ -1,12 +1,11 @@
-<div class="container">
 {{
   include(
     '@oe-bcl/bcl-badge/badge.html.twig',
     {
       label: label|default('Badge'),
       background: background,
+      attributes: create_attribute().addClass('d-inline-block'),
     },
     with_context: false
   )
 }}
-</div>
