@@ -1,0 +1,52 @@
+{{
+  include(
+    '@oe-bcl/bcl-pagination/pagination.html.twig',
+    {
+      size: size|default('sm'),
+      alignment: alignment|default('end'),
+      variant: variant|default(''),
+      aria_label: aria_label|default('Pagination'),
+      enable_prev_next_icon: show_prev_next_icons|default(true),
+      enable_first_last_icon: show_first_last_icons|default(true),
+      icon_path: icon_path|default('/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg'),
+      items: (
+        () => {
+          set pages = [] %}
+          {% set total = total_pages|default(5) %}
+          {% set current = current_page|default(3) %}
+          {% set total = (total > 9) ? 9 : total %}
+          {% for i in 1..total %}
+            {% set pages = pages|merge([{
+              label: i,
+              path: '#page-' ~ i,
+              active: i == current,
+              disabled: false,
+            }]) %}
+          {% endfor %}
+          {{ pages }}
+        }()
+      ),
+      first: {
+        label: 'First',
+        path: '#page-1',
+        disabled: (current_page|default(3)) <= 1,
+      },
+      prev: {
+        label: 'Previous',
+        path: '#page-' ~ ((current_page|default(3)) - 1),
+        disabled: (current_page|default(3)) <= 1,
+      },
+      next: {
+        label: 'Next',
+        path: '#page-' ~ ((current_page|default(3)) + 1),
+        disabled: (current_page|default(3)) >= (total_pages|default(5)),
+      },
+      last: {
+        label: 'Last',
+        path: '#page-' ~ (total_pages|default(5)),
+        disabled: (current_page|default(3)) >= (total_pages|default(5)),
+      },
+    },
+    with_context: false
+  )
+}}

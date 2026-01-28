@@ -1,0 +1,73 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Alert"
+description: "Bootstrap alert with optional heading, icon and dismiss controls."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    message:
+      type: string
+      title: "Message"
+      pattern: "(.|\\r?\\n)*"
+      default: "Example alert message."
+      examples:
+        - "Example alert message."
+    heading:
+      type: string
+      title: "Heading"
+      default: ""
+      examples:
+        - "Attention"
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - light
+        - dark
+        - link
+      meta:enum:
+        '': "Primary (default)"
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+        link: Link
+      default: primary
+      examples:
+        - primary
+    dismissible:
+      type: boolean
+      title: "Dismissible"
+      default: true
+      examples:
+        - true
+    animated_dismiss:
+      type: boolean
+      title: "Animated dismiss"
+      default: true
+      examples:
+        - true
+    icon_path:
+      type: string
+      title: "Icon path (SVG sprite)"
+      default: ""
+      examples:
+        - "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
+    icon_name:
+      type: string
+      title: "Icon name"
+      default: ""
+      examples:
+        - "info-circle"

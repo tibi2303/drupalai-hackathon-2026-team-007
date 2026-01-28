@@ -1,0 +1,11 @@
+{{
+  include(
+    '@oe-bcl/bcl-project-status/project-contributions.html.twig',
+    {
+      corporate_contributions: corporate_contributions|default(''),
+      legend: legend|default({}),
+      chart: chart|default(false),
+    },
+    with_context: false
+  )
+}}

@@ -1,0 +1,31 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Form"
+group: "BCL"
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      default: ''
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'h2'
+    title_link:
+      type: object
+      title: "Title Link"
+    helper_text:
+      type: string
+      title: "Helper Text"
+      default: ''
+    antispam:
+      type: string
+      title: "Antispam"
+      default: ''
+    items:
+      type: array
+      title: "Items"
+    submit:
+      type: object
+      title: "Submit"

@@ -1,0 +1,11 @@
+{{
+  include(
+    '@oe-bcl/bcl-description-list/description-list-title.html.twig',
+    {
+      icon: icon|default({}),
+      color: color|default(''),
+      label: label|default(''),
+    },
+    with_context: false
+  )
+}}

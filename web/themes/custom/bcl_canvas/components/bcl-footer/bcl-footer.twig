@@ -1,0 +1,10 @@
+{{
+  include(
+    '@oe-bcl/bcl-footer/footer.html.twig',
+    {
+      variant: variant|default('neutral'),
+      rows: rows|default([]),
+    },
+    with_context: false
+  )
+}}

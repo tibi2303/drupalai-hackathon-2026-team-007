@@ -1,0 +1,15 @@
+{{
+  include(
+    '@oe-bcl/bcl-blockquote/blockquote.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      quote: quote|default(''),
+      attribution: attribution|default(''),
+      cite: cite|default(''),
+      alignment: alignment|default('left'),
+    },
+    with_context: false
+  )
+}}

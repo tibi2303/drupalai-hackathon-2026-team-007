@@ -1,0 +1,55 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Pagination"
+description: "Pagination control with prev/next and numbered pages."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    total_pages:
+      type: number
+      title: "Total pages"
+      default: 5
+      examples:
+        - 7
+    current_page:
+      type: number
+      title: "Current page"
+      default: 3
+      examples:
+        - 1
+    size:
+      type: string
+      title: "Size"
+      enum: [sm, lg, '']
+      default: sm
+    alignment:
+      type: string
+      title: "Alignment"
+      enum: [start, center, end, '']
+      default: end
+    variant:
+      type: string
+      title: "Variant"
+      enum: [glossary, '']
+      default: ''
+    aria_label:
+      type: string
+      title: "Aria label"
+      default: "Pagination"
+    show_prev_next_icons:
+      type: boolean
+      title: "Show prev/next icons"
+      default: true
+    show_first_last_icons:
+      type: boolean
+      title: "Show first/last icons"
+      default: true
+    use_ellipsis:
+      type: boolean
+      title: "Use ellipsis for long lists"
+      default: false
+    icon_path:
+      type: string
+      title: "Icon sprite path"
+      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"

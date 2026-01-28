@@ -1,0 +1,27 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Spinner"
+description: "Bootstrap spinner for loading states."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    type:
+      type: string
+      title: "Type"
+      enum: [border, grow]
+      default: border
+    variant:
+      type: string
+      title: "Variant"
+      enum: [primary, secondary, success, danger, warning, info, light, dark, '']
+      default: primary
+    size:
+      type: string
+      title: "Size"
+      enum: [sm, lg, '']
+      default: ''
+    assistive_text:
+      type: string
+      title: "Assistive text"
+      default: "Loading…"

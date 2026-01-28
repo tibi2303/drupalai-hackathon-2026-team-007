@@ -1,69 +1,34 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: "BCL Inpage Navigation"
-description: "On-page anchor navigation with optional dropdown."
 group: "BCL"
-status: stable
 props:
   type: object
   properties:
     title:
       type: string
       title: "Title"
-      default: "On this page"
+      default: ''
     title_tag:
       type: string
-      title: "Title tag"
-      enum: [h2, h3, h4, h5, h6]
-      default: h2
+      title: "Title Tag"
+      default: 'h2'
     title_link:
-      type: string
-      title: "Title link URL"
-      default: ""
+      type: object
+      title: "Title Link"
+    links:
+      type: array
+      title: "Links"
     id:
       type: string
-      title: "Wrapper id"
-      default: "on-this-page"
+      title: "Id"
     dropdown_id:
       type: string
-      title: "Dropdown id"
-      default: "on-this-page-dropdown"
+      title: "Dropdown Id"
     dynamic_active:
       type: boolean
-      title: "Dynamic active state"
+      title: "Dynamic Active"
       default: false
     icon_path:
       type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
-    link1_label:
-      type: string
-      title: "Link 1 label"
-      default: "Section 1"
-    link1_path:
-      type: string
-      title: "Link 1 anchor"
-      default: "#section-1"
-    link2_label:
-      type: string
-      title: "Link 2 label"
-      default: "Section 2"
-    link2_path:
-      type: string
-      title: "Link 2 anchor"
-      default: "#section-2"
-    link3_label:
-      type: string
-      title: "Link 3 label"
-      default: ""
-    link3_path:
-      type: string
-      title: "Link 3 anchor"
-      default: "#section-3"
-    link4_label:
-      type: string
-      title: "Link 4 label"
-      default: ""
-    link4_path:
-      type: string
-      title: "Link 4 anchor"
-      default: "#section-4"
+      title: "Icon Path"
+      default: ''

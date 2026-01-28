@@ -1,0 +1,16 @@
+{{
+  include(
+    '@oe-bcl/bcl-dropdown/dropdown.html.twig',
+    {
+      id: id|default(''),
+      trigger: trigger|default({}),
+      link: link|default(false),
+      direction: direction|default(''),
+      alignment: alignment|default(''),
+      dark: dark|default(false),
+      remove_wrapper: remove_wrapper|default(false),
+      items: items|default([]),
+    },
+    with_context: false
+  )
+}}

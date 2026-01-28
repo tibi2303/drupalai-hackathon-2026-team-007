@@ -1,0 +1,37 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL List Group"
+group: "BCL"
+props:
+  type: object
+  properties:
+    flush:
+      type: boolean
+      title: "Flush"
+      default: false
+    horizontal:
+      type: string
+      title: "Horizontal"
+      enum:
+        - 'none'
+        - 'horizontal'
+        - 'horizontal-sm'
+        - 'horizontal-md'
+        - 'horizontal-lg'
+        - 'horizontal-xl'
+        - 'horizontal-xxl'
+      default: 'none'
+    id:
+      type: string
+      title: "Id"
+      default: ''
+    type:
+      type: string
+      title: "Type"
+      enum:
+        - 'unordered'
+        - 'ordered'
+        - 'actionable'
+      default: 'unordered'
+    items:
+      type: array
+      title: "Items"

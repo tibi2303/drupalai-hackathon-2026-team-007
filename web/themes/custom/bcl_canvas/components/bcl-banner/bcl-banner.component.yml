@@ -1,0 +1,47 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Banner"
+group: "BCL"
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      default: ''
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'div'
+    title_link:
+      type: object
+      title: "Title Link"
+    description:
+      type: string
+      title: "Description"
+      default: ''
+    link:
+      type: object
+      title: "Link"
+    image:
+      type: string
+      title: "Image"
+    shade:
+      type: boolean
+      title: "Shade"
+      default: false
+    hero:
+      type: boolean
+      title: "Hero"
+      default: false
+    full_width:
+      type: boolean
+      title: "Full Width"
+      default: false
+    fixed_height:
+      type: boolean
+      title: "Fixed Height"
+      default: false
+    content_classes:
+      type: string
+      title: "Content Classes"
+      default: ''

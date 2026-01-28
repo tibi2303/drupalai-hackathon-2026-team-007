@@ -1,0 +1,20 @@
+{{
+  include(
+    '@oe-bcl/bcl-gallery/gallery.html.twig',
+    {
+      id: id|default(''),
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      counter: counter|default(''),
+      toggle_collapsed: toggle_collapsed|default(''),
+      toggle_expanded: toggle_expanded|default(''),
+      next_label: next_label|default('Next'),
+      prev_label: prev_label|default('Previous'),
+      max_visible_thumbnails: max_visible_thumbnails|default(5),
+      items: items|default([]),
+      icon_path: icon_path|default(''),
+    },
+    with_context: false
+  )
+}}

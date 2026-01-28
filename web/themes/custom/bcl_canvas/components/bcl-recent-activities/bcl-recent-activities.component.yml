@@ -1,0 +1,9 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Recent Activities"
+group: "BCL"
+props:
+  type: object
+  properties:
+    activities:
+      type: array
+      title: "Activities"

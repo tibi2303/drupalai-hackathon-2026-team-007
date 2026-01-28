@@ -1,0 +1,24 @@
+{{
+  include(
+    '@oe-bcl/bcl-select/select.html.twig',
+    {
+      id: id|default(''),
+      label: label|default(''),
+      label_extra_classes: label_extra_classes|default(''),
+      hidden_label: hidden_label|default(false),
+      helper_text: helper_text|default(''),
+      helper_text_id: helper_text_id|default(''),
+      disabled: disabled|default(false),
+      invalid: invalid|default(false),
+      valid: valid|default(false),
+      invalid_feedback: invalid_feedback|default(''),
+      valid_feedback: valid_feedback|default(''),
+      required: required|default(false),
+      multiple: multiple|default(false),
+      options: options|default([]),
+      aria_label: aria_label|default(''),
+      clean_class: clean_class|default(false),
+    },
+    with_context: false
+  )
+}}

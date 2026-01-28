@@ -1,0 +1,49 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Progress"
+description: "Progress bar with optional label and message."
+group: "BCL"
+status: stable
+props:
+  type: object
+  properties:
+    progress:
+      type: number
+      title: "Value"
+      default: 50
+    min:
+      type: number
+      title: "Minimum"
+      default: 0
+    max:
+      type: number
+      title: "Maximum"
+      default: 100
+    striped:
+      type: boolean
+      title: "Striped"
+      default: true
+    animated:
+      type: boolean
+      title: "Animated"
+      default: false
+    hidden_label:
+      type: boolean
+      title: "Hide label visually"
+      default: false
+    label:
+      type: string
+      title: "Label text"
+      default: "Progress"
+    bar_label:
+      type: string
+      title: "Bar label (inside)"
+      default: "50%"
+    variant:
+      type: string
+      title: "Variant"
+      enum: [primary, secondary, success, danger, warning, info, light, dark, '']
+      default: primary
+    message:
+      type: string
+      title: "Helper message"
+      default: ""

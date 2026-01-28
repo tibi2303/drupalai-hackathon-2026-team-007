@@ -1,44 +1,13 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: "BCL Breadcrumb"
-description: "Breadcrumb trail with up to four links."
 group: "BCL"
-status: stable
 props:
   type: object
   properties:
+    links:
+      type: array
+      title: "Links"
     icon_path:
       type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
-    link1_label:
-      type: string
-      title: "Link 1 label"
-      default: "Home"
-    link1_path:
-      type: string
-      title: "Link 1 URL"
-      default: "/"
-    link2_label:
-      type: string
-      title: "Link 2 label"
-      default: ""
-    link2_path:
-      type: string
-      title: "Link 2 URL"
-      default: "#"
-    link3_label:
-      type: string
-      title: "Link 3 label"
-      default: ""
-    link3_path:
-      type: string
-      title: "Link 3 URL"
-      default: "#"
-    link4_label:
-      type: string
-      title: "Link 4 label"
-      default: ""
-    link4_path:
-      type: string
-      title: "Link 4 URL"
-      default: "#"
+      title: "Icon Path"
+      default: ''

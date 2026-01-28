@@ -1,89 +1,48 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: "BCL Header"
-description: "Site header with brand, navbar, breadcrumbs and language toggle."
 group: "BCL"
-status: stable
 props:
   type: object
   properties:
     variant:
       type: string
       title: "Variant"
-      default: neutral
-      enum: ["ec", "eu", "neutral", ""]
+      enum:
+        - 'ec'
+        - 'eu'
+        - 'neutral'
+      default: 'neutral'
+    navbar:
+      type: object
+      title: "Navbar"
+    project_logo:
+      type: object
+      title: "Project Logo"
     site_name:
       type: string
-      title: "Site name"
-      default: "Example site"
+      title: "Site Name"
+      default: ''
     project_link:
       type: string
-      title: "Site URL"
-      default: "/"
+      title: "Project Link"
+      default: ''
+    head:
+      type: object
+      title: "Head"
+    breadcrumbs:
+      type: object
+      title: "Breadcrumbs"
+    language_modal:
+      type: object
+      title: "Language Modal"
     light:
       type: boolean
-      title: "Light version"
+      title: "Light"
       default: false
+    modals:
+      type: array
+      title: "Modals"
     icon_path:
       type: string
-      title: "Icon sprite path"
-      default: "/themes/custom/bcl_canvas/assets/bcl/icons/bootstrap-icons.svg"
-    nav_link1_label:
-      type: string
-      title: "Nav link 1 label"
-      default: "Home"
-    nav_link1_path:
-      type: string
-      title: "Nav link 1 URL"
-      default: "/"
-    nav_link1_active:
-      type: boolean
-      title: "Nav link 1 active"
-      default: true
-    nav_link2_label:
-      type: string
-      title: "Nav link 2 label"
-      default: "Services"
-    nav_link2_path:
-      type: string
-      title: "Nav link 2 URL"
-      default: "#services"
-    nav_link2_active:
-      type: boolean
-      title: "Nav link 2 active"
-      default: false
-    nav_link3_label:
-      type: string
-      title: "Nav link 3 label"
-      default: "About"
-    nav_link3_path:
-      type: string
-      title: "Nav link 3 URL"
-      default: "#about"
-    nav_link3_active:
-      type: boolean
-      title: "Nav link 3 active"
-      default: false
-    crumb1_label:
-      type: string
-      title: "Breadcrumb 1 label"
-      default: "Home"
-    crumb1_path:
-      type: string
-      title: "Breadcrumb 1 URL"
-      default: "/"
-    crumb2_label:
-      type: string
-      title: "Breadcrumb 2 label"
-      default: ""
-    crumb2_path:
-      type: string
-      title: "Breadcrumb 2 URL"
-      default: "#"
-    language_label:
-      type: string
-      title: "Language toggle label"
-      default: "English"
-    language_path:
-      type: string
-      title: "Language toggle URL"
-      default: "#lang"
+      title: "Icon Path"
+      default: ''

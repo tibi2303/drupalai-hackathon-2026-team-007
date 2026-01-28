@@ -1,0 +1,56 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL Pagination V2 Pagination"
+group: "BCL"
+props:
+  type: object
+  properties:
+    size:
+      type: string
+      title: "Size"
+      enum:
+        - 'sm'
+        - 'lg'
+      default: 'sm'
+    alignment:
+      type: string
+      title: "Alignment"
+      enum:
+        - 'start'
+        - 'end'
+        - 'center'
+      default: 'center'
+    enable_prev_next_icon:
+      type: boolean
+      title: "Enable Prev Next Icon"
+      default: true
+    enable_first_last_icon:
+      type: boolean
+      title: "Enable First Last Icon"
+      default: false
+    ellipsis_before:
+      type: boolean
+      title: "Ellipsis Before"
+      default: false
+    ellipsis_after:
+      type: boolean
+      title: "Ellipsis After"
+      default: false
+    first:
+      type: object
+      title: "First"
+    prev:
+      type: object
+      title: "Prev"
+    next:
+      type: object
+      title: "Next"
+    last:
+      type: object
+      title: "Last"
+    items:
+      type: array
+      title: "Items"
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

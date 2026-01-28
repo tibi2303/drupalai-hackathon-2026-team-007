@@ -1,0 +1,66 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: "BCL File"
+group: "BCL"
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      default: ''
+    title_tag:
+      type: string
+      title: "Title Tag"
+      default: 'h2'
+    title_link:
+      type: object
+      title: "Title Link"
+    item_title:
+      type: string
+      title: "Item Title"
+      default: ''
+    icon:
+      type: object
+      title: "Icon"
+    icon_inline:
+      type: boolean
+      title: "Icon Inline"
+    text:
+      type: string
+      title: "Text"
+      default: ''
+    content:
+      type: string
+      title: "Content"
+      default: ''
+    image:
+      type: object
+      title: "Image"
+    badges:
+      type: array
+      title: "Badges"
+    meta:
+      type: string
+      title: "Meta"
+      default: ''
+    language:
+      type: string
+      title: "Language"
+      default: ''
+    variant:
+      type: string
+      title: "Variant"
+      enum:
+        - 'default'
+        - 'card'
+      default: 'default'
+    download:
+      type: object
+      title: "Download"
+    translation:
+      type: object
+      title: "Translation"
+    icon_path:
+      type: string
+      title: "Icon Path"
+      default: ''

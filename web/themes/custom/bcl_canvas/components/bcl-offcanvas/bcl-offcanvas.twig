@@ -1,0 +1,22 @@
+{{
+  include(
+    '@oe-bcl/bcl-offcanvas/offcanvas.html.twig',
+    {
+      title: title|default(''),
+      title_tag: title_tag|default('h2'),
+      title_link: title_link|default({}),
+      placement: placement|default(''),
+      id: id|default(''),
+      body: body|default(''),
+      with_body_scroll: with_body_scroll|default(false),
+      with_backdrop: with_backdrop|default(true),
+      with_close: with_close|default(true),
+      close_aria_label: close_aria_label|default(''),
+      extra_classes_body: extra_classes_body|default(''),
+      extra_classes_header: extra_classes_header|default(''),
+      extra_classes_close: extra_classes_close|default(''),
+      responsiveness: responsiveness|default(''),
+    },
+    with_context: false
+  )
+}}
