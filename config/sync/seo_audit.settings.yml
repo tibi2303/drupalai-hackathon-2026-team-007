@@ -1,0 +1,13 @@
+_core:
+  default_config_hash: xt5ZQ5CRZaFQrxH1MAQrQ3ap9u5bzbb9w6181t7wdgk
+ai_enabled: true
+max_tokens_per_audit: 4000
+max_audits_per_day: 100
+max_content_length_for_ai: 50000
+seo_weight: 0.5
+accessibility_weight: 0.3
+content_quality_weight: 0.2
+seo_deterministic_ratio: 0.7
+seo_ai_ratio: 0.3
+accessibility_disclaimer: 'Automated tools typically detect 30-40% of accessibility issues. This report is not a WCAG conformance evaluation. A comprehensive accessibility audit requires manual expert review.'
+seo_disclaimer: 'Scores reflect automated analysis only and do not represent actual search engine ranking factors. Use these results as guidance for content improvement.'

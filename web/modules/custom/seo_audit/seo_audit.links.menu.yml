@@ -1,0 +1,12 @@
+seo_audit.dashboard:
+  title: 'SEO Audit Dashboard'
+  route_name: seo_audit.dashboard
+  parent: system.admin_content
+  weight: 10
+
+seo_audit.settings:
+  title: 'SEO Audit Settings'
+  route_name: seo_audit.settings
+  parent: system.admin_config
+  description: 'Configure SEO audit scoring weights, AI settings, and token budgets.'
+  weight: 50

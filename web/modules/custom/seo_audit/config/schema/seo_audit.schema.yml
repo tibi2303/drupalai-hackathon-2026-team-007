@@ -1,0 +1,37 @@
+seo_audit.settings:
+  type: config_object
+  label: 'SEO Audit settings'
+  mapping:
+    ai_enabled:
+      type: boolean
+      label: 'Enable AI analysis'
+    max_tokens_per_audit:
+      type: integer
+      label: 'Maximum tokens per audit'
+    max_audits_per_day:
+      type: integer
+      label: 'Maximum audits per day'
+    max_content_length_for_ai:
+      type: integer
+      label: 'Maximum content length for AI analysis'
+    seo_weight:
+      type: float
+      label: 'SEO weight in overall score'
+    accessibility_weight:
+      type: float
+      label: 'Accessibility weight in overall score'
+    content_quality_weight:
+      type: float
+      label: 'Content quality weight in overall score'
+    seo_deterministic_ratio:
+      type: float
+      label: 'Deterministic ratio in SEO score'
+    seo_ai_ratio:
+      type: float
+      label: 'AI ratio in SEO score'
+    accessibility_disclaimer:
+      type: string
+      label: 'Accessibility disclaimer text'
+    seo_disclaimer:
+      type: string
+      label: 'SEO disclaimer text'
