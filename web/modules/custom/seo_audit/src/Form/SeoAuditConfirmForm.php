@@ -152,9 +152,9 @@ class SeoAuditConfirmForm extends ConfirmFormBase {
     ];
     batch_set($batch);
 
-    $form_state->setRedirectUrl(Url::fromRoute('seo_audit.report', [
+    $form_state->setRedirect('seo_audit.report', [
       'seo_audit_result' => $auditResult->id(),
-    ]));
+    ]);
   }
 
 }
